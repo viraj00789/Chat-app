@@ -1,8 +1,15 @@
 .chat-divs
+    display: flex
+.sideBar-1
+    background-color: black
     width: 100%
     display: flex
+    align-items: center
+    justify-content: space-between
+    flex-direction: column
+    padding: 0 24px 0 24px
 .sideBar
-    width: 280px
+    width: 390px
     border: 1px solid white
     height: 98vh
     overflow: auto
@@ -11,6 +18,10 @@
     &::-webkit-scrollbar
         display: none
 
-    @import "./SideBarComp/Header"
-    @import "./SideBarComp/Search"
-    @import "./SideBarComp/ChatList"
+@import "./SideBarComp/Header"
+@import "./SideBarComp/Search"
+@import "./SideBarComp/ChatList"
+@import "./ConvChatComp/UserChat"
+@import "./ConvChatComp/ConvHeader"
+@import "./ConvChatComp/ConvInput"
+

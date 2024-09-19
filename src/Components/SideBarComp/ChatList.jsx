@@ -6,7 +6,8 @@ const ChatList = () => {
   return (
     <>
     <div className="user-chat">
-     {randomData.map((items) => (
+     {randomData.map((items,index) => (
+      <div key={index}>
        <div className="chat-container">
         <div className="chat-div-1">
           <img
@@ -22,7 +23,9 @@ const ChatList = () => {
         <div className="chat-div-2">
           <span className="user-date">{`${items.date}`}</span>
         </div>
-      </div>))
+      </div>
+      </div>
+      ))
       }
     </div>
     </>
