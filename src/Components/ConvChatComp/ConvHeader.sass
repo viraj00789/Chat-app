@@ -1,3 +1,5 @@
+%input-base
+    font-size: 20px
 .cov-header-cont
     display: flex
     width: 100%
@@ -11,11 +13,83 @@
     display: flex
     margin-bottom: 23px
 .cov-header-img
-    width: 60px
-    height: 60px
+    width: 50px
+    height: 50px
     border-radius: 10px
 .cov-header-detail-name
-    margin: 10px
+    margin: 8px
     font-weight: bold
 .cov-header-detail-status
-    margin: 0 10px 0 10px
+    margin: 0 8px 0 8px
+
+
+
+.message
+    width: 100%
+    overflow: auto
+    height: 68vh
+.message__outer
+    margin: 5px
+    display: flex
+.message__inner
+      flex: 1
+      display: flex
+      flex-direction: row-reverse
+.message__actions
+    width: 67px
+    padding-right: 5px
+.message__bubble
+    max-width: calc(280px - 67px)
+    overflow-wrap: break-word
+    color: white
+    border-radius: 10px
+    padding: 10px
+    background-color: #9568dd
+.message__actions
+    flex-shrink: 0
+.message__status
+    margin-left: 10px
+.user-chat-image
+    height: 35px
+    width: 35px
+    border-radius: 10px
+
+
+
+    
+.cov-div
+    border-top: 1px solid #9568dd
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+.input-cov-icon
+    width: 100%
+    padding: 5px
+    display: flex
+    align-items: center
+    border-radius: 10px
+    margin-left: 10px
+    position: relative
+.cov-icon
+    position: absolute
+    right: 10px
+    cursor: pointer
+    font-size: 30px
+    margin-right: 10px
+    padding: 5px
+.cov-icon-1
+    margin-left: 10px
+.input-cov
+    width: 100%
+    background-color:#f3f3f3
+    box-sizing: border-box
+    width: 100%
+    margin: 10px
+    height: 40px
+    border: none
+    border-color: none
+    outline: none
+    border-radius: 10px
+    padding-left: 10px
+    @extend %input-base

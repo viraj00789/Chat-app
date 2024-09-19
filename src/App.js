@@ -1,9 +1,12 @@
 import ChatApp from "./Pages/ChatApp";
+import { ThemeProvider } from "./store/ThemeContext";
 
 function App() {
   return (
     <div className="App">
-      <ChatApp/>
+      <ThemeProvider>
+        <ChatApp />
+      </ThemeProvider>
     </div>
   );
 }
