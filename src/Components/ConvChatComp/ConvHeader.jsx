@@ -8,12 +8,14 @@ import { useChat } from "../../store/ChatContext";
 
 const ConvHeader = () => {
   const { isDark } = useTheme();
-  const {chat} = useChat();
+  const { chat } = useChat();
 
   console.log(chat);
   console.log("innn");
-  if(!chat) return (<h1>Please Select Chat</h1>);
-  return (<>  <div
+  if (!chat) return <h1>Please Select Chat</h1>;
+  return (
+    <>
+      <div
         className="cov-header-cont"
         style={{ backgroundColor: isDark ? "#fff" : "#000" }}
       >
@@ -21,11 +23,7 @@ const ConvHeader = () => {
           className="cov-header-subcnt-1"
           style={{ color: isDark ? "#000" : "#fff" }}
         >
-          <img
-            className="cov-header-img"
-            src={chat?.image}
-            alt=""
-          />
+          <img className="cov-header-img" src={chat?.image} alt="" />
           <div className="cov-header-details">
             <p className="cov-header-detail-name">{chat?.name}</p>
             <span className="cov-header-detail-status">Online</span>
@@ -35,6 +33,8 @@ const ConvHeader = () => {
           <IoCall size={20} />
         </div>
       </div>
+
+    <div className="message-divs">
       <div className="message">
         <div className="message__outer">
           {/* <div className="message__avatar"><FaCoffee size={35}/></div> */}
@@ -48,15 +48,24 @@ const ConvHeader = () => {
               alt=""
             />
           </div>
-          
         </div>
       </div>
+
       <div className="cov-div">
-        <MdOutlineFilePresent className="cov-icon-1" color="#9568dd" size={28} />
+        <MdOutlineFilePresent
+          className="cov-icon-1"
+          color="#9568dd"
+          size={28}
+        />
         <div className="input-cov-icon">
-        <input className="input-cov" type="text" placeholder="Enter Message" />
-        <BsSendFill className="cov-icon" color="#9568dd" size={20} />
+          <input
+            className="input-cov"
+            type="text"
+            placeholder="Enter Message"
+          />
+          <BsSendFill className="cov-icon" color="#9568dd" size={20} />
         </div>
+      </div>
       </div>
     </>
   );
