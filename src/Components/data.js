@@ -5,6 +5,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/women/2.jpg",
     chat: "Hey, did you see the latest update on the project?",
     date: "2024-09-17",
+    chatData: ["aaaa","bbbb","sdfgdfg","sdfjkghj",54,5,5,5,5]
   },
   {
     id: "2",
@@ -12,6 +13,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/men/3.jpg",
     chat: "I have some new ideas for the marketing campaign.",
     date: "2024-09-16",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "3",
@@ -19,6 +21,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/women/4.jpg",
     chat: "Can you send me the report by end of day?",
     date: "2024-09-15",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "4",
@@ -26,6 +29,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/men/5.jpg",
     chat: "Looking forward to our meeting tomorrow.",
     date: "2024-09-14",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "5",
@@ -33,6 +37,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/women/6.jpg",
     chat: "Let's catch up later this week!",
     date: "2024-09-13",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "6",
@@ -40,6 +45,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/men/6.jpg",
     chat: "Did you get a chance to review the draft?",
     date: "2024-09-12",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "7",
@@ -47,6 +53,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/women/7.jpg",
     chat: "Can you help with the presentation slides?",
     date: "2024-09-11",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "8",
@@ -54,6 +61,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/men/7.jpg",
     chat: "The server issue has been resolved.",
     date: "2024-09-10",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "9",
@@ -61,6 +69,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/women/8.jpg",
     chat: "Let's schedule a call to discuss the new features.",
     date: "2024-09-09",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "10",
@@ -68,6 +77,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/men/8.jpg",
     chat: "Can we push the deadline to next week?",
     date: "2024-09-08",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "11",
@@ -75,6 +85,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/women/9.jpg",
     chat: "I'll be out of the office for the next two days.",
     date: "2024-09-07",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "12",
@@ -82,6 +93,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/men/9.jpg",
     chat: "I need the budget report by tomorrow.",
     date: "2024-09-06",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "13",
@@ -89,6 +101,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/women/10.jpg",
     chat: "The team needs your feedback on the design.",
     date: "2024-09-05",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "14",
@@ -96,6 +109,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/men/10.jpg",
     chat: "Can we arrange a training session next week?",
     date: "2024-09-04",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "15",
@@ -103,6 +117,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/women/11.jpg",
     chat: "I have updated the project plan.",
     date: "2024-09-03",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "16",
@@ -110,6 +125,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/men/11.jpg",
     chat: "Let's finalize the contract details soon.",
     date: "2024-09-02",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "17",
@@ -117,6 +133,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/women/12.jpg",
     chat: "Please review the attached document.",
     date: "2024-09-01",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "18",
@@ -124,6 +141,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/men/12.jpg",
     chat: "Can we discuss the new project scope?",
     date: "2024-08-31",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "19",
@@ -131,6 +149,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/women/13.jpg",
     chat: "The client meeting went well today.",
     date: "2024-08-30",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "20",
@@ -138,6 +157,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/men/13.jpg",
     chat: "I will send over the revised estimates shortly.",
     date: "2024-08-29",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "21",
@@ -145,6 +165,7 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/women/14.jpg",
     chat: "The new feature is ready for testing.",
     date: "2024-08-28",
+    chatData: ["aaaa","bbbb"]
   },
   {
     id: "22",
@@ -152,5 +173,6 @@ export const randomData = [
     image: "https://randomuser.me/api/portraits/men/14.jpg",
     chat: "Please confirm the meeting time.",
     date: "2024-08-27",
+    chatData: ["aaaa","bbbb"]
   },
 ];

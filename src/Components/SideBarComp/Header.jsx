@@ -1,9 +1,11 @@
 import { MdAddCircle } from "react-icons/md";
+import { FaSun } from "react-icons/fa";
+import { FaMoon } from "react-icons/fa";
+
 import "./Header.sass";
 import { useTheme } from "../../store/ThemeContext";
 import { FaSearch } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import { randomData as initialData } from "../data";
+import { useState } from "react";
 import { useChat } from "../../store/ChatContext";
 import AddModel from "./AddModel";
 
@@ -11,28 +13,25 @@ const Header = () => {
   const { isDark, ToggleTheme } = useTheme();
   const [filter, setFilter] = useState("");
   const [isModelOpen, setIsModelOpen] = useState(false);
+  const { handleSelectedChat,data} = useChat();
+  const [filteredChatList, setFilteredChatList] = useState(data);
 
-  const getInitialChatData = () => {
-    const savedData = localStorage.getItem("data");
-    return savedData ? JSON.parse(savedData) : initialData;
-  };
-  const [chatList] = useState(() => getInitialChatData());
-  const [filteredChatList, setFilteredChatList] = useState(chatList);
-  const { handleSelectedChat } = useChat();
 
-  useEffect(() => {
-    localStorage.setItem("data", JSON.stringify(chatList));
-  }, [chatList]);
+
+  const handleNewData = (data) =>   {
+     setFilteredChatList(data);
+  } 
 
   const handleChange = (e) => {
     const newFilter = e.target.value;
     setFilter(newFilter);
-
-    const filteredList = chatList.filter((item) => item.name.toLowerCase().includes(newFilter.toLowerCase()));
+    const filteredList = data.filter((item) =>
+      item.name.toLowerCase().includes(newFilter.toLowerCase())
+    );
     setFilteredChatList(filteredList);
   };
 
-  const handleChat = (user) => {
+  const handleChat = (user) => {    
     handleSelectedChat(user);
   };
 
@@ -52,13 +51,18 @@ const Header = () => {
         >
           Messages
         </h1>
-        <div> <MdAddCircle size={30} color="#9568dd"onClick={() => handleModel(true)}/>
+        <div>
+          {" "}
+          <MdAddCircle
+            size={30}
+            color="#9568dd"
+            onClick={() => handleModel(true)}
+          />
         </div>
-        <button className="message-toggle" onClick={ToggleTheme}>
-          {isDark ? "Dark" : "Light"}
-        </button>
+        <div className="message-toggle" onClick={ToggleTheme}>
+          {isDark ? <FaMoon size={20} color="#8d21a6"/>  : <FaSun size={20} color="#8d21a6"/>}
+        </div>
       </div>
-
       <div className="search-div">
         <FaSearch className="search-icon" size={50} />
         <input
@@ -69,6 +73,7 @@ const Header = () => {
           onChange={handleChange}
         />
       </div>
+
       <div className="user-chat">
         {filteredChatList.map((items, index) => (
           <div key={index} onClick={() => handleChat(items)}>
@@ -96,7 +101,9 @@ const Header = () => {
           </div>
         ))}
       </div>
-      {isModelOpen && <AddModel handleModel={handleModel} />}
+      {isModelOpen && (
+        <AddModel handleModel={handleModel} handleNewData={handleNewData}/>
+      )}
     </>
   );
 };

@@ -1,18 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ConvHeader.sass";
 import { IoCall } from "react-icons/io5";
 import { useTheme } from "../../store/ThemeContext";
 import { MdOutlineFilePresent } from "react-icons/md";
 import { BsSendFill } from "react-icons/bs";
 import { useChat } from "../../store/ChatContext";
+import ConvChat from "./ConvChat";
 
 const ConvHeader = () => {
+  const { chat, data, handleSelectedChat, conv, handleConvData } = useChat();
+  const [text, setText] = useState("");
   const { isDark } = useTheme();
-  const { chat } = useChat();
 
-  console.log(chat);
-  console.log("innn");
-  if (!chat) return <h1>Please Select Chat</h1>;
+  if (chat) {
+    handleSelectedChat(chat);
+    handleConvData(chat?.chatData);
+  } else {
+    handleSelectedChat(data[0]);
+    handleConvData(chat?.chatData);
+  }
+  console.log(conv);
+
+  const mesData = chat?.chatData;
+  const [message, setMessage] = useState();
+
+  const handleText = (e) => {
+    const { value } = e.target;
+    setText(value);
+    console.log(text);
+  };
+  const submitedText = (e) => {
+    e.preventDefault();
+    const updatedMessage = [...conv,text];
+    setMessage(updatedMessage);
+    handleConvData(handleConvData);
+  };
+
+  console.log(mesData, message);
   return (
     <>
       <div
@@ -34,22 +58,7 @@ const ConvHeader = () => {
         </div>
       </div>
 
-    <div className="message-divs">
-      <div className="message">
-        <div className="message__outer">
-          {/* <div className="message__avatar"><FaCoffee size={35}/></div> */}
-          <div className="message__inner">
-            <div className="message__bubble">{chat?.chat}</div>
-          </div>
-          <div className="message__status">
-            <img
-              className="user-chat-image"
-              src="https://randomuser.me/api/portraits/women/2.jpg"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
+      <ConvChat conv = {conv}/>
 
       <div className="cov-div">
         <MdOutlineFilePresent
@@ -57,15 +66,24 @@ const ConvHeader = () => {
           color="#9568dd"
           size={28}
         />
-        <div className="input-cov-icon">
+        {/* <div > */}
+        <form className="input-cov-icon" onSubmit={submitedText}>
           <input
             className="input-cov"
             type="text"
             placeholder="Enter Message"
+            name="chat"
+            value={text}
+            onChange={handleText}
           />
-          <BsSendFill className="cov-icon" color="#9568dd" size={20} />
-        </div>
-      </div>
+          <BsSendFill
+            type="submit"
+            className="cov-icon"
+            color="#9568dd"
+            size={20}
+          />
+        </form>
+        {/* </div> */}
       </div>
     </>
   );

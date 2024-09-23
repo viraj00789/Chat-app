@@ -1,20 +1,30 @@
 import { createContext, useContext, useState } from "react";
+import { randomData } from "../Components/data";
 
 export const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
   const [chat, setChat] = useState(null);
-  const [user,setUser] = useState();
+  const [data, setData] = useState(randomData);
+  const [conv,setConv] = useState();
+  
+
+
   const handleSelectedChat = (user) => {
     setChat(user);
   };
+  const handleData = (newData) => {
+    setData(newData);
+  };
+  const handleConvData = (newData) => {
+    setConv(newData);
+  };
+  
 
-  const handleChat = (adduser) =>
-  {
-    setUser(adduser)
-  }
   return (
-    <ChatContext.Provider value={{ chat, handleSelectedChat ,handleChat,user }}>
+    <ChatContext.Provider
+      value={{ chat, handleSelectedChat, data, handleData,conv,handleConvData }}
+    >
       {children}
     </ChatContext.Provider>
   );

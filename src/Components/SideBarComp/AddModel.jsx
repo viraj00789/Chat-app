@@ -1,31 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./AddModel.sass";
 import { IoCloseCircleSharp } from "react-icons/io5";
-import { randomData as initialData } from "../data";
+import { randomData } from "../data";
+import { useChat } from "../../store/ChatContext";
 
-const AddModel = ({ handleModel }) => {
+const AddModel = ({ handleModel,handleNewData}) => {
   const [formData, setFormData] = useState({
     name: "",
     image: "",
   });
-
-  const [chatData, setChatData] = useState(() => {
-    const savedData = localStorage.getItem("data");
-    return savedData ? JSON.parse(savedData) : [];
-  });
-
-
-  useEffect(() => {
-    if (chatData.length === 0) {
-      setChatData(initialData);
-      localStorage.setItem("data", JSON.stringify(initialData));
-    }
-  }, [chatData.length]);
-
   const handleChangeForm = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  const {data, handleData} = useChat();
+
+
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -33,14 +23,15 @@ const AddModel = ({ handleModel }) => {
     const newUser = {
       ...formData,
       date: new Date().toISOString().split("T")[0],
-      id: (chatData.length + 1).toString(),
+      id: (randomData.length + 1).toString(),
       chat: "",
     };
+    console.log(newUser);
 
-    const updatedChatData = [...chatData, newUser];
-    setChatData(updatedChatData);
-    localStorage.setItem("data", JSON.stringify(updatedChatData));
-
+    const updatedChatData = [...data, newUser];
+    console.log(updatedChatData);
+    handleData(updatedChatData);
+    handleNewData(updatedChatData)
     setFormData({ name: "", image: "" });
     handleModel(false);
   };

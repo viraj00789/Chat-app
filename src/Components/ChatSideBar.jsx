@@ -3,13 +3,11 @@ import Header from "./SideBarComp/Header";
 import "./ChatSideBar.sass";
 import ConvHeader from "./ConvChatComp/ConvHeader";
 import { useTheme } from "../store/ThemeContext";
-import { ChatProvider } from "../store/ChatContext";
 
 const ChatSideBar = () => {
   const { isDark } = useTheme();
   return (
     <>
-      <ChatProvider>
         <div className="chat-divs">
           <div
             className="sideBar"
@@ -31,7 +29,6 @@ const ChatSideBar = () => {
             <ConvHeader />
           </div>
         </div>
-      </ChatProvider>
     </>
   );
 };
