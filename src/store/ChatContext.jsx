@@ -7,9 +7,8 @@ export const ChatProvider = ({ children }) => {
   const [chat, setChat] = useState(null);
   const [data, setData] = useState(randomData);
   const [conv,setConv] = useState();
+  const [messageData,setMessageData] = useState();
   
-
-
   const handleSelectedChat = (user) => {
     setChat(user);
   };
@@ -19,11 +18,15 @@ export const ChatProvider = ({ children }) => {
   const handleConvData = (newData) => {
     setConv(newData);
   };
+  const handleMessageData = (mesData) => {
+    setMessageData(mesData);
+  };
+
   
 
   return (
     <ChatContext.Provider
-      value={{ chat, handleSelectedChat, data, handleData,conv,handleConvData }}
+      value={{ chat, handleSelectedChat, data, handleData,conv,handleConvData,messageData,handleMessageData }}
     >
       {children}
     </ChatContext.Provider>

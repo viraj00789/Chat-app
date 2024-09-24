@@ -1,23 +1,20 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./ConvHeader.sass";
 
-const ConvChat = ({ conv }) => {
+const ConvChat = ({conv}) => {
+  const messageRef = useRef(null);
+  useEffect(() => {
+    messageRef.current?.lastElementChild?.scrollIntoView()
+  },[conv])
+
   return (
-    <div className="mess-div">
-      {conv?.map((items) => (
-        <div className="message-divs">
-          <div className="message">
+    <div className="mess-div" ref={messageRef}>
+      {conv?.map((items,index) => (
+        <div className="message-divs"  >
+          <div className="message" >
             <div className="message__outer">
-              {/* <div className="message__avatar"><FaCoffee size={35}/></div> */}
-              <div className="message__inner">
+              <div className="message__inner" style={{flex : index%2 === 0 ? 1: "" }}>
                 <div className="message__bubble">{items}</div>
-              </div>
-              <div className="message__status">
-                <img
-                  className="user-chat-image"
-                  src="https://randomuser.me/api/portraits/women/2.jpg"
-                  alt=""
-                />
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ConvHeader.sass";
 import { IoCall } from "react-icons/io5";
 import { useTheme } from "../../store/ThemeContext";
@@ -8,35 +8,42 @@ import { useChat } from "../../store/ChatContext";
 import ConvChat from "./ConvChat";
 
 const ConvHeader = () => {
-  const { chat, data, handleSelectedChat, conv, handleConvData } = useChat();
+  const { chat, data, handleSelectedChat, handleConvData  } = useChat();
   const [text, setText] = useState("");
   const { isDark } = useTheme();
+
 
   if (chat) {
     handleSelectedChat(chat);
     handleConvData(chat?.chatData);
+
   } else {
     handleSelectedChat(data[0]);
-    handleConvData(chat?.chatData);
+    handleConvData(data[0]);
   }
-  console.log(conv);
-
-  const mesData = chat?.chatData;
   const [message, setMessage] = useState();
 
   const handleText = (e) => {
     const { value } = e.target;
     setText(value);
-    console.log(text);
   };
   const submitedText = (e) => {
     e.preventDefault();
-    const updatedMessage = [...conv,text];
+    if(text.trim() === "") return;
+    let textItem = text;
+    let updatedMessage = [...message,text,textItem];
     setMessage(updatedMessage);
-    handleConvData(handleConvData);
+    handleConvData(updatedMessage);
+    setText("");
   };
 
-  console.log(mesData, message);
+
+  useEffect(() => {
+    setMessage(chat?.chatData);
+    console.log("inn");
+   
+  }, [chat?.chatData, setMessage]);
+
   return (
     <>
       <div
@@ -57,10 +64,10 @@ const ConvHeader = () => {
           <IoCall size={20} />
         </div>
       </div>
+      <ConvChat conv={message}/>
 
-      <ConvChat conv = {conv}/>
-
-      <div className="cov-div">
+      <div className="cov-div" style={{ backgroundColor: isDark ? "#fff" : "#000" }}
+      >
         <MdOutlineFilePresent
           className="cov-icon-1"
           color="#9568dd"

@@ -15,8 +15,6 @@ const AddModel = ({ handleModel,handleNewData}) => {
   };
   const {data, handleData} = useChat();
 
-
-
   const handleSubmitForm = (e) => {
     e.preventDefault();
 
@@ -24,7 +22,8 @@ const AddModel = ({ handleModel,handleNewData}) => {
       ...formData,
       date: new Date().toISOString().split("T")[0],
       id: (randomData.length + 1).toString(),
-      chat: "",
+      chatData: ["aa","bb"],
+      email:"abc@gmail.com"
     };
     console.log(newUser);
 
