@@ -1,14 +1,17 @@
 .message-header
-    width: 95%
+    height: auto
+    width: 360px
     background-color: #fff
-    padding: 0 0     0 10px
+    padding: 0 0 0 10px
+    &::-webkit-scrollbar
+        display: none
 .message-headers-and-btns
     display: flex
     position: fixed
     top: 0px
     align-items: center
     justify-content: center
-    width: 330px
+    width: 324px
     padding: 10px
     background-color: #fff
 .message-heading
@@ -25,9 +28,6 @@
     font-size: 15px
 .search-div
     z-index: 1
-    display: flex
-    align-items: center
-    justify-content: center
     border-radius: 10px
     background-color: #f3f3f3
     top: 65px
@@ -35,11 +35,12 @@
     width: 330px
     padding-bottom: 1px
     margin-bottom: 10px
+    display: flex
+    align-items: center
 .search-icon
     color: #070202
     height: 16px
-    font-size: 30px
-    margin-left: 5px
+    margin: 0 10px 0 20px
 .input-search
     width: 240px
     height: 40px
@@ -50,7 +51,14 @@
     font-size: 18px
     background-color: #f3f3f3
 .user-chat
-    margin-top: 130px
+    overflow: auto
+    margin-top: 100px
+    position: fixed
+    width: 333px
+    height: 100vh
+    &::-webkit-scrollbar
+        display: none
+
 .chat-container
     margin-top: 15px
     display: flex
@@ -61,16 +69,24 @@
 
 .chat-div-1
     display: flex
-    justify-content: center
+    justify-content: space-evenly
+    align-items: center
+
 .user-image
     width: 50px
     height: 50px
     border-radius: 10px
     object-fit: cover
-.user-name,.user-message
+    border-radius: 50%
+.user-name
     margin: 0
     padding-left: 10px
-    font-size: 15px
+    font-size: 17px
+    padding-bottom: 7px
+.user-message
+    padding-left: 10px
+    font-size: 17px
+    font-weight: 500
 .user-date
     margin-top: 10px
     margin-left: 5px

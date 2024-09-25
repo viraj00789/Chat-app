@@ -47,7 +47,10 @@ const Header = () => {
     <>
       <div
         className="message-header"
-        style={{ backgroundColor: isDark ? "#fff" : "#000" }}
+        style={{
+          backgroundColor: isDark ? "#fff" : "#000",
+          color: isDark ? "#000" : "#fff",
+        }}
       >
         <div className="message-headers-and-btns" style={{ backgroundColor: isDark ? "#fff" : "#000" }}>
           <h1
@@ -73,7 +76,7 @@ const Header = () => {
           </div>
         </div>
         <div className="search-div" >
-          <FaSearch className="search-icon" size={50} />
+          <FaSearch className="search-icon" size={25} />
           <input
             className="input-search"
             type="text"
@@ -90,11 +93,11 @@ const Header = () => {
                 className="chat-container"
                 style={{
                   backgroundColor: active === items.id ? "#9568dd" : "",
+                  color: active === items.id ? "#fff" : "",
                 }}
               >
                 <div className="chat-div-1">
-                  <img
-                    src={
+                  <img src={
                       items.image ||
                       "https://randomuser.me/api/portraits/men/9.jpg"
                     }

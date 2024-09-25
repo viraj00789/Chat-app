@@ -2,10 +2,13 @@
     display: flex
 .sideBar-1
     background-color: black
-    width: 100vw
+    width: calc(100% - 400px)
+    height: 100vh
+    &::-webkit-scrollbar
+        display: none
 .sideBar
-    width: 444px
-    height:100vh
+    height: 100vh
+
     overflow: auto
     background-color: black
     cursor: pointer
@@ -14,4 +17,3 @@
 
 @import "./SideBarComp/Header"
 @import "./ConvChatComp/ConvHeader"
-

@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <ThemeProvider>
         <ChatProvider>
-        <ChatApp />
+          <ChatApp />
         </ChatProvider>
       </ThemeProvider>
     </div>
