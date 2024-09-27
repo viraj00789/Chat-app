@@ -3,47 +3,55 @@ import "./AddModel.sass";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { useChat } from "../../store/ChatContext";
 
-const AddModel = ({ handleModel,handleNewData}) => {
+const AddModel = ({ handleModel, handleNewData }) => {
   const [formData, setFormData] = useState({
     name: "",
     image: "",
   });
-  const [text,setText] = useState();
-  const [err,setErr] = useState(false);
+  const [text, setText] = useState();
+  const [err, setErr] = useState(false);
+  const { data, handleData } = useChat();
 
   const handleChangeForm = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const {data, handleData} = useChat();
+  const namedata = (data.map(items => items.name.toLowerCase()));
+  console.log(namedata.includes(formData.name.toLowerCase()));
   
+
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    if(formData.name === "" || formData.image === "") {
-      setText("Feild Cant be Empty")
-      setErr(true)
+    if (formData.name === "" || formData.image === "") {
+      setText("Feild Cant be Empty");
+      setErr(true);
       return;
     }
 
-
+    if (namedata.includes(formData.name.toLowerCase())) {
+      console.log("inn");
+      setText("User Already Exist");
+      setErr(true);
+      return;
+    }
     const newUser = {
       ...formData,
       date: new Date().toISOString().split("T")[0],
       id: (data.length + 1).toString(),
-      chatData: ["aa","bb"],
-      email:"abc@gmail.com"
+      chatData: ["aa", "bb"],
+      email: "abc@gmail.com",
     };
     console.log(newUser);
 
     const updatedChatData = [...data, newUser];
     console.log(updatedChatData);
     handleData(updatedChatData);
-    handleNewData(updatedChatData)
+    handleNewData(updatedChatData);
     setFormData({ name: "", image: "" });
-    setErr(false)
+    setErr(false);
     handleModel(false);
   };
-  console.log(text);
   return (
     <>
       <div className="model-overlay" onClick={() => handleModel(false)}></div>
@@ -67,7 +75,6 @@ const AddModel = ({ handleModel,handleNewData}) => {
               className="modal-input"
               value={formData.name}
               onChange={handleChangeForm}
-              
             />
             <h2 className="add-user-header">Add Image</h2>
             <input
@@ -77,8 +84,8 @@ const AddModel = ({ handleModel,handleNewData}) => {
               className="modal-input"
               value={formData.image}
               onChange={handleChangeForm}
-              />
-              {err && <p style={{color:"#990000"}}>{text}</p>}
+            />
+            {err && <p style={{ color: "#990000" }}>{text}</p>}
             <button className="model-btn" type="submit">
               Submit
             </button>

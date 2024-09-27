@@ -1,66 +1,134 @@
 .message-header
-    height: auto
-    width: 360px
-    background-color: #fff
-    padding: 0 0 0 10px
+    background-color: #F5FAFC
+    padding: 0 16px 0 16px
     &::-webkit-scrollbar
         display: none
 .message-headers-and-btns
     display: flex
     position: fixed
-    top: 0px
+    top: 10px
     align-items: center
-    justify-content: center
+    justify-content: space-between
     width: 324px
-    padding: 10px
-    background-color: #fff
+    margin: 10px 10px 0 10px
+    background-color: #F5FAFC
 .message-heading
     width: 340px
     color: white
     font-size: 23px
 .message-toggle
+    display: flex
+    align-items: center
+    justify-content: center
     color: #8d21a6
     font-size: 20px
     color: white
     border-radius: 10px
     padding: 12px
+.dropdown-content
+    display: none
+    background-color: #F5FAFC
+    color: black
+    min-width: 160px
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2)
+    padding: 12px 16px
+    z-index: 1
+    position: absolute
+    border-radius: 10px
+    top: 30px
+    right: 10px
+    .dropdown:hover &
+        display: block
+
+.mess-image
+    width: 40.35px
+    height: 40.35px
+    border-radius: 50%
+.mess-head
+    display: flex
+    margin-left: 10px
+.mess-header-down
+    width: 24px
+    height: 24px
+    margin-right: 10px
+
+.mess-status
+    margin-left: 10px
+.header-btn
+    top: 155px
+    position: fixed
+    border-radius: 15px
+    width: 312px
+    padding-bottom: 1px
+    margin-bottom: 10px
+    color: #fff
+    display: flex
+    align-items: center128C7E
+    height: 48px
+    background-color: #fff
+.header-sub-1
+    display: flex
+    align-items: center
+    font-size: 16px
+    font-weight: 700
+    justify-content: center
+    width: 100%
+    background-color: #128C7E
+    height: 48px
+    border-top-left-radius: 15px
+    border-bottom-left-radius: 15px
+
+.header-sub-2
+    display: flex
+    color: #5A6A9D
+    font-size: 18px
+    font-weight: 400
+    background-color: white
+    align-items: center
+    justify-content: center
+    width: 100%
+    border-top-right-radius: 24px
+    border-bottom-right-radius: 24px
 %input-base
     font-size: 15px
 .search-div
-    z-index: 1
-    border-radius: 10px
-    background-color: #f3f3f3
-    top: 65px
+    top: 53px
     position: fixed
-    width: 330px
-    padding-bottom: 1px
+    border-radius: 10px
+    background-color: #fff
+    width: 312px
     margin-bottom: 10px
+    margin-top: 30px
     display: flex
     align-items: center
+    border: 1px solid #D1E4E8
+    border-radius: 30px
+
 .search-icon
     color: #070202
-    height: 16px
+    height: 20px
     margin: 0 10px 0 20px
 .input-search
     width: 240px
-    height: 40px
+    height: 45px
     border: none
     outline: none
     border-color: none
-    border-radius: 10px
+    border-radius: 24px
     font-size: 18px
-    background-color: #f3f3f3
+    background-color: #fff
 .user-chat
     overflow: auto
-    margin-top: 100px
+    margin-top: 220px
     position: fixed
     width: 333px
-    height: 100vh
+    height: calc(100vh - 220px )
     &::-webkit-scrollbar
         display: none
 
 .chat-container
-    margin-top: 15px
+    margin: 10px 12px 0 8px
+    color: #000
     display: flex
     padding: 12px
     justify-content: space-between
@@ -71,23 +139,40 @@
     display: flex
     justify-content: space-evenly
     align-items: center
-
+.chat-div-2
+    display: flex
+    justify-content: space-evenly
+    align-items: flex-end
+    flex-direction: column
 .user-image
-    width: 50px
-    height: 50px
+    width: 60px
+    height: 60px
     border-radius: 10px
     object-fit: cover
-    border-radius: 50%
+    border-radius: 10px
 .user-name
     margin: 0
     padding-left: 10px
     font-size: 17px
     padding-bottom: 7px
+    font-weight: 500
 .user-message
     padding-left: 10px
-    font-size: 17px
-    font-weight: 500
+    font-size: 14px
+    font-weight: 400
 .user-date
     margin-top: 10px
     margin-left: 5px
-    font-size: 12px
+    font-size: 11px
+    color: #829C99
+.addMessage
+    width: 60px
+    height: 60px
+    border-radius: 50%
+    position: fixed
+    bottom: 10px
+    left: 18rem
+    display: flex
+    align-items: center
+    justify-content: center
+    background-color: #128C7E

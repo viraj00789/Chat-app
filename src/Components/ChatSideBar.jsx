@@ -8,7 +8,7 @@ const ChatSideBar = () => {
   const { isDark } = useTheme();
   useEffect(() => 
   {
-    document.body.style.background = isDark ? "#fff" : "#000"
+    document.body.style.background = isDark ? "#F5FAFC" : "#000"
   },[isDark])
   return (
     <>
@@ -16,17 +16,16 @@ const ChatSideBar = () => {
         <div
           className="sideBar"
           style={{
-            backgroundColor: isDark ? "#fff" : "#000",
-            color: isDark ? "#000" : "#fff",
-          }}        >
+            backgroundColor: isDark ? "#F5FAFC" : "#000",
+            color: isDark ? "#000" : "#F5FAFC",
+          }}>
           <Header />
         </div>
         <div
           className="sideBar-1"
           style={{
-            backgroundColor: isDark ? "#fff" : "#000",
-            color: isDark ? "#000" : "#fff",
-            borderLeft: `1px solid ${isDark ? "#000" : "#f3f3f3"}`,
+            backgroundColor: isDark ? "#F5FAFC" : "#000",
+            color: isDark ? "#000" : "#F5FAFC",
           }}
         >
           <ConvHeader />

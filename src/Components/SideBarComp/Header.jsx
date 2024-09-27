@@ -1,24 +1,28 @@
-import { MdAddCircle } from "react-icons/md";
-import { FaSun } from "react-icons/fa";
-import { FaMoon } from "react-icons/fa";
-
 import "./Header.sass";
 import { useTheme } from "../../store/ThemeContext";
-import { FaSearch } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useChat } from "../../store/ChatContext";
 import AddModel from "./AddModel";
+import DownArrow from "../../assests/DownArrow.svg";
+import Status from "../../assests/Status.svg";
+import Search from "../../assests/Search.svg";
+import { AiOutlinePushpin } from "react-icons/ai";
+import { BiMessageDetail } from "react-icons/bi";
 
 const Header = () => {
   const { isDark, ToggleTheme } = useTheme();
   const [filter, setFilter] = useState("");
   const [isModelOpen, setIsModelOpen] = useState(false);
-  const { handleSelectedChat, data } = useChat();
+  const { handleSelectedChat, data, handleActive, active } = useChat();
   const [filteredChatList, setFilteredChatList] = useState(data);
+
   const handleNewData = (data) => {
     setFilteredChatList(data);
   };
-  const [active, setActive] = useState();
+
+  const handleModel = (mod) => {
+    setIsModelOpen(mod);
+  };
 
   const handleChange = (e) => {
     const newFilter = e.target.value;
@@ -31,59 +35,59 @@ const Header = () => {
 
   const handleChat = (user) => {
     console.log(user);
-    setActive(user?.id);
+    handleActive(user?.id);
     handleSelectedChat(user);
   };
 
-  const handleModel = (mod) => {
-    setIsModelOpen(mod);
-  };
-
-  useEffect(() => {
-    setActive(data[0]?.id);
-  }, [data, setActive]);
-
   return (
     <>
+   
       <div
         className="message-header"
         style={{
-          backgroundColor: isDark ? "#fff" : "#000",
-          color: isDark ? "#000" : "#fff",
+          backgroundColor: isDark ? "#F5FAFC" : "#000",
+          color: isDark ? "#000" : "#DFF6F4",
         }}
       >
-        <div className="message-headers-and-btns" style={{ backgroundColor: isDark ? "#fff" : "#000" }}>
-          <h1
-            className="message-heading"
-            style={{ color: isDark ? "#000" : "#fff" }}
-          >
-            Messages
-          </h1>
-          <div>
-            {" "}
-            <MdAddCircle
-              size={30}
-              color="#9568dd"
-              onClick={() => handleModel(true)}
+        <div
+          className="message-headers-and-btns"
+          style={{ backgroundColor: isDark ? "#F5FAFC" : "#000" }}
+        >
+          <div className="mess-head">
+            <img
+              className="mess-image"
+              src="https://randomuser.me/api/portraits/men/3.jpg"
+              alt=""
+            />
+            <img className="mess-status" src={Status} alt="" />
+          </div>
+          <div className="dropdown">
+            <img className="mess-header-down" src={DownArrow} alt="" />
+            {
+              <div className="dropdown-content">
+                <p onClick={() => handleModel(true)}>Add User</p>
+                <div className="" onClick={ToggleTheme}>
+                  {isDark ? <p>Darktheme</p> : <p>LightTheme</p>}
+                </div>
+              </div>
+            }
+          </div>
+
+          <div className="search-div">
+            <img className="search-icon" src={Search} alt="" />
+            <input
+              className="input-search"
+              type="text"
+              placeholder="Search Message"
+              value={filter}
+              onChange={handleChange}
             />
           </div>
-          <div className="message-toggle" onClick={ToggleTheme}>
-            {isDark ? (
-              <FaMoon size={20} color="#8d21a6" />
-            ) : (
-              <FaSun size={20} color="#8d21a6" />
-            )}
+          <div className="header-btn">
+            <div className="header-sub-1">Favourites</div>
+            <div className="header-sub-2">Friends</div>
+            <div className="header-sub-2">Groups</div>
           </div>
-        </div>
-        <div className="search-div" >
-          <FaSearch className="search-icon" size={25} />
-          <input
-            className="input-search"
-            type="text"
-            placeholder="Search Message"
-            value={filter}
-            onChange={handleChange}
-          />
         </div>
 
         <div className="user-chat">
@@ -92,12 +96,13 @@ const Header = () => {
               <div
                 className="chat-container"
                 style={{
-                  backgroundColor: active === items.id ? "#9568dd" : "",
+                  backgroundColor: active === items.id ? "#128C7E" : "",
                   color: active === items.id ? "#fff" : "",
                 }}
               >
                 <div className="chat-div-1">
-                  <img src={
+                  <img
+                    src={
                       items.image ||
                       "https://randomuser.me/api/portraits/men/9.jpg"
                     }
@@ -112,7 +117,8 @@ const Header = () => {
                   </div>
                 </div>
                 <div className="chat-div-2">
-                  <span className="user-date">{items.date}</span>
+                  <p className="user-date">{items.date}</p>
+                  <AiOutlinePushpin size={25} />
                 </div>
               </div>
             </div>
@@ -122,6 +128,10 @@ const Header = () => {
           <AddModel handleModel={handleModel} handleNewData={handleNewData} />
         )}
       </div>
+      <div className="addMessage">
+    <BiMessageDetail size={24} color="white"/>
+
+    </div>
     </>
   );
 };
