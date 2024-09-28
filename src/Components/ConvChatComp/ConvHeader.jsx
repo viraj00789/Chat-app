@@ -24,7 +24,7 @@ const ConvHeader = () => {
     handleSelectedChat(data[0]);
     handleConvData(data[0]?.chatData);
   }
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState([]);
 
   const handleText = (e) => {
     const { value } = e.target;
@@ -37,8 +37,8 @@ const ConvHeader = () => {
 
     if (active === chat?.id) {
       let textItem = text;
-      let updatedMessage = [...message, text, textItem];
-      conv.push(...updatedMessage);
+      const updatedMessage = [...message, text, textItem];
+      conv.push(text);
       handleConvData(updatedMessage);
       setMessage(updatedMessage);
     }
@@ -54,8 +54,8 @@ const ConvHeader = () => {
       <div
         className="cov-header-cont"
         style={{
-          backgroundColor: isDark ? "#F7F7FC" : "#000",
-          color: isDark ? "#000" : "#DFF6F4",
+          backgroundColor: isDark ? "#F7F7FC" : "#0F1C24",
+          color: isDark ? "#0F1C24" : "#DFF6F4",
         }}
       >
         <div
@@ -82,7 +82,7 @@ const ConvHeader = () => {
 
       <div
         className="cov-div"
-        style={{ backgroundColor: isDark ? "#ede9e9" : "#000" }}
+        style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}
       >
         <div className="cov-icons">
           <img className="cov-icons-img" src={Smile} alt="" />
@@ -98,7 +98,7 @@ const ConvHeader = () => {
             onChange={handleText}
           />
           
-          <button type="submit" className="cov-icon">
+          <button type="submit" className="cov-icon" style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}>
           <LuSend className="form-send" color="rgb(18, 140, 126)" />
           </button>
         </form>

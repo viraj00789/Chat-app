@@ -45,13 +45,13 @@ const Header = () => {
       <div
         className="message-header"
         style={{
-          backgroundColor: isDark ? "#F5FAFC" : "#000",
-          color: isDark ? "#000" : "#DFF6F4",
+          backgroundColor: isDark ? "#F5FAFC" : "#0F1C24",
+          color: isDark ? "#0F1C24" : "#DFF6F4",
         }}
       >
         <div
           className="message-headers-and-btns"
-          style={{ backgroundColor: isDark ? "#F5FAFC" : "#000" }}
+          style={{ backgroundColor: isDark ? "#F5FAFC" : "#0F1C24" }}
         >
           <div className="mess-head">
             <img
