@@ -1,11 +1,22 @@
 import React, { useEffect, useRef } from "react";
 import "./ConvHeader.sass";
-const ConvChat = ({ conv }) => {
+import { useChat } from "../../store/ChatContext";
+const ConvChat = ({ conv ,dat}) => {
+  const {data} = useChat();
   const messageRef = useRef(null);
+  console.log(data,conv);
+ 
 
   useEffect(() => {
     messageRef.current?.lastElementChild?.scrollIntoView();
   }, [conv]);
+
+
+  const handleChange = (items) => 
+  {
+     if(items.length > 200) return `${items.slice(0,200)}...`;
+     return items
+  }
 
   return (
     <>
@@ -24,10 +35,10 @@ const ConvChat = ({ conv }) => {
                   style={{
                     backgroundColor: index % 2 === 0 ? "#D7F8F4" : "#fff",
                   }}
-                >
-                  <div>{items}</div>
-                  <div className="message_time">10:00</div>
-                </div>
+                  >
+                  <div className="message__actions">{handleChange(items)}</div>
+                  <div className="message_time">{dat[index]}</div>
+                  </div>
               </div>
             </div>
           </div>

@@ -6,7 +6,8 @@ export const randomData = [
     chat: "Hey, did you see the latest update on the project?",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "2",
@@ -15,7 +16,8 @@ export const randomData = [
     chat: "I have some new ideas for the marketing campaign.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "3",
@@ -24,7 +26,8 @@ export const randomData = [
     chat: "Can you send me the report by end of day?",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "4",
@@ -33,7 +36,8 @@ export const randomData = [
     chat: "Looking forward to our meeting tomorrow.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "5",
@@ -42,7 +46,8 @@ export const randomData = [
     chat: "Let's catch up later this week!",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "6",
@@ -51,7 +56,8 @@ export const randomData = [
     chat: "Did you get a chance to review the draft?",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "7",
@@ -60,7 +66,8 @@ export const randomData = [
     chat: "Can you help with the presentation slides?",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"],
   },
   {
     id: "8",
@@ -69,7 +76,8 @@ export const randomData = [
     chat: "The server issue has been resolved.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "9",
@@ -78,7 +86,8 @@ export const randomData = [
     chat: "Let's schedule a call to discuss the new features.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "10",
@@ -87,7 +96,8 @@ export const randomData = [
     chat: "Can we push the deadline to next week?",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "11",
@@ -96,7 +106,8 @@ export const randomData = [
     chat: "I'll be out of the office for the next two days.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "12",
@@ -105,7 +116,8 @@ export const randomData = [
     chat: "I need the budget report by tomorrow.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "13",
@@ -114,7 +126,8 @@ export const randomData = [
     chat: "The team needs your feedback on the design.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "14",
@@ -123,7 +136,8 @@ export const randomData = [
     chat: "Can we arrange a training session next week?",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "15",
@@ -132,7 +146,8 @@ export const randomData = [
     chat: "I have updated the project plan.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "16",
@@ -141,7 +156,8 @@ export const randomData = [
     chat: "Let's finalize the contract details soon.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "17",
@@ -150,7 +166,8 @@ export const randomData = [
     chat: "Please review the attached document.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "18",
@@ -159,7 +176,8 @@ export const randomData = [
     chat: "Can we discuss the new project scope?",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "19",
@@ -168,7 +186,8 @@ export const randomData = [
     chat: "The client meeting went well today.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "20",
@@ -177,7 +196,8 @@ export const randomData = [
     chat: "I will send over the revised estimates shortly.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "21",
@@ -186,7 +206,8 @@ export const randomData = [
     chat: "The new feature is ready for testing.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
   {
     id: "22",
@@ -195,6 +216,7 @@ export const randomData = [
     chat: "Please confirm the meeting time.",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"]
+    chatData: ["aaaa","bbbb"],
+    chatTime: ["10:00","10:00"]
   },
 ];
