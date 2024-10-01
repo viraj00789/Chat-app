@@ -7,7 +7,6 @@ import DownArrow from "../../assests/DownArrow.svg";
 import Status from "../../assests/Status.svg";
 import Search from "../../assests/Search.svg";
 import { AiOutlinePushpin } from "react-icons/ai";
-import { BiMessageDetail } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 
 const Header = () => {
@@ -78,8 +77,8 @@ const Header = () => {
             <img className="mess-header-down" src={DownArrow} alt="" />
             {
               <div className="dropdown-content">
-                <p onClick={() => handleModel(true)}>Add User</p>
-                <div onClick={ToggleTheme}>
+                <p    className="drop-cont-para" onClick={() => handleModel(true)}>Add User</p>
+                <div  className="drop-cont-para" onClick={ToggleTheme}>
                   {isDark ? <p>Darktheme</p> : <p>LightTheme</p>}
                 </div>
               </div>
@@ -129,7 +128,7 @@ const Header = () => {
               ))}
              { filteredChatList.length === 0 && (
               <h4 style={{ textAlign: "center", color: "#428e85" }}>
-                No User Found .
+                No User Found.
               </h4>)}
             </div>
           )}
@@ -168,14 +167,14 @@ const Header = () => {
                 </div>
                 <div className="chat-div-2">
                   <p className="user-date">{items.date}</p>
-                  <AiOutlinePushpin size={25} />
+                  <AiOutlinePushpin size={20} />
                 </div>
               </div>
             </div>
           ))}
           {filteredChatList.length === 0 && (
             <h4 style={{ textAlign: "center", color: "#428e85" }}>
-              No User Found .
+              No User Found.
             </h4>
           )}
         </div>

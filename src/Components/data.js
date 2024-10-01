@@ -6,8 +6,8 @@ export const randomData = [
     chat: "Hey, did you see the latest update on the project?",
     date: "10:00 PM",
     email:"abc@gmail.com",
-    chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatData: ["aaaasdufyasdujadjklfhsdljfhj","bbbb"],
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "2",
@@ -17,7 +17,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "3",
@@ -27,7 +27,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "4",
@@ -37,7 +37,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "5",
@@ -47,7 +47,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "6",
@@ -57,7 +57,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "7",
@@ -77,7 +77,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "9",
@@ -87,7 +87,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "10",
@@ -97,7 +97,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "11",
@@ -107,7 +107,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "12",
@@ -117,7 +117,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "13",
@@ -127,7 +127,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "14",
@@ -137,7 +137,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "15",
@@ -147,7 +147,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "16",
@@ -157,7 +157,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "17",
@@ -167,7 +167,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "18",
@@ -177,7 +177,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "19",
@@ -187,7 +187,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "20",
@@ -197,7 +197,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "21",
@@ -207,7 +207,7 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
   {
     id: "22",
@@ -217,6 +217,6 @@ export const randomData = [
     date: "10:00 PM",
     email:"abc@gmail.com",
     chatData: ["aaaa","bbbb"],
-    chatTime: ["10:00","10:00"]
+    chatTime: ["10:00 pm","10:00 pm"]
   },
 ];

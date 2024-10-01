@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ConvHeader.sass";
 import { useTheme } from "../../store/ThemeContext";
 import { LuSend } from "react-icons/lu";
@@ -7,26 +7,18 @@ import ConvChat from "./ConvChat";
 import SearchHeader from "../../assests/SearchHeader.svg";
 import DropDownHeader from "../../assests/DropDownHeader.svg";
 import Smile from "../../assests/Smile.svg";
-import Plus from "../../assests/Plus.svg";
 
 const ConvHeader = () => {
-  const {
-    chat,
-    handleData,
-    data,
-    handleSelectedChat,
-    handleConvData,
-    active,
-  } = useChat();
+  const { chat, handleData, data, handleSelectedChat, handleConvData, active } =
+    useChat();
   const [text, setText] = useState("");
   const { isDark } = useTheme();
-
-  handleSelectedChat(chat || data[0]);
-  handleConvData(chat?.chatData || data[0]?.chatData);
-
+  const inputRef = useRef(null);
   const [message, setMessage] = useState([]);
   const [dat, setDat] = useState();
 
+  handleSelectedChat(chat || data[0]);
+  handleConvData(chat?.chatData || data[0]?.chatData);
 
   const handleText = (e) => {
     const { value } = e.target;
@@ -38,33 +30,48 @@ const ConvHeader = () => {
     if (text.trim() === "") return;
 
     if (active === chat?.id) {
-      let textItem = text;
+      let textItem = text + "\n";
       let dates = new Date();
-      let time = `${dates.getHours() + ":" + dates.getMinutes()}`
+      const time = dates.toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      });
 
       const updatedMessage = [...message, text, textItem];
-      const upadtedDate = [...dat,time,time]
-      
+      const upadtedDate = [...dat, time, time];
+
       const updatedChatData = data.map((user) => {
         if (user.id === chat.id) {
-          return { ...user, chatData: updatedMessage,chatTime:upadtedDate };
+          return { ...user, chatData: updatedMessage, chatTime: upadtedDate };
         }
         return user;
       });
-      console.log(updatedChatData);
-      handleData(updatedChatData)
+      // console.log(updatedChatData);
+      handleData(updatedChatData);
       handleConvData(updatedMessage);
       setMessage(updatedMessage);
-      setDat(upadtedDate)
+      setDat(upadtedDate);
     }
+
     setText("");
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.shiftKey && e.key === "Enter") {
+      setText((prev) => prev + "\n");
+      // e.preventDefault();
+    } else if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      submitedText(e);
+    }
   };
 
   useEffect(() => {
     setMessage(chat?.chatData || []);
-    setDat(chat?.chatTime || [])
-    
+    setDat(chat?.chatTime || []);
   }, [chat]);
+  console.log(text);
 
   return (
     <>
@@ -89,7 +96,6 @@ const ConvHeader = () => {
           </div>
         </div>
         <div className="cov-header-subcnt-2">
-     
           <img src={SearchHeader} className="header-icons" alt="" />
           <img src={DropDownHeader} className="header-icons" alt="" />
         </div>
@@ -100,27 +106,27 @@ const ConvHeader = () => {
         className="cov-div"
         style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}
       >
-        <div className="cov-icons">
-          <img className="cov-icons-img" src={Smile} alt="" />
-          <img className="cov-icons-img" src={Plus} alt="" />
-        </div>
+        <img className="cov-icons-img" src={Smile} alt="" />
         <form className="input-cov-icon" onSubmit={submitedText}>
-          <input
+          <textarea
+            rows={2.5}
+            ref={inputRef}
             className="input-cov"
             type="text"
             placeholder="Say Something"
             name="chat"
             value={text}
+            onKeyDown={handleKeyDown}
             onChange={handleText}
           />
-
-          <button
-            type="submit"
-            className="cov-icon"
-            style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}
-          >
-            <LuSend className="form-send" color="rgb(18, 140, 126)" />
-          </button>
+        <button
+          type="submit"
+          onClick={submitedText}
+          className="cov-icon"
+          style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}
+        >
+          <LuSend className="form-send" color="rgb(18, 140, 126)" />
+        </button>
         </form>
       </div>
     </>
