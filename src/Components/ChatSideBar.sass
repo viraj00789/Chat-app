@@ -2,18 +2,43 @@
     display: flex
 .sideBar-1
     background-color: #F5FAFC
-    width: 100%
+    width: 100vw
     height: 100vh
+    display: block
     &::-webkit-scrollbar
         display: none
 .sideBar
     height: 100vh
     background-color: #F5FAFC
-    width: 470px
+    width: 25%
     overflow: auto
+    padding: 0 35px 0 12px
     background-color: black
+    display: block
+
     &::-webkit-scrollbar
         display: none
+@media ( max-width:750px)
+    .sideBar
+        width: 100%
+        position: fixed
+        animation: bounce 0.8s
+        padding: 0
+        margin: 0
+
+@media (min-width: 751px)
+    .sideBar
+        width: 25%
+        position: static
+        display: block !important
+@keyframes bounce
+    0%
+        transform: translateX(100)
+        opacity: 0.4
+
+    100%
+        transform: translateX(0)
+        opacity: 1
 
 @import "./SideBarComp/Header"
 @import "./ConvChatComp/ConvHeader"

@@ -1,16 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./ConvHeader.sass";
 import { useTheme } from "../../store/ThemeContext";
 import { LuSend } from "react-icons/lu";
 import { useChat } from "../../store/ChatContext";
+import { IoIosArrowBack } from "react-icons/io";
+import "./ConvHeader.sass";
 import ConvChat from "./ConvChat";
 import SearchHeader from "../../assests/SearchHeader.svg";
 import DropDownHeader from "../../assests/DropDownHeader.svg";
 import Smile from "../../assests/Smile.svg";
 
 const ConvHeader = () => {
-  const { chat, handleData, data, handleSelectedChat, handleConvData, active } =
-    useChat();
+  const {
+    chat,
+    handleData,
+    data,
+    handleSelectedChat,
+    handleConvData,
+    active,
+    handleToggle,
+  } = useChat();
   const [text, setText] = useState("");
   const { isDark } = useTheme();
   const inputRef = useRef(null);
@@ -59,8 +67,7 @@ const ConvHeader = () => {
 
   const handleKeyDown = (e) => {
     if (e.shiftKey && e.key === "Enter") {
-      setText((prev) => prev + "\n");
-      // e.preventDefault();
+      setText((prev) => prev);
     } else if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       submitedText(e);
@@ -86,6 +93,9 @@ const ConvHeader = () => {
           className="cov-header-subcnt-1"
           style={{ color: isDark ? "#000" : "#F7F7FC" }}
         >
+          <div className="conv-back-arrow" onClick={handleToggle}>
+            <IoIosArrowBack size={30}/>
+          </div>
           <img className="cov-header-img" src={chat?.image} alt="" />
           <div className="cov-header-details">
             <h4 className="cov-header-detail-name">{chat?.name}</h4>
@@ -109,8 +119,8 @@ const ConvHeader = () => {
         <img className="cov-icons-img" src={Smile} alt="" />
         <form className="input-cov-icon" onSubmit={submitedText}>
           <textarea
-            rows={2.5}
             ref={inputRef}
+            rows={1}
             className="input-cov"
             type="text"
             placeholder="Say Something"
@@ -118,15 +128,16 @@ const ConvHeader = () => {
             value={text}
             onKeyDown={handleKeyDown}
             onChange={handleText}
+            // style={{lineHeight:"30px"}}
           />
-        <button
-          type="submit"
-          onClick={submitedText}
-          className="cov-icon"
-          style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}
-        >
-          <LuSend className="form-send" color="rgb(18, 140, 126)" />
-        </button>
+          <button
+            type="submit"
+            onClick={submitedText}
+            className="cov-icon"
+            style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}
+          >
+            <LuSend className="form-send" color="rgb(18, 140, 126)" />
+          </button>
         </form>
       </div>
     </>

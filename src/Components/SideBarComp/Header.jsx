@@ -10,7 +10,7 @@ import { AiOutlinePushpin } from "react-icons/ai";
 import { IoClose } from "react-icons/io5";
 
 const Header = () => {
-  const { handleSelectedChat, data, handleActive, active } = useChat();
+  const { handleSelectedChat, data, handleActive, active  ,handleToggle } = useChat();
   const { isDark, ToggleTheme } = useTheme();
   const [filter, setFilter] = useState("");
   const [isModelOpen, setIsModelOpen] = useState(false);
@@ -55,17 +55,12 @@ const Header = () => {
   return (
     <>
       <div
-        className="message-header"
-        style={{
-          backgroundColor: isDark ? "#F5FAFC" : "#0F1C24",
-          color: isDark ? "#0F1C24" : "#DFF6F4",
+        className="message-headers-and-btns"
+        style={{ backgroundColor: isDark ? "#F5FAFC" : "#0F1C24"
         }}
       >
-        <div
-          className="message-headers-and-btns"
-          style={{ backgroundColor: isDark ? "#F5FAFC" : "#0F1C24" }}
-        >
-          <div className="mess-head">
+        <div className="mess-head">
+          <div className="mess-head-img">
             <img
               className="mess-image"
               src="https://randomuser.me/api/portraits/men/3.jpg"
@@ -77,20 +72,24 @@ const Header = () => {
             <img className="mess-header-down" src={DownArrow} alt="" />
             {
               <div className="dropdown-content">
-                <p    className="drop-cont-para" onClick={() => handleModel(true)}>Add User</p>
-                <div  className="drop-cont-para" onClick={ToggleTheme}>
+                <p className="drop-cont-para" onClick={() => handleModel(true)}>
+                  Add User
+                </p>
+                <div className="drop-cont-para" onClick={ToggleTheme}>
                   {isDark ? <p>Darktheme</p> : <p>LightTheme</p>}
                 </div>
               </div>
             }
           </div>
+        </div>
 
-          <div
-            className="search-div"
-            style={{
-              border: filter ? "1px solid #428e85" : "1px solid #D1E4E8",
-            }}
-          >
+        <div
+          className="search-div"
+          // style={{
+          //   border: filter ? "1px solid #428e85" : "1px solid #D1E4E8",
+          // }}
+        >
+          <div className="search-dis">
             <img className="search-icon" src={Search} alt="" />
             <input
               className="input-search"
@@ -99,51 +98,60 @@ const Header = () => {
               value={filter}
               onChange={handleChange}
             />
+          </div>
             {filter && (
               <div className="search-close-icon">
                 <IoClose onClick={handleSearch} />
               </div>
             )}
-          </div>
-          {filter && (
-            <div className="drop">
-              {filteredChatList.map((items, index) => (
-                <div key={index}>
-                  <div className="drop-div-2" onClick={() => handleChat(items)}>
-                    <div>
-                      <img
-                        src={
-                          items.image ||
-                          "https://randomuser.me/api/portraits/men/9.jpg"
-                        }
-                        alt=""
-                        className="user-image"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="user-name">{items.name.slice(0, 10)}</h3>
-                    </div>
+        </div>
+        {filter && (
+          <div className="drop">
+            {filteredChatList.map((items, index) => (
+              <div key={index}>
+                <div className="drop-div-2" onClick={() => handleChat(items)}>
+                  <div>
+                    <img
+                      src={
+                        items.image ||
+                        "https://randomuser.me/api/portraits/men/9.jpg"
+                      }
+                      alt=""
+                      className="user-image"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="user-name">{items.name.slice(0, 10)}</h3>
                   </div>
                 </div>
-              ))}
-             { filteredChatList.length === 0 && (
+              </div>
+            ))}
+            {filteredChatList.length === 0 && (
               <h4 style={{ textAlign: "center", color: "#428e85" }}>
                 No User Found.
-              </h4>)}
-            </div>
-          )}
-       
-          <div className="header-btn">
-            <div className="header-sub-1">Favourites</div>
-            <div className="header-sub-2">Friends</div>
+              </h4>
+            )}
           </div>
-        </div>
+        )}
 
+        <div className="header-btn">
+          <div className="header-sub-1">Favourites</div>
+          <div className="header-sub-2">Friends</div>
+        </div>
+      </div>
+      <div
+        className="message-header"
+        style={{
+          backgroundColor: isDark ? "#F5FAFC" : "#0F1C24",
+          color: isDark ? "#0F1C24" : "#DFF6F4",
+        }}
+      >
         <div className="user-chat">
           {filteredChatList.map((items, index) => (
             <div key={index} onClick={() => handleChat(items)}>
               <div
                 className="chat-container"
+                onClick={handleToggle}
                 style={{
                   backgroundColor: active === items.id ? "#128C7E" : "",
                   color: active === items.id ? "#fff" : "",
@@ -182,7 +190,6 @@ const Header = () => {
           <AddModel handleModel={handleModel} handleNewData={handleNewData} />
         )}
       </div>
-    
     </>
   );
 };

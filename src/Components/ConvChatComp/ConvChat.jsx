@@ -39,13 +39,13 @@
                     <div className="message__actions">
                       {readmore[index] ? items : items.slice(0, 300)}
                       {items.length > 300 && (
-                        <span
+                        <p
                           onClick={() => toggleReadMore(index)}
                           className="read-or-hide"
-                          style={{ color: "green" }}
+                          style={{ color: "green",padding:"0px",margin:"0px"}}
                         >
                           {readmore[index] ? "show less" : " read more"}
-                        </span>
+                        </p>
                       )}
                     </div>
                     <div className="message_time">{dat[index]}</div>

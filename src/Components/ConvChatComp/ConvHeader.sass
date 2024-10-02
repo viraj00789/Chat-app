@@ -39,6 +39,8 @@
     margin: 6px 8px 8px 8px
 .header-icons
     margin: 0 10px 0 10px
+.conv-back-arrow
+    margin: 10px
 
 .mess-div
     overflow: auto
@@ -132,7 +134,7 @@
     font-family: "Plus Jakarta Sans", sans-serif
     outline: none
     border-radius: 24px
-    padding: 20px 24px 0 24px
+    padding: 12px 24px 12px 24px
     resize: none
     white-space: pre-wrap
     @extend %input-base
@@ -145,3 +147,8 @@
     100%
         transform: scaleY(1)
         opacity: 1
+@media ( min-width: 750px)
+    .conv-back-arrow
+        display: none
+
+    
