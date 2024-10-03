@@ -3,15 +3,15 @@ import { useTheme } from "../../store/ThemeContext";
 import { useState } from "react";
 import { useChat } from "../../store/ChatContext";
 import AddModel from "./AddModel";
-import DownArrow from "../../assests/DownArrow.svg";
 import Status from "../../assests/Status.svg";
 import Search from "../../assests/Search.svg";
 import { AiOutlinePushpin } from "react-icons/ai";
-import { IoClose } from "react-icons/io5";
+import { IoAddOutline, IoClose } from "react-icons/io5";
 
 const Header = () => {
-  const { handleSelectedChat, data, handleActive, active  ,handleToggle } = useChat();
-  const { isDark, ToggleTheme } = useTheme();
+  const { handleSelectedChat, data, handleActive, active, handleToggle } =
+    useChat();
+  const { isDark } = useTheme();
   const [filter, setFilter] = useState("");
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [filteredChatList, setFilteredChatList] = useState(data);
@@ -19,7 +19,6 @@ const Header = () => {
   const handleNewData = (data) => {
     setFilteredChatList(data);
   };
-
   const handleModel = (mod) => {
     setIsModelOpen(mod);
   };
@@ -27,7 +26,6 @@ const Header = () => {
     setFilter("");
     setFilteredChatList(data);
   };
-
   const handleChat = (user) => {
     console.log(user);
     setFilter("");
@@ -35,7 +33,6 @@ const Header = () => {
     handleSelectedChat(user);
     setFilteredChatList(data);
   };
-
   const handleChange = (e) => {
     let newFilter = e.target.value;
     if (newFilter.trim() === "") {
@@ -56,8 +53,7 @@ const Header = () => {
     <>
       <div
         className="message-headers-and-btns"
-        style={{ backgroundColor: isDark ? "#F5FAFC" : "#0F1C24"
-        }}
+        style={{ backgroundColor: isDark ? "#F5FAFC" : "#0F1C24" }}
       >
         <div className="mess-head">
           <div className="mess-head-img">
@@ -68,7 +64,7 @@ const Header = () => {
             />
             <img className="mess-status" src={Status} alt="" />
           </div>
-          <div className="dropdown">
+          {/* <div className="dropdown">
             <img className="mess-header-down" src={DownArrow} alt="" />
             {
               <div className="dropdown-content">
@@ -80,14 +76,11 @@ const Header = () => {
                 </div>
               </div>
             }
-          </div>
+          </div> */}
         </div>
 
         <div
           className="search-div"
-          // style={{
-          //   border: filter ? "1px solid #428e85" : "1px solid #D1E4E8",
-          // }}
         >
           <div className="search-dis">
             <img className="search-icon" src={Search} alt="" />
@@ -99,12 +92,11 @@ const Header = () => {
               onChange={handleChange}
             />
           </div>
-            {filter && (
-              <div className="search-close-icon">
-                <IoClose onClick={handleSearch} />
-              </div>
-            )}
-        </div>
+          {filter && (
+            <div className="search-close-icon">
+              <IoClose onClick={handleSearch} />
+            </div>
+          )}
         {filter && (
           <div className="drop">
             {filteredChatList.map((items, index) => (
@@ -133,10 +125,11 @@ const Header = () => {
             )}
           </div>
         )}
+        </div>
 
         <div className="header-btn">
-          <div className="header-sub-1">Favourites</div>
-          <div className="header-sub-2">Friends</div>
+          <div className="header-sub-1">Friends</div>
+          <div className="header-sub-2">Favourites</div>
         </div>
       </div>
       <div
@@ -186,6 +179,10 @@ const Header = () => {
             </h4>
           )}
         </div>
+          <IoAddOutline
+            className="add-user-icon"
+            onClick={() => handleModel(true)}
+          />
         {isModelOpen && (
           <AddModel handleModel={handleModel} handleNewData={handleNewData} />
         )}

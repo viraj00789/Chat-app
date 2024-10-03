@@ -39,7 +39,8 @@ const AddModel = ({ handleModel, handleNewData }) => {
       ...formData,
       date: new Date().toISOString().split("T")[0],
       id: (data.length + 1).toString(),
-      chatData: ["aa", "bb"],
+      chatData: [],
+      chatTime: [],
       email: "abc@gmail.com",
     };
     console.log(newUser);
@@ -86,9 +87,15 @@ const AddModel = ({ handleModel, handleNewData }) => {
               onChange={handleChangeForm}
             />
             {err && <p style={{ color: "#990000" }}>{text}</p>}
+            <div className="modal-div-btn">
+
             <button className="model-btn" type="submit">
               Submit
             </button>
+            <button className="model-btn" onClick={() => handleModel(false)}>
+              Close
+            </button>
+            </div>
           </form>
         </div>
       </div>

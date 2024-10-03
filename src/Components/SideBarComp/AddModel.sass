@@ -13,18 +13,20 @@
 .add-chat-model
     width: 500px
     height: 380px
-    background-color: #128C7E
+    background-color: #82bfb6
     color: white
     display: flex
     flex-direction: column
     top: 15%
-    left: 40%
+    left: 35%
     position: fixed
     z-index: 3
-    border-radius: 12px
+    border-radius: 24px
     margin: 10px
     padding: 10px
     animation: bounceIn 0.8s
+    position: fixed
+
 .add-user
     padding-left: 28px
 .add-user-header
@@ -54,15 +56,20 @@
     margin-right: 15px
 .model-btn
     width: 100px
-    height: 40px
-    border-radius: 10px
+    height: 44px
+    border-radius: 15px
     font-size: 1.2rem
     font-weight: bold
     color: #fff
     border: none
     outline: none
-    margin-top: 15px
+    margin: 12px 0 0 15px
     background-color: #0e4c45
+.modal-div-btn
+    display: flex
+    width: 100%
+    align-items: center
+    justify-content: flex-end
 @keyframes bounceIn
     0%
         transform: scaleY(0.76)
@@ -73,3 +80,28 @@
     100%
         transform: scaleY(1)
         opacity: 1
+@media ( max-width:860px)
+    .model-form
+        padding: 0 10px 0 6px
+    .add-chat-model
+        right: 0
+        left: 18vw
+        width: 60vw
+        margin: 0
+    .model-close
+        width: 60vw
+    .model-input
+        width: 60vw
+    .add-user
+        padding-right: 10px
+@media (max-width: 1200px) and (min-width:860px)
+    .add-chat-model
+        left: 30vw
+        width: 50vw
+        margin: 0
+@media (max-width: 500px)
+    .add-chat-model
+        width: 95vw
+        left: 0
+    .model-close
+        width: 95vw

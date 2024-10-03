@@ -5,9 +5,9 @@ import { useChat } from "../../store/ChatContext";
 import { IoIosArrowBack } from "react-icons/io";
 import "./ConvHeader.sass";
 import ConvChat from "./ConvChat";
-import SearchHeader from "../../assests/SearchHeader.svg";
-import DropDownHeader from "../../assests/DropDownHeader.svg";
 import Smile from "../../assests/Smile.svg";
+import { FiMoon } from "react-icons/fi";
+import { MdOutlineWbSunny } from "react-icons/md";
 
 const ConvHeader = () => {
   const {
@@ -20,10 +20,10 @@ const ConvHeader = () => {
     handleToggle,
   } = useChat();
   const [text, setText] = useState("");
-  const { isDark } = useTheme();
-  const inputRef = useRef(null);
+  const { isDark,ToggleTheme } = useTheme();
   const [message, setMessage] = useState([]);
   const [dat, setDat] = useState();
+  const textareaRef = useRef(null);
 
   handleSelectedChat(chat || data[0]);
   handleConvData(chat?.chatData || data[0]?.chatData);
@@ -38,7 +38,6 @@ const ConvHeader = () => {
     if (text.trim() === "") return;
 
     if (active === chat?.id) {
-      let textItem = text + "\n";
       let dates = new Date();
       const time = dates.toLocaleTimeString([], {
         hour: "numeric",
@@ -46,7 +45,7 @@ const ConvHeader = () => {
         hour12: true,
       });
 
-      const updatedMessage = [...message, text, textItem];
+      const updatedMessage = [...message, text, text];
       const upadtedDate = [...dat, time, time];
 
       const updatedChatData = data.map((user) => {
@@ -55,13 +54,11 @@ const ConvHeader = () => {
         }
         return user;
       });
-      // console.log(updatedChatData);
       handleData(updatedChatData);
       handleConvData(updatedMessage);
       setMessage(updatedMessage);
       setDat(upadtedDate);
     }
-
     setText("");
   };
 
@@ -74,11 +71,15 @@ const ConvHeader = () => {
     }
   };
 
+  function focusTextarea() {
+    textareaRef.current.focus();
+  }
+
   useEffect(() => {
     setMessage(chat?.chatData || []);
     setDat(chat?.chatTime || []);
+    focusTextarea();
   }, [chat]);
-  console.log(text);
 
   return (
     <>
@@ -94,7 +95,7 @@ const ConvHeader = () => {
           style={{ color: isDark ? "#000" : "#F7F7FC" }}
         >
           <div className="conv-back-arrow" onClick={handleToggle}>
-            <IoIosArrowBack size={30}/>
+            <IoIosArrowBack size={30} />
           </div>
           <img className="cov-header-img" src={chat?.image} alt="" />
           <div className="cov-header-details">
@@ -106,8 +107,11 @@ const ConvHeader = () => {
           </div>
         </div>
         <div className="cov-header-subcnt-2">
-          <img src={SearchHeader} className="header-icons" alt="" />
-          <img src={DropDownHeader} className="header-icons" alt="" />
+
+        {isDark ? <FiMoon className="header-icons" size={20} onClick={() => ToggleTheme()} />:
+          <MdOutlineWbSunny className="header-icons" size={20} onClick={() => ToggleTheme()} />}
+          {/* <img src={SearchHeader} className="header-icons" alt="" /> */}
+          {/* <img src={DropDownHeader} className="header-icons" alt="" /> */}
         </div>
       </div>
       <ConvChat conv={message} dat={dat} />
@@ -119,7 +123,8 @@ const ConvHeader = () => {
         <img className="cov-icons-img" src={Smile} alt="" />
         <form className="input-cov-icon" onSubmit={submitedText}>
           <textarea
-            ref={inputRef}
+            autoFocus
+            ref={textareaRef}
             rows={1}
             className="input-cov"
             type="text"
@@ -128,7 +133,6 @@ const ConvHeader = () => {
             value={text}
             onKeyDown={handleKeyDown}
             onChange={handleText}
-            // style={{lineHeight:"30px"}}
           />
           <button
             type="submit"

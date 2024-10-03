@@ -27,6 +27,10 @@
 .cov-header-subcnt-1
     display: flex
     padding: 8px 0 0 0
+.cov-header-subcnt-2
+    display: flex
+    align-items: center
+    justify-content: center
 .cov-header-img
     width: 50px
     height: 50px
@@ -39,8 +43,10 @@
     margin: 6px 8px 8px 8px
 .header-icons
     margin: 0 10px 0 10px
+    cursor: pointer
 .conv-back-arrow
     margin: 10px
+    display: none
 
 .mess-div
     overflow: auto
@@ -76,9 +82,12 @@
     align-items: flex-end
     color: white
     border-radius: 10px
-    padding: 15px
-    font-size: 1.2rem
+    padding: 12px
+    font-size: 16px
+    header-icons
     color: #000
+    cursor: pointer
+
 .message_time
     color: #000
     font-size: 10px
@@ -86,6 +95,11 @@
 
 .message__status
     margin-left: 10px
+.read-or-hide
+    color: green
+    margin: 0
+    padding: 0
+    cursor: pointer
 .user-chat-image
     height: 35px
     width: 35px
@@ -143,12 +157,32 @@
     0%
         transform: scaleY(0.89)
         opacity: 0.4
-
     100%
         transform: scaleY(1)
         opacity: 1
-@media ( min-width: 750px)
+@media (max-width: 860px)
     .conv-back-arrow
-        display: none
-
-    
+        display: block
+    .cov-header-cont
+        padding: 10px
+        margin: 0
+    .header-icons
+        padding: 0
+        margin: 0
+        width: 30px
+        height: 30px
+    .mess-div
+        height: calc(100% - 180px)
+    .message
+        margin: 0
+    .message-divs
+        margin: 10px
+    .message__bubble
+        text-align:left
+    .message_time
+        font-size: 10px
+    .cov-header-detail-name
+        font-size: 15px
+    .cov-header-detail-status
+        margin: 0
+        padding:  0 5px 0 5px
