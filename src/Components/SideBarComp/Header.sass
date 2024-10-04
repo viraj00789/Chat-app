@@ -1,17 +1,15 @@
 .message-header
     background-color: #F5FAFC
-    padding: 0px
+    width: 100%
     &::-webkit-scrollbar
         display: none
 .message-headers-and-btns
     display: flex
     align-items: center
-    justify-content: space-between
+    justify-content: center
     flex-direction: column
     width: 100%
-    margin: 10px 10px 0 10px
     background-color: #F5FAFC
-    paddig
 .message-heading
     color: white
     font-size: 23px
@@ -27,7 +25,7 @@
     padding: 12px
 .mess-head-img
     display: flex
-    margin-left: 7px
+    margin-left: 10px
 
 .dropdown-content
     display: none
@@ -84,11 +82,11 @@
     color: #fff
     width: 100%
     display: flex
-    align-items: center128C7E
+    align-items: center
     height: 48px
     background-color: #fff
-    box-shadow: 1px 4px 0 #c8d7d4
-    margin: 10px
+    box-shadow: 0px 1px 2px 0px #c8d7d4
+    margin: 0 12px 12px 18px
 .header-sub-1
     display: flex
     align-items: center
@@ -118,17 +116,18 @@
     width: 100%
     border-radius: 10px
     background-color: #fff
-    margin-bottom: 10px
+    margin:0 0 10px 5px
     display: flex
     align-items: center
     justify-content: space-between
     border-radius: 30px
     position: relative
-    box-shadow: 1px 4px 9px #687371
+    box-shadow: 0px 1px 4px 0px #c8d7d4
     &:focus-within
         outline: 1px solid #128C7E
 .search-close-icon
     margin: 4px 15px 0 0
+    cursor: pointer
 .search-icon
     color: #070202
     height: 20px
@@ -149,14 +148,13 @@
 .user-chat
     overflow: auto
     width: 102%
-    margin: 10px 0 0 0
-    height: calc(100vh - 200px)
+    height: calc(100vh - 230px)
     &::-webkit-scrollbar
         display: none
 .add-user-icon
     position: absolute
-    width: 30px
-    height: 30px
+    width: 25px
+    height: 25px
     bottom: 2vw
     left: 20vw
     background-color: #2b5a55
@@ -165,15 +163,17 @@
     padding: 15px
     cursor: pointer
 .chat-container
-    margin: 0 0 0 8px
     display: flex
-    padding: 12px
+    padding: 10px 0 10px 0
     justify-content: space-between
     overflow: hidden
-    border-radius: 10px
+    border-radius: 12px
     cursor: pointer
+    width: 100%
+    // outline: 1px solid red
 
 .chat-div-1
+    padding-left: 7px
     display: flex
     justify-content: space-evenly
     align-items: centadd-user-iconer
@@ -188,6 +188,8 @@
     border-radius: 10px
     object-fit: cover
     border-radius: 10px
+.user-chat-render
+    padding: 10px 0 10px 0
 .user-name
     margin: 0
     padding-left: 10px
@@ -199,8 +201,7 @@
     font-size: 14px
     font-weight: 400
 .user-date
-    margin-top: 10px
-    margin-left: 5px
+    margin-right:10px
     font-size: 11px
 .addMessage
     width: 60px
@@ -222,6 +223,10 @@
         width: 96%
     .add-user-icon
         left: 88vw
+    .chat-container
+        margin: 0 0 0 12px
+    .user-date
+        margin-right: 30px    
 @media (max-width: 1200px) and (min-width:860px)
     .add-user-icon
         left: 28vw

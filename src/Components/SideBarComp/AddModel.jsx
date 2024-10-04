@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddModel.sass";
-import { IoCloseCircleSharp } from "react-icons/io5";
+import { IoCloseSharp } from "react-icons/io5";
 import { useChat } from "../../store/ChatContext";
 
 const AddModel = ({ handleModel, handleNewData }) => {
@@ -16,10 +16,18 @@ const AddModel = ({ handleModel, handleNewData }) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const namedata = (data.map(items => items.name.toLowerCase()));
+  const namedata = data.map((items) => items.name.toLowerCase());
   console.log(namedata.includes(formData.name.toLowerCase()));
-  
 
+  useEffect(() => {
+    const closeOnEscapePressed = (e) => {
+      if (e.key === "Escape") {
+        handleModel(false);
+      }
+    };
+    window.addEventListener("keydown", closeOnEscapePressed);
+    return () => window.removeEventListener("keydown", closeOnEscapePressed);
+  }, [handleModel]);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -60,15 +68,15 @@ const AddModel = ({ handleModel, handleNewData }) => {
       <div className="add-chat-model">
         <div className="model-close">
           <div>
-            <h2 className="add-user">Add User</h2>
+            <h2 className="add-user">Add user</h2>
           </div>
           <div className="model-right">
-            <IoCloseCircleSharp size={22} onClick={() => handleModel(false)} />
+            <IoCloseSharp size={22} onClick={() => handleModel(false)} />
           </div>
         </div>
         <div className="modal-form">
           <form onSubmit={handleSubmitForm}>
-            <h2 className="add-user-header">Enter Name</h2>
+            <h2 className="add-user-header">Enter name</h2>
             <input
               type="text"
               name="name"
@@ -77,7 +85,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
               value={formData.name}
               onChange={handleChangeForm}
             />
-            <h2 className="add-user-header">Add Image</h2>
+            <h2 className="add-user-header">Add image</h2>
             <input
               type="text"
               name="image"
@@ -88,13 +96,12 @@ const AddModel = ({ handleModel, handleNewData }) => {
             />
             {err && <p style={{ color: "#990000" }}>{text}</p>}
             <div className="modal-div-btn">
-
-            <button className="model-btn" type="submit">
-              Submit
-            </button>
-            <button className="model-btn" onClick={() => handleModel(false)}>
-              Close
-            </button>
+              <button className="model-btn" type="submit">
+                Submit
+              </button>
+              <button className="model-btn" onClick={() => handleModel(false)}>
+                Close
+              </button>
             </div>
           </form>
         </div>

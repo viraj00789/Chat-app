@@ -87,7 +87,7 @@ const Header = () => {
             <input
               className="input-search"
               type="text"
-              placeholder="Search Message"
+              placeholder="Search people"
               value={filter}
               onChange={handleChange}
             />
@@ -97,7 +97,7 @@ const Header = () => {
               <IoClose onClick={handleSearch} />
             </div>
           )}
-        {filter && (
+        {/* {filter && (
           <div className="drop">
             {filteredChatList.map((items, index) => (
               <div key={index}>
@@ -124,7 +124,7 @@ const Header = () => {
               </h4>
             )}
           </div>
-        )}
+        )} */}
         </div>
 
         <div className="header-btn">
@@ -141,7 +141,7 @@ const Header = () => {
       >
         <div className="user-chat">
           {filteredChatList.map((items, index) => (
-            <div key={index} onClick={() => handleChat(items)}>
+            <div className="user-chat-render" key={index} onClick={() => handleChat(items)}>
               <div
                 className="chat-container"
                 onClick={handleToggle}
@@ -168,7 +168,7 @@ const Header = () => {
                 </div>
                 <div className="chat-div-2">
                   <p className="user-date">{items.date}</p>
-                  <AiOutlinePushpin size={20} />
+                  <AiOutlinePushpin size={20} className="user-date" />
                 </div>
               </div>
             </div>

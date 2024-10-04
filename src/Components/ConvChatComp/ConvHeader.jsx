@@ -8,6 +8,7 @@ import ConvChat from "./ConvChat";
 import Smile from "../../assests/Smile.svg";
 import { FiMoon } from "react-icons/fi";
 import { MdOutlineWbSunny } from "react-icons/md";
+import EmojiPicker from "emoji-picker-react";
 
 const ConvHeader = () => {
   const {
@@ -20,13 +21,26 @@ const ConvHeader = () => {
     handleToggle,
   } = useChat();
   const [text, setText] = useState("");
-  const { isDark,ToggleTheme } = useTheme();
+  const { isDark, ToggleTheme } = useTheme();
   const [message, setMessage] = useState([]);
   const [dat, setDat] = useState();
   const textareaRef = useRef(null);
+  const pickerRef = useRef();
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   handleSelectedChat(chat || data[0]);
   handleConvData(chat?.chatData || data[0]?.chatData);
+
+  const handleMouseOver = () => {
+    console.log("hell");
+    setShowEmojiPicker(!showEmojiPicker);
+  };
+
+  const handleClickOutside = (event) => {
+    if (pickerRef.current && !pickerRef.current.contains(event.target)) {
+      setShowEmojiPicker(false)
+    }
+  };
 
   const handleText = (e) => {
     const { value } = e.target;
@@ -61,6 +75,10 @@ const ConvHeader = () => {
     }
     setText("");
   };
+  const onEmojiClick = (e) => {
+    setText((prev) => prev + e?.emoji);
+    console.log(e);
+  };
 
   const handleKeyDown = (e) => {
     if (e.shiftKey && e.key === "Enter") {
@@ -71,15 +89,23 @@ const ConvHeader = () => {
     }
   };
 
-  function focusTextarea() {
+  const focusTextarea = () => {
     textareaRef.current.focus();
-  }
+  };
 
   useEffect(() => {
     setMessage(chat?.chatData || []);
     setDat(chat?.chatTime || []);
     focusTextarea();
-  }, [chat]);
+    if (showEmojiPicker) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [chat,showEmojiPicker]);
 
   return (
     <>
@@ -107,20 +133,60 @@ const ConvHeader = () => {
           </div>
         </div>
         <div className="cov-header-subcnt-2">
-
-        {isDark ? <FiMoon className="header-icons" size={20} onClick={() => ToggleTheme()} />:
-          <MdOutlineWbSunny className="header-icons" size={20} onClick={() => ToggleTheme()} />}
+          {isDark ? (
+            <FiMoon
+              className="header-icons"
+              size={20}
+              onClick={() => ToggleTheme()}
+            />
+          ) : (
+            <MdOutlineWbSunny
+              className="header-icons"
+              size={20}
+              onClick={() => ToggleTheme()}
+            />
+          )}
           {/* <img src={SearchHeader} className="header-icons" alt="" /> */}
           {/* <img src={DropDownHeader} className="header-icons" alt="" /> */}
         </div>
       </div>
       <ConvChat conv={message} dat={dat} />
-
+     
+      <div className="model-overlay-emoji"></div>
       <div
         className="cov-div"
         style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}
       >
-        <img className="cov-icons-img" src={Smile} alt="" />
+        <button
+          className="cov-icons-img"
+          ref={pickerRef}
+        >
+          {showEmojiPicker && (
+            <div className="cov-emoji-picker">
+              <EmojiPicker
+                onEmojiClick={onEmojiClick}
+                searchDisabled="true"
+                skinTonesDisabled="true"
+                lazyLoadEmojis="false"
+                emojiStyle="apple"
+                allowExpandReactions="true"
+                style={{
+                  position: "absolute",
+                  width: "300px",
+                  height: "300px",
+                  bottom: "20px",
+                }}
+                handleKeyDown={handleKeyDown}
+              />
+            </div>
+          )}
+          <img
+            className="cov-icon-emoji"
+            src={Smile}
+            onClick={handleMouseOver}
+            alt=""
+          />
+        </button>
         <form className="input-cov-icon" onSubmit={submitedText}>
           <textarea
             autoFocus

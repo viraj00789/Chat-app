@@ -21,7 +21,7 @@ const ChatSideBar = () => {
           style={{
             backgroundColor: isDark ? "#F5FAFC" : "#0F1C24",
             color: isDark ? "#0F1C24" : "#F5FAFC",
-            display: toggle ? "none" : "block",
+            display: toggle ? "none" : "flex",
           }}
         >
           <Header />
