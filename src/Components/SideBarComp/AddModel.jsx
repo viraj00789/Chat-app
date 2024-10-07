@@ -10,69 +10,48 @@ const AddModel = ({ handleModel, handleNewData }) => {
     name: "",
     image: "",
   });
+
   const [text, setText] = useState();
+  const [err, setErr] = useState(false);
   const { data, handleData } = useChat();
   const [errData, setErrData] = useState({});
-  const [touched,setTouched] = useState({
-    name:false,
-    image:false
-  })
+  const [isValidForm, setIsValidForm] = useState(false);
 
-  const handleChangeForm = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-
-  };
-  const handleBlur = (e) => {
-    const { name } = e.target;
-    setTouched({ ...touched, [name]: true });
-  };
-  
   const isValid = (url) => {
     const regex = /^(http|https)?:\/\//;
-    console.log(regex.test(url));
     return regex.test(url);
   };
-  
-  const namedata = data.map((items) => items.name.toLowerCase());
-  
+
   const validateForm = (data) => {
-    console.log(data);
-    const erros = {};
-
-    console.log(data.name, data.image);
-
+    const errors = {};
     if (!data.name.trim()) {
-      erros.name = "Name feild is Required";
+      errors.name = "Name field is required";
     }
     if (!data.image.trim()) {
-      erros.image = "Image field is required";
+      errors.image = "Image field is required";
     } else if (!isValid(data.image)) {
-      erros.image = "Invalid image link";
+      errors.image = "Invalid image link";
     }
-    return erros;
+    return errors;
   };
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    const newErrors = validateForm(formData);
+   const newErrors = validateForm(formData);
     setErrData(newErrors);
 
-    if (Object.keys(newErrors).length === 0) {
-      console.log("Form submitted successfully!");
-    } else {
-      console.log("Form submission failed due to validation errors.");
-      setTouched({name:true,image:true})
+    if (Object.keys(newErrors).length !== 0) {
+      setIsValidForm(false);
       return;
     }
-   
 
+    const namedata = data.map((items) => items.name.toLowerCase());
     if (namedata.includes(formData.name.toLowerCase())) {
-      console.log("inn");
-      setText("User Already Exist");
-      alert("User alredy Exist")
+      setText("User already exists");
+      setErr(true);
       return;
     }
+
     const newUser = {
       ...formData,
       date: new Date().toISOString().split("T")[0],
@@ -81,14 +60,39 @@ const AddModel = ({ handleModel, handleNewData }) => {
       chatTime: [],
       email: "abc@gmail.com",
     };
-    console.log(newUser);
 
     const updatedChatData = [...data, newUser];
-    console.log(updatedChatData);
     handleData(updatedChatData);
     handleNewData(updatedChatData);
+
     setFormData({ name: "", image: "" });
-    handleModel(false);
+    setErr(false);
+    handleModel(false); 
+  };
+
+  const handleChangeForm = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+
+    const newErrors = { ...errData, [name]: "" };
+    setErrData(newErrors);
+
+    setIsValidForm(Object.values(newErrors).every((err) => err === ""));
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      const newErrors = validateForm(formData);
+      setErrData(newErrors);
+
+      if (Object.keys(newErrors).length === 0) {
+        setIsValidForm(true);
+        handleSubmitForm(e); 
+      } else {
+        setIsValidForm(false);
+      }
+    }
   };
 
   useEffect(() => {
@@ -97,11 +101,13 @@ const AddModel = ({ handleModel, handleNewData }) => {
         handleModel(false);
       }
     };
-  
     window.addEventListener("keydown", closeOnEscapePressed);
-    return () => window.removeEventListener("keydown", closeOnEscapePressed);
-
-  }, [formData, handleModel]);
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", closeOnEscapePressed);
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [formData]); 
 
   return (
     <>
@@ -137,7 +143,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
               <Input
                 type="text"
                 name="image"
-                placeholder="Enter your imageurl"
+                placeholder="Enter your image URL"
                 className="modal-input"
                 value={formData.image}
                 onChange={handleChangeForm}
@@ -146,7 +152,8 @@ const AddModel = ({ handleModel, handleNewData }) => {
             {errData.image && (
               <span className="error-message">{errData.image}</span>
             )}
-            <div className="modal-div-btn" >
+            {err && <span className="error-message">{text}</span>}
+            <div className="modal-div-btn">
               <Button
                 text={"Close"}
                 className={"model-btn-1"}
@@ -155,7 +162,8 @@ const AddModel = ({ handleModel, handleNewData }) => {
               <Button
                 text={"Submit"}
                 className={"model-btn-2"}
-                // type={"submit"}
+                type={"submit"}
+                disabled={!isValidForm} 
               />
             </div>
           </form>
