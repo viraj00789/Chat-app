@@ -12,36 +12,39 @@
     background-color: #221d1d
 .add-chat-model
     width: 500px
-    height: 380px
+    height: 359px
     background-color: #fff
     color: black
     display: flex
     flex-direction: column
-    top: 15%
+    top: 19%
     left: 35%
     position: fixed
     z-index: 3
     border-radius: 24px
-    margin: 10px
-    padding: 10px
+    padding: 15px
     animation: bounceIn 0.8s
     position: fixed
 
 .add-user
-    padding-left: 23px
+    padding-left: 20px
 .add-user-header
-    padding-left: 2px
-    font-size: 1.2rem
-
+    padding: 0 0 0 0
+    font-size: 18px
+    font-weight: 500
+    margin: 0 0 10px 0
+.add-image-header
+    padding: 5px 0 0 0
+.add-user-header-1
+    padding: 5px 0 10px 0
 .modal-form
-    padding: 0 20px 0 18px
+    padding: 20px 20px 0 18px
 
 .modal-input
-    width: 100%
+    width: 97.5%
     height: 40px
     border: none
     outline: none
-    border-color: none
     border-radius: 10px
     font-size: 18px
     background-color: #f3f3f3
@@ -55,23 +58,39 @@
     border-bottom: 1px solid #000
 .model-right
     margin-right: 15px
-.model-btn
+.model-btn-1
     width: 100px
     height: 44px
-    border-radius: 15px
-    font-size: 1.2rem
+    border-radius: 5px
+    font-size: 17px
+    font-weight: bold
+    color: #000
+    border: 1px solid #d2d1d1
+    cursor: pointer
+    margin: 0 0 0 0
+    background-color: #ededed
+.model-btn-2
+    width: 100px
+    height: 44px
+    border-radius: 5px
+    font-size: 18px
     font-weight: bold
     color: #fff
     border: none
     cursor: pointer
     outline: none
-    margin: 12px 0 0 15px
+    margin: 0 0 0 15px
     background-color: #0e4c45
 .modal-div-btn
+    margin: 13px 0 0 0
     display: flex
     width: 100%
     align-items: center
-    justify-content: flex-end
+    justify-content: center
+.error-message
+    color: red
+    margin: 0
+    font-size: 14px
 @keyframes bounceIn
     0%
         transform: scaleY(0.76)
