@@ -9,7 +9,7 @@
     &::-webkit-scrollbar
         display: none
 .sideBar
-    padding:18px
+    padding: 18px
     height: calc( 100% - 200px )
     background-color: #F5FAFC
     display: flex
@@ -21,31 +21,51 @@
     background-color: black
     &::-webkit-scrollbar
         display: none
+    
+
 @media (max-width : 860px) and (min-width :0px)
     .sideBar
         width: 100%
         height: 100%
         position: fixed
-        animation: bounce 0.8s
+        animation: bounce 1s
         margin: 0
         padding: 0
+        transition: transform 0.632s ease-in-out
+        &.closed
+            transform: translateX(-100%) 
+        &.open
+            transform: translateX(0) 
     .sideBar-1
         width: 100%
         height: 100vh
-        position: static
+        position: fixed
+        transition: transform 0.632s ease-in-out
+        &.closed
+            transform: translateX(0) 
+        &.open
+            transform: translateX(+100%) 
 @media (max-width: 1200px) and (min-width:860px)
     .sideBar
         width: 50%
         display: block !important
 
+
 @media (min-width:900px)
     .sideBar
         display: flex !important
 
+
 @keyframes bounce
     0%
         transform: translateX(100)
-        opacity: 0.4
+        opacity: 0.3
+    40%
+        transform: translateX(70)
+        opacity: 0.6
+    70%
+        transform: translateX(30)
+        opacity: 0.8
 
     100%
         transform: translateX(0)

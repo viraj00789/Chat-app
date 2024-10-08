@@ -51,19 +51,17 @@
 .mess-div
     overflow: auto
     background-color: #c0dcd0
-    height: calc(100% - 194px)
+    height: calc(100% - 215px)
     align-content: flex-end
+    padding: 10px 20px 10px 20px
     &::-webkit-scrollbar
         display: none
-.message-divs
-    margin-left: 35px
-    margin-right: 35px
 
 .message
     width: 100%
     overflow: auto
-    margin: 12px
-    padding-top: 10px
+    margin: 0 0 10px 0
+    padding: 0 10px 0 0
     animation: bounceIn .5s
 .message__outer
     padding: 10px 0 10px 0
@@ -92,6 +90,8 @@
     color: #000
     font-size: 10px
     margin-left: 10px
+    align-items: flex-end
+
 
 .message__status
     margin-left: 10px
@@ -110,7 +110,7 @@
     align-items: center
     justify-content: center
     width: 100%
-    height: 90px
+    padding: 20px 0 20px 0
     background: #ede9e9
 
 .cov-name-div
@@ -136,13 +136,24 @@
     border: none
     cursor: pointer
     background-color:#ede9e9
+    position: absolute
+    left: 48vh
+    bottom: 33vh
 .cov-icon-emoji
-    width: 35px
+    width: 30px
     height: 35px
+    margin: 4px 4px 4px 10px
+    color: #565252
+    cursor: pointer
 .cov-emoji-picker
     position: absolute
     bottom: 5vw
-
+.input-cov-div
+    width: 100%
+    display: flex
+    background-color: #fff
+    padding: 5px
+    border-radius: 24px
 
 .emoji-picker-react
     width: 100px
@@ -161,9 +172,9 @@
     font-family: "Plus Jakarta Sans", sans-serif
     outline: none
     border-radius: 24px
-    padding: 12px 24px 12px 24px
     resize: none
     white-space: pre-wrap
+    padding: 9px 0 10px 13px
     @extend %input-base
 
 @keyframes bounceIn
@@ -184,8 +195,24 @@
         margin: 0
         width: 30px
         height: 30px
+    .cov-header-detail-name
+        font-size: 15px
+    .cov-header-detail-status
+        margin: 0
+        padding:  0 5px 0 5px
+    .cov-icons-img
+        margin: 0
+        padding: 0 0 0 10px 
+        left: 2vw
+        bottom: 46vh
+    .input-cov
+        // padding: 11px 9px 10px 8px
+    .cov-icon
+        padding:0
+        margin: 0 10px 0 0
     .mess-div
-        height: calc(100% - 180px)
+        height: calc(100% - 196px)
+        padding: 10px 0 10px 0
     .message
         margin: 0
     .message-divs
@@ -194,8 +221,3 @@
         text-align:left
     .message_time
         font-size: 10px
-    .cov-header-detail-name
-        font-size: 15px
-    .cov-header-detail-status
-        margin: 0
-        padding:  0 5px 0 5px

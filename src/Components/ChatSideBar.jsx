@@ -13,21 +13,22 @@ const ChatSideBar = () => {
     document.body.style.background = isDark ? "#F5FAFC" : "#0F1C24";
     
   }, [isDark]);
+  
   return (
     <>
       <div className="chat-divs">
         <div
-          className="sideBar"
+          className={`sideBar ${toggle ? `open` : `closed`}`} 
           style={{
             backgroundColor: isDark ? "#F5FAFC" : "#0F1C24",
             color: isDark ? "#0F1C24" : "#F5FAFC",
-            display: toggle ? "none" : "flex",
-          }}
+            // display: toggle ? "none" : "flex",
+              }}
         >
           <Header />
         </div>
         <div
-          className="sideBar-1"
+          className={`sideBar-1 ${toggle ? `open` : `closed`}`}
           style={{
             backgroundColor: isDark ? "#F5FAFC" : "#0F1C24",
             color: isDark ? "#0F1C24" : "#F5FAFC",

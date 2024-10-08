@@ -34,8 +34,11 @@
                     className="message__bubble"
                     style={{
                       backgroundColor: index % 2 === 0 ? "#D7F8F4" : "#fff",
+                      flexDirection:items.length > 300 ? "column" :"row"
                     }}
+                    
                   >
+
                     <div className="message__actions">
                       {readmore[index] ? items : items.slice(0, 300)}
                       {items.length > 300 && (
@@ -48,9 +51,11 @@
                         </p>
                       )}
                     </div>
-                    <div className="message_time">{dat[index]}</div>
+                    <div className="message_time">
+                      <span>{dat[index]}</span>
+                    </div>
+                    </div>
                   </div>
-                </div>
               </div>
             </div>
           ))}

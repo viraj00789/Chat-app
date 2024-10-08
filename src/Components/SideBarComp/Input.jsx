@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Input = ({name,type,placeholder,className,value,onChange,onBlur}) => {
+const Input = ({name,type,placeholder,className,value,onChange,onBlur,text}) => {
+  console.log(text);
   return (
     <div>
          <input
@@ -11,7 +12,7 @@ const Input = ({name,type,placeholder,className,value,onChange,onBlur}) => {
               value={value}
               onChange={onChange}
               onBlur={onBlur}
-
+              ref={text}
             />
     </div>
   )

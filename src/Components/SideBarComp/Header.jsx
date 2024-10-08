@@ -64,19 +64,7 @@ const Header = () => {
             />
             <img className="mess-status" src={Status} alt="" />
           </div>
-          {/* <div className="dropdown">
-            <img className="mess-header-down" src={DownArrow} alt="" />
-            {
-              <div className="dropdown-content">
-                <p className="drop-cont-para" onClick={() => handleModel(true)}>
-                  Add User
-                </p>
-                <div className="drop-cont-para" onClick={ToggleTheme}>
-                  {isDark ? <p>Darktheme</p> : <p>LightTheme</p>}
-                </div>
-              </div>
-            }
-          </div> */}
+
         </div>
 
         <div
@@ -97,34 +85,7 @@ const Header = () => {
               <IoClose onClick={handleSearch} />
             </div>
           )}
-        {/* {filter && (
-          <div className="drop">
-            {filteredChatList.map((items, index) => (
-              <div key={index}>
-                <div className="drop-div-2" onClick={() => handleChat(items)}>
-                  <div>
-                    <img
-                      src={
-                        items.image ||
-                        "https://randomuser.me/api/portraits/men/9.jpg"
-                      }
-                      alt=""
-                      className="user-image"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="user-name">{items.name.slice(0, 10)}</h3>
-                  </div>
-                </div>
-              </div>
-            ))}
-            {filteredChatList.length === 0 && (
-              <h4 style={{ textAlign: "center", color: "#428e85" }}>
-                No User Found.
-              </h4>
-            )}
-          </div>
-        )} */}
+
         </div>
 
         <div className="header-btn">
@@ -149,6 +110,7 @@ const Header = () => {
                   backgroundColor: active === items.id ? "#128C7E" : "",
                   color: active === items.id ? "#fff" : "",
                 }}
+                title={items.name}
               >
                 <div className="chat-div-1">
                   <img
@@ -160,7 +122,7 @@ const Header = () => {
                     className="user-image"
                   />
                   <div className="chat-detail">
-                    <h3 className="user-name">{items.name.slice(0, 10)}</h3>
+                    <h3 className="user-name">{items.name.length < 15 ? items.name : items.name.slice(0, 15) + "..."}</h3>
                     <span className="user-message">
                       {items.email.slice(0, 15)}
                     </span>

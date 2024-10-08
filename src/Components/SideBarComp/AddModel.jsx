@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./AddModel.sass";
 import { IoCloseSharp } from "react-icons/io5";
 import { useChat } from "../../store/ChatContext";
@@ -16,10 +16,15 @@ const AddModel = ({ handleModel, handleNewData }) => {
   const { data, handleData } = useChat();
   const [errData, setErrData] = useState({});
   const [isValidForm, setIsValidForm] = useState(false);
+  const textareaRef = useRef();
+
 
   const isValid = (url) => {
     const regex = /^(http|https)?:\/\//;
     return regex.test(url);
+  };
+  const focusTextarea = () => {
+    textareaRef.current.focus();
   };
 
   const validateForm = (data) => {
@@ -101,6 +106,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
         handleModel(false);
       }
     };
+    focusTextarea()
     window.addEventListener("keydown", closeOnEscapePressed);
     window.addEventListener("keydown", handleKeyPress);
     return () => {
@@ -127,6 +133,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
             <div className="add-user-header-1">
               <p className="add-user-header">Enter name</p>
               <Input
+                text={textareaRef}
                 type="text"
                 name="name"
                 placeholder="Enter your name"

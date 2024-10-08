@@ -9,6 +9,7 @@ import Smile from "../../assests/Smile.svg";
 import { FiMoon } from "react-icons/fi";
 import { MdOutlineWbSunny } from "react-icons/md";
 import EmojiPicker from "emoji-picker-react";
+import { BsEmojiSmile } from "react-icons/bs";
 
 const ConvHeader = () => {
   const {
@@ -38,7 +39,7 @@ const ConvHeader = () => {
 
   const handleClickOutside = (event) => {
     if (pickerRef.current && !pickerRef.current.contains(event.target)) {
-      setShowEmojiPicker(false)
+      setShowEmojiPicker(false);
     }
   };
 
@@ -98,14 +99,14 @@ const ConvHeader = () => {
     setDat(chat?.chatTime || []);
     focusTextarea();
     if (showEmojiPicker) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     }
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [chat,showEmojiPicker]);
+  }, [chat, showEmojiPicker]);
 
   return (
     <>
@@ -125,7 +126,7 @@ const ConvHeader = () => {
           </div>
           <img className="cov-header-img" src={chat?.image} alt="" />
           <div className="cov-header-details">
-            <h4 className="cov-header-detail-name">{chat?.name}</h4>
+            <h4 className="cov-header-detail-name">{chat?.name.length < 15 ?  chat?.name : chat?.name.slice(0,15) + "..."}</h4>
             <div className="cov">
               <div className="green-icon"></div>
               <span className="cov-header-detail-status">Online</span>
@@ -146,22 +147,18 @@ const ConvHeader = () => {
               onClick={() => ToggleTheme()}
             />
           )}
-          {/* <img src={SearchHeader} className="header-icons" alt="" /> */}
-          {/* <img src={DropDownHeader} className="header-icons" alt="" /> */}
         </div>
       </div>
       <ConvChat conv={message} dat={dat} />
-     
+
       <div className="model-overlay-emoji"></div>
       <div
         className="cov-div"
         style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}
       >
-        <button
-          className="cov-icons-img"
-          ref={pickerRef}
-        >
-          {showEmojiPicker && (
+        
+        {showEmojiPicker && (
+          <button className="cov-icons-img" ref={pickerRef}>
             <div className="cov-emoji-picker">
               <EmojiPicker
                 onEmojiClick={onEmojiClick}
@@ -174,32 +171,34 @@ const ConvHeader = () => {
                   position: "absolute",
                   width: "300px",
                   height: "300px",
-                  bottom: "20px",
                 }}
                 handleKeyDown={handleKeyDown}
               />
             </div>
-          )}
-          <img
-            className="cov-icon-emoji"
-            src={Smile}
-            onClick={handleMouseOver}
-            alt=""
-          />
-        </button>
+          </button>
+        )}
         <form className="input-cov-icon" onSubmit={submitedText}>
-          <textarea
-            autoFocus
-            ref={textareaRef}
-            rows={1}
-            className="input-cov"
-            type="text"
-            placeholder="Say Something"
-            name="chat"
-            value={text}
-            onKeyDown={handleKeyDown}
-            onChange={handleText}
-          />
+          <div className="input-cov-div">
+           <BsEmojiSmile
+              className="cov-icon-emoji"
+              src={Smile}
+              onClick={handleMouseOver}
+              alt=""
+            />
+            <textarea
+              autoFocus
+              ref={textareaRef}
+              rows={1}
+              className="input-cov"
+              type="text"
+              placeholder="Say Something"
+              name="chat"
+              value={text}
+              onKeyDown={handleKeyDown}
+              onChange={handleText}
+            />
+          </div>
+
           <button
             type="submit"
             onClick={submitedText}
