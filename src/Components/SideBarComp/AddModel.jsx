@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddModel.sass";
 import { IoCloseSharp } from "react-icons/io5";
 import { useChat } from "../../store/ChatContext";
-import Input from "./Input";
-import Button from "./Button";
+import Input from "../CommonComp/Input";
+import Button from "../CommonComp/Button";
 
 const AddModel = ({ handleModel, handleNewData }) => {
   const [formData, setFormData] = useState({
@@ -16,16 +16,13 @@ const AddModel = ({ handleModel, handleNewData }) => {
   const { data, handleData } = useChat();
   const [errData, setErrData] = useState({});
   const [isValidForm, setIsValidForm] = useState(false);
-  const textareaRef = useRef();
 
 
   const isValid = (url) => {
     const regex = /^(http|https)?:\/\//;
     return regex.test(url);
   };
-  const focusTextarea = () => {
-    textareaRef.current.focus();
-  };
+
 
   const validateForm = (data) => {
     const errors = {};
@@ -77,27 +74,10 @@ const AddModel = ({ handleModel, handleNewData }) => {
 
   const handleChangeForm = (e) => {
     const { name, value } = e.target;
-
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-
     const newErrors = { ...errData, [name]: "" };
     setErrData(newErrors);
-
     setIsValidForm(Object.values(newErrors).every((err) => err === ""));
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      const newErrors = validateForm(formData);
-      setErrData(newErrors);
-
-      if (Object.keys(newErrors).length === 0) {
-        setIsValidForm(true);
-        handleSubmitForm(e); 
-      } else {
-        setIsValidForm(false);
-      }
-    }
   };
 
   useEffect(() => {
@@ -106,18 +86,15 @@ const AddModel = ({ handleModel, handleNewData }) => {
         handleModel(false);
       }
     };
-    focusTextarea()
     window.addEventListener("keydown", closeOnEscapePressed);
-    window.addEventListener("keydown", handleKeyPress);
     return () => {
       window.removeEventListener("keydown", closeOnEscapePressed);
-      window.removeEventListener("keydown", handleKeyPress);
     };
   }, [formData]); 
 
   return (
     <>
-      <div className="model-overlay" onClick={() => handleModel(false)}></div>
+      <div className="model-overlay"></div>
 
       <div className="add-chat-model">
         <div className="model-close">
@@ -133,7 +110,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
             <div className="add-user-header-1">
               <p className="add-user-header">Enter name</p>
               <Input
-                text={textareaRef}
+                focus={true}
                 type="text"
                 name="name"
                 placeholder="Enter your name"
@@ -146,7 +123,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
               )}
             </div>
             <div className="add-image-header">
-              <p className="add-user-header">Add image</p>
+              <p className="add-user-header">Add image link</p>
               <Input
                 type="text"
                 name="image"
@@ -164,6 +141,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
               <Button
                 text={"Close"}
                 className={"model-btn-1"}
+                type={"button"}
                 onClick={() => handleModel(false)}
               />
               <Button

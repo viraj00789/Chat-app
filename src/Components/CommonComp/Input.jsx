@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Input = ({name,type,placeholder,className,value,onChange,onBlur,text}) => {
+const Input = ({name,type,placeholder,className,value,onChange,onBlur,text,focus}) => {
   console.log(text);
   return (
     <div>
@@ -13,6 +13,7 @@ const Input = ({name,type,placeholder,className,value,onChange,onBlur,text}) => 
               onChange={onChange}
               onBlur={onBlur}
               ref={text}
+              autoFocus={focus}
             />
     </div>
   )

@@ -5,7 +5,7 @@ import { useChat } from "../../store/ChatContext";
 import AddModel from "./AddModel";
 import Status from "../../assests/Status.svg";
 import Search from "../../assests/Search.svg";
-import { AiOutlinePushpin } from "react-icons/ai";
+import { MdOutlineStar } from "react-icons/md";
 import { IoAddOutline, IoClose } from "react-icons/io5";
 
 const Header = () => {
@@ -13,26 +13,33 @@ const Header = () => {
     useChat();
   const { isDark } = useTheme();
   const [filter, setFilter] = useState("");
-  const [isModelOpen, setIsModelOpen] = useState(false);
   const [filteredChatList, setFilteredChatList] = useState(data);
+  const [fav, setFav] = useState("");
+  const [favourites, setFavourites] = useState([]);
+  const [prevFav, setPrevFav] = useState([]);
+  const [switchTab, setSwitchTab] = useState(true);
+  const [isModelOpen, setIsModelOpen] = useState(false);
 
   const handleNewData = (data) => {
     setFilteredChatList(data);
   };
+
   const handleModel = (mod) => {
     setIsModelOpen(mod);
   };
+
   const handleSearch = () => {
     setFilter("");
     setFilteredChatList(data);
   };
+
   const handleChat = (user) => {
-    console.log(user);
     setFilter("");
     handleActive(user?.id);
     handleSelectedChat(user);
     setFilteredChatList(data);
   };
+
   const handleChange = (e) => {
     let newFilter = e.target.value;
     if (newFilter.trim() === "") {
@@ -47,6 +54,41 @@ const Header = () => {
         item.email.toLowerCase().includes(newFilter.toLowerCase())
     );
     setFilteredChatList(filteredList);
+  };
+
+  const handleChangeFav = (e) => {
+    let newFilter = e.target.value;
+    if (newFilter.trim() === "") {
+      setFav("");
+      setFavourites(prevFav);
+      return;
+    }
+    setFav(newFilter);
+    const filteredList = favourites.filter(
+      (item) =>
+        item.name.toLowerCase().includes(newFilter.toLowerCase()) ||
+        item.email.toLowerCase().includes(newFilter.toLowerCase())
+    );
+    setFavourites(filteredList);
+  };
+
+  const handleSwitch = (sw) => {
+    setSwitchTab(sw);
+  };
+
+  const addFav = (e, chat) => {
+    e.stopPropagation();
+    if (favourites.some((fav) => fav.id === chat.id)) {
+      setFavourites(favourites.filter((fav) => fav.id !== chat.id));
+      setPrevFav(favourites.filter((fav) => fav.id !== chat.id));
+    } else {
+      setFavourites([...favourites, chat]);
+      setPrevFav([...favourites, chat]);
+    }
+  };
+
+  const handlelength = () => {
+    return favourites.length;
   };
 
   return (
@@ -64,35 +106,52 @@ const Header = () => {
             />
             <img className="mess-status" src={Status} alt="" />
           </div>
-
         </div>
 
-        <div
-          className="search-div"
-        >
+        <div className="search-div">
           <div className="search-dis">
             <img className="search-icon" src={Search} alt="" />
-            <input
-              className="input-search"
-              type="text"
-              placeholder="Search people"
-              value={filter}
-              onChange={handleChange}
-            />
+            {switchTab ? (
+              <input
+                className="input-search"
+                type="text"
+                placeholder="Search people"
+                value={filter}
+                onChange={handleChange}
+              />
+            ) : (
+              <input
+                className="input-search"
+                type="text"
+                placeholder="Search favourites"
+                value={fav}
+                onChange={handleChangeFav}
+              />
+            )}
           </div>
           {filter && (
             <div className="search-close-icon">
               <IoClose onClick={handleSearch} />
             </div>
           )}
-
         </div>
 
         <div className="header-btn">
-          <div className="header-sub-1">Friends</div>
-          <div className="header-sub-2">Favourites</div>
+          <div
+            className={`header-sub-1 ${switchTab ? "active" : "inactive"}`}
+            onClick={() => handleSwitch(true)}
+          >
+            Friends
+          </div>
+          <div
+            className={`header-sub-2 ${switchTab ? "active" : "inactive"}`}
+            onClick={() => handleSwitch(false)}
+          >
+            Favourites ({handlelength()})
+          </div>
         </div>
       </div>
+
       <div
         className="message-header"
         style={{
@@ -101,50 +160,123 @@ const Header = () => {
         }}
       >
         <div className="user-chat">
-          {filteredChatList.map((items, index) => (
-            <div className="user-chat-render" key={index} onClick={() => handleChat(items)}>
-              <div
-                className="chat-container"
-                onClick={handleToggle}
-                style={{
-                  backgroundColor: active === items.id ? "#128C7E" : "",
-                  color: active === items.id ? "#fff" : "",
-                }}
-                title={items.name}
-              >
-                <div className="chat-div-1">
-                  <img
-                    src={
-                      items.image ||
-                      "https://randomuser.me/api/portraits/men/9.jpg"
-                    }
-                    alt=""
-                    className="user-image"
-                  />
-                  <div className="chat-detail">
-                    <h3 className="user-name">{items.name.length < 15 ? items.name : items.name.slice(0, 15) + "..."}</h3>
-                    <span className="user-message">
-                      {items.email.slice(0, 15)}
-                    </span>
+          {switchTab
+            ? filteredChatList.map((items, index) => (
+                <div
+                  className="user-chat-render"
+                  key={index}
+                  onClick={() => handleChat(items)}
+                >
+                  <div
+                    className="chat-container"
+                    style={{
+                      backgroundColor: active === items.id ? "#128C7E" : "",
+                      color: active === items.id ? "#fff" : "",
+                    }}
+                    title={items.name}
+                  >
+                    <div className="chat-div-1" onClick={handleToggle}>
+                      <img
+                        src={
+                          items.image ||
+                          "https://randomuser.me/api/portraits/men/9.jpg"
+                        }
+                        alt=""
+                        className="user-image"
+                      />
+                      <div className="chat-detail">
+                        <h3 className="user-name">
+                          {items.name.length < 15
+                            ? items.name
+                            : items.name.slice(0, 15) + "..."}
+                        </h3>
+                        <span className="user-message">
+                          {items.email.slice(0, 15)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="spacer" onClick={handleToggle}></div>
+                    <div className="chat-div-2">
+                      <p className="user-date" onClick={handleToggle}>
+                        {items.date}
+                      </p>
+                      <MdOutlineStar
+                        size={20}
+                        className="user-date"
+                        onClick={(e) => addFav(e, items)}
+                        style={{
+                          color: favourites.some((fav) => fav.id === items.id)
+                            ? "gold"
+                            : "rgb(225 223 223)",
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="chat-div-2">
-                  <p className="user-date">{items.date}</p>
-                  <AiOutlinePushpin size={20} className="user-date" />
+              ))
+            : favourites?.map((items, index) => (
+                <div
+                  className="user-chat-render"
+                  key={index}
+                  onClick={() => handleChat(items)}
+                >
+                  <div
+                    className="chat-container"
+                    style={{
+                      backgroundColor: active === items.id ? "#128C7E" : "",
+                      color: active === items.id ? "#fff" : "",
+                    }}
+                    title={items.name}
+                  >
+                    <div className="chat-div-1" onClick={handleToggle}>
+                      <img
+                        src={
+                          items.image ||
+                          "https://randomuser.me/api/portraits/men/9.jpg"
+                        }
+                        alt=""
+                        className="user-image"
+                      />
+                      <div className="chat-detail">
+                        <h3 className="user-name">
+                          {items.name.length < 15
+                            ? items.name
+                            : items.name.slice(0, 15) + "..."}
+                        </h3>
+                        <span className="user-message">
+                          {items.email.slice(0, 15)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="spacer" onClick={handleToggle}></div>
+                    <div className="chat-div-2">
+                      <p className="user-date">{items.date}</p>
+                      <MdOutlineStar
+                        size={20}
+                        className="user-date"
+                        onClick={(e) => addFav(e, items)}
+                        style={{ color: "gold" }}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
-          {filteredChatList.length === 0 && (
+              ))}
+          {filteredChatList?.length === 0 && switchTab && (
             <h4 style={{ textAlign: "center", color: "#428e85" }}>
               No User Found.
             </h4>
           )}
+          {favourites?.length === 0 && !switchTab && (
+            <h4 style={{ textAlign: "center", color: "#428e85" }}>
+              No Favourites Found.
+            </h4>
+          )}
         </div>
-          <IoAddOutline
-            className="add-user-icon"
-            onClick={() => handleModel(true)}
-          />
+
+        <IoAddOutline
+          className="add-user-icon"
+          onClick={() => handleModel(true)}
+        />
         {isModelOpen && (
           <AddModel handleModel={handleModel} handleNewData={handleNewData} />
         )}

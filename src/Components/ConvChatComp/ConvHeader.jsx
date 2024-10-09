@@ -29,9 +29,6 @@ const ConvHeader = () => {
   const pickerRef = useRef();
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
-  handleSelectedChat(chat || data[0]);
-  handleConvData(chat?.chatData || data[0]?.chatData);
-
   const handleMouseOver = () => {
     console.log("hell");
     setShowEmojiPicker(!showEmojiPicker);
@@ -78,7 +75,6 @@ const ConvHeader = () => {
   };
   const onEmojiClick = (e) => {
     setText((prev) => prev + e?.emoji);
-    console.log(e);
   };
 
   const handleKeyDown = (e) => {
@@ -90,14 +86,16 @@ const ConvHeader = () => {
     }
   };
 
-  const focusTextarea = () => {
-    textareaRef.current.focus();
-  };
+
 
   useEffect(() => {
+
+    handleSelectedChat(chat || data[0]);
+    handleConvData(chat?.chatData || data[0]?.chatData);
     setMessage(chat?.chatData || []);
     setDat(chat?.chatTime || []);
-    focusTextarea();
+
+
     if (showEmojiPicker) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
@@ -126,7 +124,11 @@ const ConvHeader = () => {
           </div>
           <img className="cov-header-img" src={chat?.image} alt="" />
           <div className="cov-header-details">
-            <h4 className="cov-header-detail-name">{chat?.name.length < 15 ?  chat?.name : chat?.name.slice(0,15) + "..."}</h4>
+            <h4 className="cov-header-detail-name">
+              {chat?.name.length < 15
+                ? chat?.name
+                : chat?.name.slice(0, 15) + "..."}
+            </h4>
             <div className="cov">
               <div className="green-icon"></div>
               <span className="cov-header-detail-status">Online</span>
@@ -156,7 +158,6 @@ const ConvHeader = () => {
         className="cov-div"
         style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}
       >
-        
         {showEmojiPicker && (
           <button className="cov-icons-img" ref={pickerRef}>
             <div className="cov-emoji-picker">
@@ -179,15 +180,14 @@ const ConvHeader = () => {
         )}
         <form className="input-cov-icon" onSubmit={submitedText}>
           <div className="input-cov-div">
-           <BsEmojiSmile
+            <BsEmojiSmile
               className="cov-icon-emoji"
               src={Smile}
               onClick={handleMouseOver}
               alt=""
             />
             <textarea
-              autoFocus
-              ref={textareaRef}
+              autoFocus={true}
               rows={1}
               className="input-cov"
               type="text"

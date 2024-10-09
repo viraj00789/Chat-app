@@ -9,7 +9,7 @@
     &::-webkit-scrollbar
         display: none
 .sideBar
-    padding: 18px
+    padding: 18px 18px 0 18px
     height: calc( 100% - 200px )
     background-color: #F5FAFC
     display: flex
@@ -31,7 +31,7 @@
         animation: bounce 1s
         margin: 0
         padding: 0
-        transition: transform 0.632s ease-in-out
+        transition: transform 0.4s ease-in-out
         &.closed
             transform: translateX(-100%) 
         &.open
@@ -40,7 +40,7 @@
         width: 100%
         height: 100vh
         position: fixed
-        transition: transform 0.632s ease-in-out
+        transition: transform 0.4s ease-in-out
         &.closed
             transform: translateX(0) 
         &.open

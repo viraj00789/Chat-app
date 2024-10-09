@@ -8,9 +8,8 @@ export const ChatProvider = ({ children }) => {
   const [data, setData] = useState(randomData);
   const [conv, setConv] = useState();
   const [active, setActive] = useState(data[0]?.id);
-  const [messageData,setMessageData] = useState();
-  const [toggle,setToggle] = useState(false);
-
+  const [messageData, setMessageData] = useState();
+  const [toggle, setToggle] = useState(false);
 
   const handleSelectedChat = (user) => {
     setChat(user);
@@ -24,14 +23,12 @@ export const ChatProvider = ({ children }) => {
   const handleActive = (id) => {
     setActive(id);
   };
-  const handleMessageData = (mess) =>
-  {
-    setMessageData(mess)
-  }
-  const handleToggle = () =>
-  {
-    setToggle(!toggle)
-  }
+  const handleMessageData = (mess) => {
+    setMessageData(mess);
+  };
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
 
   return (
     <ChatContext.Provider
@@ -48,7 +45,7 @@ export const ChatProvider = ({ children }) => {
         setConv,
         handleMessageData,
         toggle,
-        handleToggle
+        handleToggle,
       }}
     >
       {children}

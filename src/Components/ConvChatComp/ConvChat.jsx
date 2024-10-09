@@ -51,8 +51,8 @@
                         </p>
                       )}
                     </div>
-                    <div className="message_time">
-                      <span>{dat[index]}</span>
+                      <span className="message_time">{dat[index]}</span>
+                    <div >
                     </div>
                     </div>
                   </div>

@@ -30,38 +30,6 @@
     display: flex
     margin-left: 10px
 
-.dropdown-content
-    display: none
-    cursor: pointer
-    background-color: #F5FAFC
-    color: black
-    min-width: 160px
-    z-index: 1
-    position: absolute
-    border-radius: 10px
-    top: 50px
-    left: 200px
-    .dropdown:hover &
-        display: block
-.drop-cont-para
-    padding: 0 10px 0 10px
-.drop
-    overflow: auto
-    cursor: pointer
-    background-color: #FFFFFF
-    color: black
-    z-index: 20
-    position: absolute
-    border-radius: 10px
-    top: 57px
-    height: 229px
-    width: 100%
-.drop-div-2
-    display: flex
-    align-items: center
-    .drop-div-2:hover &
-        background-color: #EFFAFD
-
 .mess-image
     width: 40.35px
     height: 40.35px
@@ -81,13 +49,13 @@
     margin-left: 10px
 .header-btn
     border-radius: 15px
-    padding-bottom: 1px
     color: #fff
     width: 100%
     display: flex
     align-items: center
-    height: 48px
     background-color: #fff
+    border: none
+    outline: none
     box-shadow: 0px 1px 2px 0px #c8d7d4
     margin: 0 0 15px 0
 .header-sub-1
@@ -98,28 +66,44 @@
     justify-content: center
     width: 100%
     background-color: #128C7E
-    height: 49px
     border-top-left-radius: 15px
+    padding: 15px 0 15px 0
     border-bottom-left-radius: 15px
-
+    cursor: pointer
+    &.active
+        background-color: #128C7E
+        color: #fff
+    &.inactive
+        background-color: #fff
+        color: #5A6A9D
 .header-sub-2
     display: flex
     color: #5A6A9D
     font-size: 16px
-    font-weight: 400
+    font-weight: 700
     background-color: white
     align-items: center
     justify-content: center
     width: 100%
-    border-top-right-radius: 24px
-    border-bottom-right-radius: 24px
+    border-top-right-radius: 12px
+    border-bottom-right-radius: 12px
+    padding: 15px 0 15px 0
+    cursor: pointer
+    &.active
+        background-color: #fff
+        color: #5A6A9D
+    &.inactive
+        background-color: #128C7E
+        color: #fff
+.spacer
+    flex: 1
 %input-base
     font-size: 15px
 .search-div
     width: 100%
     border-radius: 10px
     background-color: #fff
-    margin: 0 0 15px 0
+    margin: 15px 0 15px 0
     display: flex
     align-items: center
     justify-content: space-between
@@ -151,7 +135,7 @@
 .user-chat
     overflow: auto
     width: 102%
-    height: calc(100vh - 230px)
+    height: calc(100vh - 225px)
     &::-webkit-scrollbar
         display: none
 .add-user-icon
@@ -165,6 +149,7 @@
     color: white
     padding: 15px
     cursor: pointer
+
 .chat-container
     display: flex
     padding: 7px 0 7px 0
@@ -173,8 +158,6 @@
     border-radius: 12px
     cursor: pointer
     width: 100%
-    // outline: 1px solid red
-
 .chat-div-1
     padding-left: 7px
     display: flex
@@ -217,7 +200,6 @@
     align-items: center
     justify-content: center
     background-color: #428e85
-
 
 @media ( max-width:450px)
     .user-chat
