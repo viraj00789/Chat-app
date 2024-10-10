@@ -23,12 +23,18 @@
     border-radius: 24px
     animation: fadeIn 1s
     position: fixed
+    &.active
+        background-color: #fff
+    &.inactive
+        background-color: #2A3942
+        color: #fff
     &::backdrop
         animation: fadeIn 1s ease both
         background: rgb(255 255 255 / 40%)
         z-index: 2
         backdrop-filter: blur(20px)
-
+.req
+    color: red
 .add-user
     padding: 0
     margin: 0
@@ -98,7 +104,6 @@
 @keyframes fadeIn
     from
         opacity: 0
-
     to
         opacity: 1
 

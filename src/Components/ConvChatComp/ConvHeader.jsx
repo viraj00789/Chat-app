@@ -25,7 +25,6 @@ const ConvHeader = () => {
   const { isDark, ToggleTheme } = useTheme();
   const [message, setMessage] = useState([]);
   const [dat, setDat] = useState();
-  const textareaRef = useRef(null);
   const pickerRef = useRef();
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
@@ -89,13 +88,10 @@ const ConvHeader = () => {
 
 
   useEffect(() => {
-
     handleSelectedChat(chat || data[0]);
     handleConvData(chat?.chatData || data[0]?.chatData);
     setMessage(chat?.chatData || []);
     setDat(chat?.chatTime || []);
-
-
     if (showEmojiPicker) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
@@ -109,15 +105,10 @@ const ConvHeader = () => {
   return (
     <>
       <div
-        className="cov-header-cont"
-        style={{
-          backgroundColor: isDark ? "#F7F7FC" : "#0F1C24",
-          color: isDark ? "#0F1C24" : "#DFF6F4",
-        }}
+        className={`cov-header-cont ${isDark ? "active" : "inactive"}`}
       >
         <div
-          className="cov-header-subcnt-1"
-          style={{ color: isDark ? "#000" : "#F7F7FC" }}
+          className={`cov-header-subcnt-1 ${isDark ? "active" : "inactive"}`}
         >
           <div className="conv-back-arrow" onClick={handleToggle}>
             <IoIosArrowBack size={30} />
@@ -155,8 +146,7 @@ const ConvHeader = () => {
 
       <div className="model-overlay-emoji"></div>
       <div
-        className="cov-div"
-        style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}
+        className={`cov-div ${isDark ? "active" : "inactive"}`}
       >
         {showEmojiPicker && (
           <button className="cov-icons-img" ref={pickerRef}>
@@ -179,9 +169,9 @@ const ConvHeader = () => {
           </button>
         )}
         <form className="input-cov-icon" onSubmit={submitedText}>
-          <div className="input-cov-div">
+          <div className={`input-cov-div ${isDark ? "active" : "inactive"}`}>
             <BsEmojiSmile
-              className="cov-icon-emoji"
+              className={`cov-icon-emoji ${isDark ? "active" : "inactive"}`}
               src={Smile}
               onClick={handleMouseOver}
               alt=""
@@ -189,7 +179,7 @@ const ConvHeader = () => {
             <textarea
               autoFocus={true}
               rows={1}
-              className="input-cov"
+              className={`input-cov ${isDark ? "active" : "inactive"}`}
               type="text"
               placeholder="Say Something"
               name="chat"
@@ -202,10 +192,9 @@ const ConvHeader = () => {
           <button
             type="submit"
             onClick={submitedText}
-            className="cov-icon"
-            style={{ backgroundColor: isDark ? "#ede9e9" : "#0F1C24" }}
+            className={`cov-icon ${isDark ? "active" : "inactive"}`}
           >
-            <LuSend className="form-send" color="rgb(18, 140, 126)" />
+            <LuSend className="form-send"/>
           </button>
         </form>
       </div>

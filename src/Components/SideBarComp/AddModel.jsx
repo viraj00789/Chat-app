@@ -4,6 +4,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { useChat } from "../../store/ChatContext";
 import Input from "../CommonComp/Input";
 import Button from "../CommonComp/Button";
+import { useTheme } from "../../store/ThemeContext";
 
 const AddModel = ({ handleModel, handleNewData }) => {
   const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
   const { data, handleData } = useChat();
   const [errData, setErrData] = useState({});
   const [isValidForm, setIsValidForm] = useState(false);
-
+  const {isDark} = useTheme();
 
   const isValid = (url) => {
     const regex = /^(http|https)?:\/\//;
@@ -96,7 +97,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
     <>
       <div className="model-overlay"></div>
 
-      <div className="add-chat-model">
+      <div className={`add-chat-model ${isDark ? "active" : 'inactive'}`}>
         <div className="model-close">
           <div>
             <h2 className="add-user">Add user</h2>
@@ -108,7 +109,8 @@ const AddModel = ({ handleModel, handleNewData }) => {
         <div className="modal-form">
           <form onSubmit={handleSubmitForm}>
             <div className="add-user-header-1">
-              <p className="add-user-header">Enter name</p>
+              <p className="add-user-header">Enter name <span className="req">*</span></p>
+             
               <Input
                 focus={true}
                 type="text"
@@ -123,7 +125,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
               )}
             </div>
             <div className="add-image-header">
-              <p className="add-user-header">Add image link</p>
+              <p className="add-user-header">Add image link <span className="req">*</span></p>
               <Input
                 type="text"
                 name="image"
@@ -132,6 +134,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
                 value={formData.image}
                 onChange={handleChangeForm}
               />
+
             </div>
             {errData.image && (
               <span className="error-message">{errData.image}</span>

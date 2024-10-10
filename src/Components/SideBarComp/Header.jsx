@@ -94,8 +94,7 @@ const Header = () => {
   return (
     <>
       <div
-        className="message-headers-and-btns"
-        style={{ backgroundColor: isDark ? "#F5FAFC" : "#0F1C24" }}
+        className={`message-headers-and-btns ${isDark ? "active" : "inactive"}`}
       >
         <div className="mess-head">
           <div className="mess-head-img">
@@ -108,12 +107,12 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="search-div">
+        <div className={`search-div ${isDark ? "active" :"inactive"}`}>
           <div className="search-dis">
-            <img className="search-icon" src={Search} alt="" />
+            <img className={`search-icon ${isDark ? "active" : "inactive"}`} src={Search} alt="" />
             {switchTab ? (
               <input
-                className="input-search"
+                className={`input-search ${isDark ? "active" : "inactive"}`}
                 type="text"
                 placeholder="Search people"
                 value={filter}
@@ -121,9 +120,9 @@ const Header = () => {
               />
             ) : (
               <input
-                className="input-search"
+                className={`input-search ${isDark ? "active" : "inactive"} `}
                 type="text"
-                placeholder="Search favourites"
+                placeholder="Search people"
                 value={fav}
                 onChange={handleChangeFav}
               />
@@ -153,11 +152,7 @@ const Header = () => {
       </div>
 
       <div
-        className="message-header"
-        style={{
-          backgroundColor: isDark ? "#F5FAFC" : "#0F1C24",
-          color: isDark ? "#0F1C24" : "#DFF6F4",
-        }}
+        className={`message-header ${isDark ? "active" : "inactive"}`}
       >
         <div className="user-chat">
           {switchTab
@@ -221,11 +216,7 @@ const Header = () => {
                   onClick={() => handleChat(items)}
                 >
                   <div
-                    className="chat-container"
-                    style={{
-                      backgroundColor: active === items.id ? "#128C7E" : "",
-                      color: active === items.id ? "#fff" : "",
-                    }}
+                    className={`chat-container "}`}
                     title={items.name}
                   >
                     <div className="chat-div-1" onClick={handleToggle}>
@@ -255,7 +246,6 @@ const Header = () => {
                         size={20}
                         className="user-date"
                         onClick={(e) => addFav(e, items)}
-                        style={{ color: "gold" }}
                       />
                     </div>
                   </div>
@@ -268,7 +258,7 @@ const Header = () => {
           )}
           {favourites?.length === 0 && !switchTab && (
             <h4 style={{ textAlign: "center", color: "#428e85" }}>
-              No Favourites Found.
+              No User Found.
             </h4>
           )}
         </div>

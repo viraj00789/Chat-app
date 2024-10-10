@@ -1,3 +1,12 @@
+$white-color: #fff
+$light-green-color: #128C7E
+%input-base
+    font-size: 14px
+    font-family: "Plus Jakarta Sans", sans-serif
+    &.active
+        color: #fff
+    &.inactive
+        color: #000
 .message-header
     background-color: #F5FAFC
     display: flex
@@ -6,6 +15,13 @@
     width: 100%
     &::-webkit-scrollbar
         display: none
+    &.active
+        background-color: #F5FAFC
+        color: #111B21
+    &.inactive
+        background-color: #111B21
+        color: #DFF6F4
+
 .message-headers-and-btns
     display: flex
     align-items: center
@@ -13,6 +29,11 @@
     flex-direction: column
     width: 100%
     background-color: #F5FAFC
+    &.active
+        background-color: #F5FAFC
+    &.inactive
+        background-color: #111B21
+
 .message-heading
     color: white
     font-size: 23px
@@ -29,7 +50,6 @@
 .mess-head-img
     display: flex
     margin-left: 10px
-
 .mess-image
     width: 40.35px
     height: 40.35px
@@ -49,11 +69,11 @@
     margin-left: 10px
 .header-btn
     border-radius: 15px
-    color: #fff
+    color: $white-color
     width: 100%
     display: flex
     align-items: center
-    background-color: #fff
+    background-color: $white-color
     border: none
     outline: none
     box-shadow: 0px 1px 2px 0px #c8d7d4
@@ -65,16 +85,16 @@
     font-weight: 700
     justify-content: center
     width: 100%
-    background-color: #128C7E
+    // background-color: $light-green-color
     border-top-left-radius: 15px
     padding: 15px 0 15px 0
     border-bottom-left-radius: 15px
     cursor: pointer
     &.active
-        background-color: #128C7E
-        color: #fff
+        background-color: $light-green-color
+        color: $white-color
     &.inactive
-        background-color: #fff
+        background-color: $white-color
         color: #5A6A9D
 .header-sub-2
     display: flex
@@ -90,35 +110,44 @@
     padding: 15px 0 15px 0
     cursor: pointer
     &.active
-        background-color: #fff
+        background-color: $white-color
         color: #5A6A9D
     &.inactive
-        background-color: #128C7E
-        color: #fff
+        background-color: $light-green-color
+        color: $white-color
+    
 .spacer
     flex: 1
-%input-base
-    font-size: 15px
 .search-div
     width: 100%
     border-radius: 10px
-    background-color: #fff
-    margin: 15px 0 15px 0
+    margin: 0 0 15px 0
     display: flex
     align-items: center
     justify-content: space-between
     border-radius: 30px
     position: relative
     box-shadow: 0px 1px 4px 0px #c8d7d4
+    @extend %input-base
+    &.active
+        background-color: #fff
+    &.inactive
+        background-color: #2A3942
     &:focus-within
-        outline: 1px solid #128C7E
+        outline: 1px solid $light-green-color
 .search-close-icon
     margin: 4px 15px 0 0
     cursor: pointer
+    color: #8696A0
 .search-icon
     color: #070202
     height: 20px
     margin: 0 10px 0 10px
+    font-weight: 700
+    &.active
+        color: #fff
+    &.inactive
+        color: #8696A0
 .search-dis
     display: flex
     align-items: center
@@ -130,8 +159,12 @@
     outline: none
     border-radius: 24px
     font-size: 18px
-    background-color: #fff
     width: 100%
+    &.active
+        background-color: #fff
+    &.inactive
+        background-color: #2A3942
+        color: #fff
 .user-chat
     overflow: auto
     width: 102%
@@ -158,6 +191,12 @@
     border-radius: 12px
     cursor: pointer
     width: 100%
+    &.active
+        background-color: #128C7E
+        color: #fff
+    &.inactive
+        background-color: ""
+        color: ""
 .chat-div-1
     padding-left: 7px
     display: flex

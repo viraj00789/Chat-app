@@ -1,3 +1,6 @@
+$dark-theme-color:#111B21
+$light-theme-color:#F5FAFC
+   
 .chat-divs
     display: flex
 
@@ -8,10 +11,16 @@
     display: block
     &::-webkit-scrollbar
         display: none
+    &.active
+        background-color: $dark-theme-color
+        color: $light-theme-color
+    &.inactive
+        background-color: $dark-theme-color
+        color: $light-theme-color
 .sideBar
     padding: 18px 18px 0 18px
     height: calc( 100% - 200px )
-    background-color: #F5FAFC
+    background-color: $light-theme-color
     display: flex
     align-items: center
     justify-content: center
@@ -21,7 +30,12 @@
     background-color: black
     &::-webkit-scrollbar
         display: none
-    
+    &.active
+        background-color: $light-theme-color
+        color: $dark-theme-color
+    &.inactive
+        background-color: $dark-theme-color
+        color: $light-theme-color
 
 @media (max-width : 860px) and (min-width :0px)
     .sideBar
@@ -33,28 +47,26 @@
         padding: 0
         transition: transform 0.4s ease-in-out
         &.closed
-            transform: translateX(-100%) 
+            transform: translateX(-100%)
         &.open
-            transform: translateX(0) 
+            transform: translateX(0)
     .sideBar-1
         width: 100%
         height: 100vh
         position: fixed
         transition: transform 0.4s ease-in-out
         &.closed
-            transform: translateX(0) 
+            transform: translateX(0)
         &.open
-            transform: translateX(+100%) 
+            transform: translateX(+100%)
 @media (max-width: 1200px) and (min-width:860px)
     .sideBar
         width: 50%
         display: block !important
 
-
 @media (min-width:900px)
     .sideBar
         display: flex !important
-
 
 @keyframes bounce
     0%

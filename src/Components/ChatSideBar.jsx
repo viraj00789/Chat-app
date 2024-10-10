@@ -11,27 +11,22 @@ const ChatSideBar = () => {
 
   useEffect(() => {
     document.body.style.background = isDark ? "#F5FAFC" : "#0F1C24";
-    
   }, [isDark]);
-  
+
   return (
     <>
       <div className="chat-divs">
         <div
-          className={`sideBar ${toggle ? `open` : `closed`}`} 
-          style={{
-            backgroundColor: isDark ? "#F5FAFC" : "#0F1C24",
-            color: isDark ? "#0F1C24" : "#F5FAFC",
-              }}
+          className={`sideBar ${toggle ? `open` : `closed`} ${
+            isDark ? "active" : "inactive"
+          }`}
         >
           <Header />
         </div>
         <div
-          className={`sideBar-1 ${toggle ? `open` : `closed`}`}
-          style={{
-            backgroundColor: isDark ? "#F5FAFC" : "#0F1C24",
-            color: isDark ? "#0F1C24" : "#F5FAFC",
-          }}
+          className={`sideBar-1 ${toggle ? `open` : `closed`} ${
+            isDark ? "active" : "inactive"
+          }`}
         >
           <ConvHeader />
         </div>

@@ -1,16 +1,25 @@
+$light-background-color: #ede9e9
+$dark-color: #202C33
 %input-base
     font-size: 18px
     font-family: "Plus Jakarta Sans", sans-serif
+    &.active
+        color: $light-background-color
+    &.inactive
+        color: #2fddce
 .cov-header-cont
     display: flex
     align-items: center
     justify-content: space-between
-    border-bottom: 1px solid #f8f8f8
-    padding: 10px 15px
-    box-shadow: 0px 15px 10px -15px #c11c1c
+    padding: 15px 5px 15px 5px
     &::-webkit-scrollbar
         display: none
-
+    &.active
+        background-color: #F7F7FC
+        color: $dark-color
+    &.inactive
+        background-color: $dark-color
+        color: #DFF6F4
 .cov
     display: flex
     justify-content: flex-start
@@ -26,7 +35,11 @@
 
 .cov-header-subcnt-1
     display: flex
-    padding: 8px 0 0 0
+    padding: 2px 0 0 0
+    &.active
+        color: #000
+    &.inactive
+        color: #F7F7FC
 .cov-header-subcnt-2
     display: flex
     align-items: center
@@ -40,67 +53,19 @@
     font-weight: 500
     font-size: 18px
 .cov-header-detail-status
-    margin: 6px 8px 8px 8px
+    margin: 0 8px 0 8px
 .header-icons
     margin: 0 10px 0 10px
     cursor: pointer
 .conv-back-arrow
     margin: 10px
     display: none
-
-.mess-div
-    scroll-behavior: smooth
-    overflow: auto
-    background-color: #c0dcd0
-    height: calc(100% - 200px)
-    align-content: flex-end
-    padding: 10px 20px 10px 20px
-    &::-webkit-scrollbar
-        display: none
-
-.message
-    width: 100%
-    overflow: auto
-    margin: 0 0 10px 0
-    padding: 0 10px 0 0
-    animation: bounceIn .5s
 .message__outer
     padding: 10px 0 10px 0
     display: flex
     margin-top: 10px
-.message__inner
-    flex-1
-    display: flex
-    flex-direction: row-reverse
-.message__actions
-    max-width: 400px
-    word-break: break-all
-    white-space: pre-wrap
-.message__bubble
-    display: flex
-    align-items: flex-end
-    color: white
-    border-radius: 10px
-    padding: 12px
-    font-size: 16px
-    header-icons
-    color: #000
-    cursor: pointer
-
-.message_time
-    color: #000
-    font-size: 10px
-    margin-left: 10px
-    align-items: flex-end
-
-
 .message__status
     margin-left: 10px
-.read-or-hide
-    color: green
-    margin: 0
-    padding: 0
-    cursor: pointer
 .user-chat-image
     height: 35px
     width: 35px
@@ -111,8 +76,12 @@
     align-items: center
     justify-content: center
     width: 100%
-    padding: 20px 0 20px 0
-    background: #ede9e9
+    padding: 15px 0 15px 0
+    background: $light-background-color
+    &.active
+        background-color: $light-background-color
+    &.inactive
+        background-color: $dark-color
 
 .cov-name-div
     display: flex
@@ -122,48 +91,62 @@
     width: 100%
     display: flex
     align-items: center
-    margin-left: 10px
+    margin-left: 12px
 
 .cov-icon
     cursor: pointer
     font-size: 30px
-    margin-right: 18px
+    margin: 0 10px 0 10px
     border: none
     outline: none
-    background-color: #ede9e9
+    padding: 0
+    background-color: $light-background-color
+    &.active
+        background-color: $light-background-color
+    &.inactive
+        background-color: $dark-color
 
 .cov-icons-img
     margin: 0 15px 0 15px
     border: none
     cursor: pointer
-    background-color:#ede9e9
+    background-color: $light-background-color
     position: absolute
     left: 48vh
     bottom: 33vh
 .cov-icon-emoji
     width: 30px
     height: 35px
-    margin: 4px 4px 4px 10px
-    color: #565252
+    margin: 4px 5px 4px 10px
     cursor: pointer
+    &.active
+        color: $dark-color
+    &.inactive
+        color: #bab6b6
 .cov-emoji-picker
     position: absolute
     bottom: 5vw
 .input-cov-div
     width: 100%
     display: flex
-    background-color: #fff
     padding: 5px
     border-radius: 24px
+    &.active
+        background-color: #fff
+        color: #2A3942
+    &.inactive
+        background-color: #2A3942
+        color: #fff
 
 .emoji-picker-react
     width: 100px
     height: 100px
 
 .form-send
-    width: 30px
-    height: 30px
-    margin: 8px 0 0 12px
+    width: 32px
+    height: 32px
+    margin: 8px 0 0 0
+    color: rgb(18, 140, 126)
 .cov-icon-1
     margin-left: 10px
 .input-cov
@@ -176,6 +159,12 @@
     resize: none
     white-space: pre-wrap
     padding: 9px 0 10px 13px
+    &.active
+        background-color: #fff
+        color: #2A3942
+    &.inactive
+        background-color: #2A3942
+        color: #e4e2e2
     @extend %input-base
 
 @keyframes bounceIn
@@ -200,25 +189,16 @@
         font-size: 15px
     .cov-header-detail-status
         margin: 0
-        padding:  0 5px 0 5px
+        padding: 0 5px 0 5px
     .cov-icons-img
         margin: 0
-        padding: 0 0 0 10px 
+        padding: 0 0 0 10px
         left: 2vw
         bottom: 46vh
-    .input-cov
-        // padding: 11px 9px 10px 8px
     .cov-icon
-        padding:0
+        padding: 0
         margin: 0 10px 0 0
-    .mess-div
-        height: calc(100% - 196px)
-        padding: 10px 0 10px 0
-    .message
-        margin: 0
     .message-divs
         margin: 10px
-    .message__bubble
-        text-align:left
-    .message_time
-        font-size: 10px
+    .form-send
+        margin: 8px 0px 0 8px
