@@ -7,6 +7,7 @@ import Status from "../../assests/Status.svg";
 import Search from "../../assests/Search.svg";
 import { MdOutlineStar } from "react-icons/md";
 import { IoAddOutline, IoClose } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { handleSelectedChat, data, handleActive, active, handleToggle } =
@@ -103,7 +104,9 @@ const Header = () => {
               src="https://randomuser.me/api/portraits/men/3.jpg"
               alt=""
             />
+            <Link to="/status">
             <img className="mess-status" src={Status} alt="" />
+            </Link>
           </div>
         </div>
 

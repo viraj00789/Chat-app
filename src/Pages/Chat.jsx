@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Header from "./SideBarComp/Header";
-import "./ChatSideBar.sass";
-import ConvHeader from "./ConvChatComp/ConvHeader";
+import Header from "../Components/SideBarComp/Header";
+import "./Chat.sass";
+import ConvHeader from "../Components/ConvChatComp/ConvHeader";
 import { useTheme } from "../store/ThemeContext";
 import { useChat } from "../store/ChatContext";
 

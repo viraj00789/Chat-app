@@ -67,6 +67,7 @@ $light-green-color: #128C7E
 
 .mess-status
     margin-left: 10px
+    margin-top: 10px
 .header-btn
     border-radius: 15px
     color: $white-color
@@ -165,12 +166,6 @@ $light-green-color: #128C7E
     &.inactive
         background-color: #2A3942
         color: #fff
-.user-chat
-    overflow: auto
-    width: 102%
-    height: calc(100vh - 225px)
-    &::-webkit-scrollbar
-        display: none
 .add-user-icon
     position: absolute
     width: 25px
@@ -201,12 +196,18 @@ $light-green-color: #128C7E
     padding-left: 7px
     display: flex
     justify-content: space-evenly
-    align-items: centadd-user-iconer
+    align-items: center
 .chat-div-2
     display: flex
     justify-content: space-evenly
     align-items: flex-end
     flex-direction: column
+.user-chat
+    overflow: auto
+    width: 102%
+    height: calc(100vh - 225px)
+    &::-webkit-scrollbar
+        display: none
 .user-image
     width: 60px
     height: 60px

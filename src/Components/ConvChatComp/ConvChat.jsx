@@ -53,10 +53,7 @@ const ConvChat = ({ conv, dat }) => {
                     {items.length > 300 && (
                       <p
                         onClick={() => toggleReadMore(index)}
-                        className="read-or-hide"
-                        // style={{
-                        //   color: isDark ? "#90A4AE" : "#000",
-                        // }}
+                        className="read-or-hide"  
                       >
                         {readmore[index] ? "show less" : " read more"}
                       </p>
