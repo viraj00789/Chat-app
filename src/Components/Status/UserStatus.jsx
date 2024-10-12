@@ -17,8 +17,8 @@ const UserStatus = ({ status }) => {
         ? setInterval(() => {
             setCurrentImageIndex((prevIndex) => {
               if (prevIndex + 1 === status.length) {
-                onClose(); // Close when reaching the last image
-                return prevIndex; // Keep current index as is
+                onClose(); 
+                return prevIndex; 
               }
               return prevIndex + 1;
             });
