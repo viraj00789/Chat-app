@@ -1,33 +1,67 @@
 import React, { useEffect, useState } from "react";
-import "./UserStatus.sass"
+import "./UserStatus.sass";
+
 const UserStatus = ({ status }) => {
-  console.log(status);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isClosed, setIsClosed] = useState(false);
+
+  const onClose = () => {
+    setIsClosed(true);
+    setCurrentImageIndex(0);
+  };
 
   useEffect(() => {
-    if (status && status && status.length > 0) {
-      const interval = setInterval(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % status.length);
-      }, 3000); // Switches images every 3 seconds
-      return () => clearInterval(interval);
-    }
-  }, [status]);
+    if (status && status.length > 0 && !isClosed) {
+      const interval = !isPaused
+        ? setInterval(() => {
+            setCurrentImageIndex((prevIndex) => {
+              if (prevIndex + 1 === status.length) {
+                onClose(); // Close when reaching the last image
+                return prevIndex; // Keep current index as is
+              }
+              return prevIndex + 1;
+            });
+          }, 3000)
+        : null;
 
-  if (!status) return null;
+      const handleBackArrow = (event) => {
+        if (event.key === "Escape") {
+          onClose();
+        }
+      };
+      window.addEventListener("keydown", handleBackArrow);
+
+      return () => {
+        if (interval) clearInterval(interval);
+        window.removeEventListener("keydown", handleBackArrow);
+      };
+    }
+  }, [status, isPaused, isClosed]); 
+
+  if (!status || isClosed) return null;
 
   return (
-    <div className="container">
+    <div
+      className="container"
+      onMouseDown={() => setIsPaused(true)}
+      onMouseUp={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+    >
+      <div className="status-bar-container">
+        <div
+          className="status-bar"
+          style={{
+            width: `${((currentImageIndex + 1) / status.length) * 100}%`,
+          }}
+        />
+      </div>
       <img
         src={status[currentImageIndex]}
         alt="Status"
         className="status-user-image"
       />
-      <div className="status-bar-container">
-        <div
-          className="status-bar"
-          style={{ width: `${(currentImageIndex + 1) / status.length * 100}%` }}
-        />
-      </div>
       <h3>{status.name}</h3>
     </div>
   );

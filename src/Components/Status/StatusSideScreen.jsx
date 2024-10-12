@@ -2,7 +2,9 @@ import React from 'react'
 
 const StatusSideScreen = () => {
   return (
-    <div>StatusSideScreen</div>
+    <div>
+      
+    </div>
   )
 }
 
