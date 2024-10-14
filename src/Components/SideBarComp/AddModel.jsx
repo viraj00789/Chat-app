@@ -109,7 +109,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
         <div className="modal-form">
           <form onSubmit={handleSubmitForm}>
             <div className="add-user-header-1">
-              <p className="add-user-header">Enter name <span className="req">*</span></p>
+              <p className="add-user-header">Enter name. <span className="req">*</span></p>
              
               <Input
                 focus={true}
@@ -125,7 +125,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
               )}
             </div>
             <div className="add-image-header">
-              <p className="add-user-header">Add image link <span className="req">*</span></p>
+              <p className="add-user-header">Add image link. <span className="req">*</span></p>
               <Input
                 type="text"
                 name="image"

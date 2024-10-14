@@ -8,6 +8,7 @@ import Search from "../../assests/Search.svg";
 import { MdOutlineStar } from "react-icons/md";
 import { IoAddOutline, IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { BiBullseye } from "react-icons/bi";
 
 const Header = () => {
   const { handleSelectedChat, data, handleActive, active, handleToggle } =
@@ -33,6 +34,11 @@ const Header = () => {
     setFilter("");
     setFilteredChatList(data);
   };
+  const handleFavSearch = () => {
+    setFav("");
+    setFavourites(prevFav)
+  };
+
 
   const handleChat = (user) => {
     setFilter("");
@@ -105,7 +111,7 @@ const Header = () => {
               alt=""
             />
             <Link to="/status">
-            <img className="mess-status" src={Status} alt="" />
+            <BiBullseye className="mess-status"/>
             </Link>
           </div>
         </div>
@@ -131,11 +137,16 @@ const Header = () => {
               />
             )}
           </div>
-          {filter && (
+          
+          {switchTab ? (filter && (
             <div className="search-close-icon">
               <IoClose onClick={handleSearch} />
             </div>
-          )}
+          )) :(fav && (
+            <div className="search-close-icon">
+              <IoClose onClick={handleFavSearch} />
+            </div>
+          ))  }
         </div>
 
         <div className="header-btn">
@@ -220,6 +231,10 @@ const Header = () => {
                 >
                   <div
                     className={`chat-container "}`}
+                    style={{
+                      backgroundColor: active === items.id ? "#128C7E" : "",
+                      color: active === items.id ? "#fff" : "",
+                    }}
                     title={items.name}
                   >
                     <div className="chat-div-1" onClick={handleToggle}>

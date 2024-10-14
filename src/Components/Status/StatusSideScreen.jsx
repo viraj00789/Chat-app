@@ -1,8 +1,9 @@
 import React from 'react'
+import "./UserStatus.sass"
 
 const StatusSideScreen = () => {
   return (
-    <div>
+    <div className='sideScreen'>
       
     </div>
   )

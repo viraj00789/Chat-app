@@ -10,11 +10,11 @@ export const randomData = [
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
     imageArray: [
-      "https://randomuser.me/api/portraits/men/21.jpg",
-      "https://randomuser.me/api/portraits/men/22.jpg",
-      "https://randomuser.me/api/portraits/men/23.jpg",
-      "https://randomuser.me/api/portraits/men/24.jpg",
-      "https://randomuser.me/api/portraits/men/25.jpg",
+      "https://picsum.photos/id/237/200/300",
+      "https://picsum.photos/id/238/200/300",
+      "https://picsum.photos/id/239/200/300",
+      "https://picsum.photos/id/240/200/300",
+      "https://picsum.photos/id/241/200/300",
     ],
   },
   {
