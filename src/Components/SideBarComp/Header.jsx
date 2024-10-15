@@ -3,7 +3,6 @@ import { useTheme } from "../../store/ThemeContext";
 import { useState } from "react";
 import { useChat } from "../../store/ChatContext";
 import AddModel from "./AddModel";
-import Status from "../../assests/Status.svg";
 import Search from "../../assests/Search.svg";
 import { MdOutlineStar } from "react-icons/md";
 import { IoAddOutline, IoClose } from "react-icons/io5";
@@ -264,6 +263,11 @@ const Header = () => {
                         size={20}
                         className="user-date"
                         onClick={(e) => addFav(e, items)}
+                        style={{
+                          color: favourites.some((fav) => fav.id === items.id)
+                            ? "gold"
+                            : "rgb(225 223 223)",
+                        }}
                       />
                     </div>
                   </div>

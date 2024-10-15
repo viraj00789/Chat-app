@@ -1,3 +1,5 @@
+%placeholder-color
+    color: #fff
 .model-overlay
     top: 0
     bottom: 0
@@ -12,7 +14,6 @@
     background-color: #221d1d
 .add-chat-model
     width: 30%
-    background-color: #fff
     color: black
     display: flex
     flex-direction: column
@@ -23,10 +24,11 @@
     border-radius: 24px
     animation: fadeIn 1s
     position: fixed
+    color: #fff
     &.active
         background-color: #fff
     &.inactive
-        background-color: #2A3942
+        background-color: #353A49
         color: #fff
     &::backdrop
         animation: fadeIn 1s ease both
@@ -57,8 +59,13 @@
     outline: none
     border-radius: 10px
     font-size: 18px
-    background-color: #f3f3f3
     padding-left: 10px
+    @extend %placeholder-color
+    &.active
+        background-color: #fff
+    &.inactive
+        background-color: #d5d7d9
+        color: #000
 .model-close
     display: flex
     cursor: pointer
@@ -78,7 +85,7 @@
     border: 1px solid #d2d1d1
     cursor: pointer
     margin: 0 0 0 0
-    background-color: #ededed
+    background-color: #d5d7d9
 .model-btn-2
     width: 100px
     height: 44px

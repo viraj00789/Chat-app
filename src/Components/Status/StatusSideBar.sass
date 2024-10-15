@@ -38,13 +38,16 @@
     &::-webkit-scrollbar
         display: none
 .status-image
-    width: 60px
-    height: 60px
-    border-radius: 10px
-    object-fit: cover
+    width: 30px
+    height: 30px
     border-radius: 50%
-.status-chat-render
-    padding: 0 0 10px 0
+    border: 2px solid #fff
+    object-fit: cover
+    position: absolute
+    left: 22%
+    top: 20%
+
+
 .status-name
     margin: 0
     padding-left: 10px
@@ -56,10 +59,10 @@
     font-size: 14px
     font-weight: 400
 .status-div-1
-    padding-left: 7px
     display: flex
     justify-content: space-evenly
     align-items: center
+    position: relative
 .status-container
     display: flex
     padding: 7px 0 7px 0
@@ -76,3 +79,14 @@
         color: ""
 .spacer
     flex: 1
+.outer-circle
+    width: 48px
+    background-color: #808080
+.status-details
+    margin-left: 10px
+    display: flex
+
+.status-ring
+    position: relative
+
+

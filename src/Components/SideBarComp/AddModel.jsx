@@ -17,13 +17,12 @@ const AddModel = ({ handleModel, handleNewData }) => {
   const { data, handleData } = useChat();
   const [errData, setErrData] = useState({});
   const [isValidForm, setIsValidForm] = useState(false);
-  const {isDark} = useTheme();
+  const { isDark } = useTheme();
 
   const isValid = (url) => {
     const regex = /^(http|https)?:\/\//;
     return regex.test(url);
   };
-
 
   const validateForm = (data) => {
     const errors = {};
@@ -40,7 +39,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-   const newErrors = validateForm(formData);
+    const newErrors = validateForm(formData);
     setErrData(newErrors);
 
     if (Object.keys(newErrors).length !== 0) {
@@ -70,7 +69,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
 
     setFormData({ name: "", image: "" });
     setErr(false);
-    handleModel(false); 
+    handleModel(false);
   };
 
   const handleChangeForm = (e) => {
@@ -91,13 +90,13 @@ const AddModel = ({ handleModel, handleNewData }) => {
     return () => {
       window.removeEventListener("keydown", closeOnEscapePressed);
     };
-  }, [formData]); 
+  }, [formData]);
 
   return (
     <>
       <div className="model-overlay"></div>
 
-      <div className={`add-chat-model ${isDark ? "active" : 'inactive'}`}>
+      <div className={`add-chat-model ${isDark ? "active" : "inactive"}`}>
         <div className="model-close">
           <div>
             <h2 className="add-user">Add user</h2>
@@ -109,14 +108,16 @@ const AddModel = ({ handleModel, handleNewData }) => {
         <div className="modal-form">
           <form onSubmit={handleSubmitForm}>
             <div className="add-user-header-1">
-              <p className="add-user-header">Enter name. <span className="req">*</span></p>
-             
+              <p className="add-user-header">
+                Enter name. <span className="req">*</span>
+              </p>
+
               <Input
                 focus={true}
                 type="text"
                 name="name"
                 placeholder="Enter your name"
-                className="modal-input"
+                className={`modal-input ${isDark ? "active" : "inactive"}`}
                 value={formData.name}
                 onChange={handleChangeForm}
               />
@@ -125,16 +126,17 @@ const AddModel = ({ handleModel, handleNewData }) => {
               )}
             </div>
             <div className="add-image-header">
-              <p className="add-user-header">Add image link. <span className="req">*</span></p>
+              <p className="add-user-header">
+                Add image link. <span className="req">*</span>
+              </p>
               <Input
                 type="text"
                 name="image"
                 placeholder="Enter your image URL"
-                className="modal-input"
+                className={`modal-input ${isDark ? "active" : "inactive"}`}
                 value={formData.image}
                 onChange={handleChangeForm}
               />
-
             </div>
             {errData.image && (
               <span className="error-message">{errData.image}</span>
@@ -151,7 +153,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
                 text={"Submit"}
                 className={"model-btn-2"}
                 type={"submit"}
-                disabled={!isValidForm} 
+                disabled={!isValidForm}
               />
             </div>
           </form>

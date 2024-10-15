@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./UserStatus.sass";
 
-const UserStatus = ({ status }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+const UserStatus = ({ status,setStatusComplete,currentStatusIndex ,setCurrentStatusIndex}) => {
   const [isPaused, setIsPaused] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
 
-  console.log();
   const onClose = () => {
     setIsClosed(true);
-    setCurrentImageIndex(0);
   };
 
   const handleBackArrow = (event) => {
@@ -17,11 +14,11 @@ const UserStatus = ({ status }) => {
       onClose();
     }
   };
+
   useEffect(() => {
     if (status) {
       setIsClosed(false);
       setIsPaused(false);
-      setCurrentImageIndex(0);
     }
   }, [status]);
 
@@ -30,9 +27,10 @@ const UserStatus = ({ status }) => {
 
     if (status && status.length > 0 && !isClosed && !isPaused) {
       interval = setInterval(() => {
-        setCurrentImageIndex((prevIndex) => {
+        setCurrentStatusIndex((prevIndex) => {
           if (prevIndex + 1 === status.length) {
             onClose();
+            setStatusComplete(true); // Mark status as complete
             return prevIndex;
           }
           return prevIndex + 1;
@@ -57,15 +55,15 @@ const UserStatus = ({ status }) => {
   return (
     <div
       className="container"
-      onMouseDown={() => setIsPaused(true)}
-      onMouseUp={() => setIsPaused(false)}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
       onTouchStart={() => setIsPaused(true)}
       onTouchEnd={() => setIsPaused(false)}
     >
       <div
         className="progess-bar"
         style={{
-          width: `${((currentImageIndex + 1) / status.length) * 100}%`,
+          width: `${((currentStatusIndex + 1) / status.length) * 100}%`,
           transition: "width 1s linear",
         }}
       ></div>
@@ -79,7 +77,7 @@ const UserStatus = ({ status }) => {
       </div>
 
       <img
-        src={status[currentImageIndex]}
+        src={status[currentStatusIndex]}
         alt="Status"
         className="status-user-image"
       />
