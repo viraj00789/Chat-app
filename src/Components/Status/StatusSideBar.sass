@@ -47,7 +47,6 @@
     left: 22%
     top: 20%
 
-
 .status-name
     margin: 0
     padding-left: 10px
@@ -89,4 +88,21 @@
 .status-ring
     position: relative
 
-
+.second-circle[wobble="1"]
+    animation: wobble 5s ease
+@keyframes wobble
+    0%
+        stroke-dashoffset: 0
+        stroke-dasharray: 29 3
+    25%
+        stroke-dasharray: 29 3
+        stroke-dashoffset: 50
+    50%
+        stroke-dasharray: 29 3
+        stroke-dashoffset: 70
+    75%
+        stroke-dasharray: 29 3
+        stroke-dashoffset: 100
+    100%
+        stroke-dasharray: 29 3
+        stroke-dashoffset: 163
