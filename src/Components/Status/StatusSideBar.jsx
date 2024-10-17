@@ -6,40 +6,39 @@ import { randomData } from "../data.js";
 import UserStatus from "./UserStatus.jsx";
 
 const StatusSideBar = () => {
-  const [currentStatus, setCurrentStatus] = useState([]);
+  const radius = 26;
+  const strokeWidth = 4;
+  const circumference = 2 * Math.PI * radius;
+  const gap = 2;
+  const segmentLength = circumference / 5 - gap;
+  
+  const [userStatuses, setUserStatuses] = useState({}); 
+  const [currentUserId, setCurrentUserId] = useState(null);
   const [currentStatusIndex, setCurrentStatusIndex] = useState(0);
-  const [progressPerUser, setProgressPerUser] = useState({});
-  const [wobble, setWobble] = useState(0);
+
+  console.log(userStatuses);
 
   const handleChat = (item, index) => {
-    setCurrentStatus(item?.imageArray || []);
+    setCurrentUserId(item.id); 
     setCurrentStatusIndex(0);
-
-    if (!(index in progressPerUser)) {
-      updateProgress(index, 0);
-    }
-    setWobble(1);
-  };
-
-  const updateProgress = (userIndex, progress) => {
-    setProgressPerUser((prev) => ({
+    
+    setUserStatuses((prev) => ({
       ...prev,
-      [userIndex]: progress,
+      [item.id]: {
+        images: item.imageArray || [],
+        currentIndex: 0,
+      },
     }));
   };
 
-  const calculateStrokeDashArray = (storyCount,currentStatusIndex) => {
-    const radius = 26;
-    const circumference = 2 * Math.PI * radius;
-    const dashLength = circumference / storyCount;
-    const gapLength = dashLength * 0.1;
-    return `${dashLength - gapLength} ${gapLength}`;
-  };
-
-  const calculateStrokeDashOffset = (currentProgress, totalStories) => {
-    const radius = 26;
-    const circumference = 2 * Math.PI * radius;
-    return circumference - (circumference * currentProgress) / totalStories;
+  const handleIndexes = (userId, newIndex) => {
+    setUserStatuses((prev) => ({
+      ...prev,
+      [userId]: {
+        ...prev[userId],
+        currentIndex: newIndex,
+      },
+    }));
   };
 
   return (
@@ -72,17 +71,7 @@ const StatusSideBar = () => {
           </div>
           <div className="status-chat">
             {randomData.map((item, index) => {
-              const storyCount = item.imageArray?.length || 1;
-              const dashArray = calculateStrokeDashArray(storyCount,currentStatusIndex);
-              const currentProgress = progressPerUser[index] || 0;
-              const dashOffset = calculateStrokeDashOffset(
-                currentStatusIndex,
-                storyCount
-              );
-              const strokeColor =
-                currentStatusIndex >= storyCount ? "green" : "grey";
-              console.log(currentStatusIndex, storyCount, strokeColor);
-
+              const userStatus = userStatuses[item.id] || { images: [], currentIndex: 0 };
               return (
                 <div
                   className="status-chat-render"
@@ -92,21 +81,31 @@ const StatusSideBar = () => {
                   <div className="chat-container" title={item.name}>
                     <div className="status-div-1">
                       <div className="status-ring">
-                        <svg width="60" height="60">
-                          <circle
-                            cx="30"
-                            cy="30"
-                            r="26"
-                            stroke={strokeColor}
-                            strokeWidth="4"
-                            fill="none"
-                            strokeDasharray={dashArray}
-                            // strokeDashoffset={dashOffset}
-                            // className="second-circle"
-                            // wobble={wobble}
-                            // onAnimationEnd={() => setWobble(0)}
-                          />
-                        </svg>
+                        <div className="status-ring-container">
+                          <svg width="60" height="60" viewBox="0 0 60 60">
+                            {[...Array(5)].map((_, i) => {
+                              const offset = (circumference / 5) * i + gap;
+                              const strokeColor =
+                                userStatus.currentIndex > i ? "lightgray" : "green";
+
+                              return (
+                                <circle
+                                  key={i}
+                                  cx="30"
+                                  cy="30"
+                                  r={radius}
+                                  stroke={strokeColor}
+                                  strokeWidth={strokeWidth}
+                                  fill="none"
+                                  strokeDasharray={`${segmentLength} ${circumference - segmentLength}`}
+                                  strokeDashoffset={circumference - offset}
+                                  transform={`rotate(-90 30 30)`}
+                                  className="segment"
+                                />
+                              );
+                            })}
+                          </svg>
+                        </div>
                         <img
                           src={
                             item.image ||
@@ -134,13 +133,15 @@ const StatusSideBar = () => {
           </div>
         </div>
       </div>
-      <UserStatus
-        status={currentStatus}
-        currentStatusIndex={currentStatusIndex}
-        setCurrentStatusIndex={setCurrentStatusIndex}
-        updateProgress={updateProgress}
-        totalStories={currentStatus.length}
-      />
+      {currentUserId && (
+        <UserStatus
+          setCurrentStatusIndex={setCurrentStatusIndex}
+          status={userStatuses[currentUserId]?.images || []}
+          currentStatusIndex={currentStatusIndex}
+          handleIndexes={handleIndexes}
+          userId={currentUserId} 
+        />
+      )}
     </>
   );
 };

@@ -12,6 +12,8 @@ const ConvChat = ({ conv, dat }) => {
     messageRef.current?.lastElementChild?.scrollIntoView();
   }, [conv]);
 
+  console.log(readmore);
+
   const toggleReadMore = (index) => {
     setReadMore((prevStates) => ({
       ...prevStates,

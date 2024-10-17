@@ -5,8 +5,8 @@ const UserStatus = ({
   status,
   currentStatusIndex,
   setCurrentStatusIndex,
-  updateProgress,
-  totalStories,
+  handleIndexes,
+  userId 
 }) => {
   const [isPaused, setIsPaused] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
@@ -23,7 +23,7 @@ const UserStatus = ({
   };
 
   useEffect(() => {
-    if (status) {
+    if (status.length > 0) {
       setIsClosed(false);
       setIsPaused(false);
       setCurrentStatusIndex(0);
@@ -33,21 +33,21 @@ const UserStatus = ({
   useEffect(() => {
     let interval;
 
-    if (status && status.length > 0 && !isClosed && !isPaused) {
+    if (status.length > 0 && !isClosed && !isPaused) {
       interval = setInterval(() => {
         setCurrentStatusIndex((prevIndex) => {
           const nextIndex = prevIndex + 1;
 
-          if (nextIndex === status.length) {
+          handleIndexes(userId, nextIndex);
+
+          if (nextIndex >= status.length) {
             onClose();
             return prevIndex;
           }
 
-          // Update progress for current status
-          updateProgress(status[0]?.userIndex, (nextIndex + 1) / totalStories);
           return nextIndex;
         });
-      }, 1000); // Adjust timing as needed
+      }, 1000);
 
       window.addEventListener("keydown", handleBackArrow);
     }
@@ -58,9 +58,9 @@ const UserStatus = ({
       }
       window.removeEventListener("keydown", handleBackArrow);
     };
-  }, [status, isPaused, isClosed, setCurrentStatusIndex, updateProgress, totalStories]);
+  }, [status, isPaused, isClosed, setCurrentStatusIndex]);
 
-  if (!status || isClosed) {
+  if (!status.length || isClosed) {
     return null;
   }
 
@@ -91,7 +91,6 @@ const UserStatus = ({
         alt="Status"
         className="status-user-image"
       />
-      <h3>{`Story ${currentStatusIndex + 1} of ${status.length}`}</h3>
     </div>
   );
 };
