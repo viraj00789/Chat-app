@@ -38,20 +38,20 @@ const UserStatus = ({
         setCurrentStatusIndex((prevIndex) => {
           const nextIndex = prevIndex + 1;
 
-          handleIndexes(userId, nextIndex);
+          handleIndexes(userId, prevIndex+1);
 
           if (nextIndex >= status.length) {
             onClose();
             return prevIndex;
           }
-
+          
           return nextIndex;
         });
-      }, 1000);
-
+      }, 750);
+      
       window.addEventListener("keydown", handleBackArrow);
     }
-
+    
     return () => {
       if (interval) {
         clearInterval(interval);
@@ -59,28 +59,29 @@ const UserStatus = ({
       window.removeEventListener("keydown", handleBackArrow);
     };
   }, [status, isPaused, isClosed, setCurrentStatusIndex]);
-
+  
   if (!status.length || isClosed) {
     return null;
   }
-
+  
   return (
     <div
-      className="container"
-      onMouseDown={() => setIsPaused(true)}
-      onMouseUp={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)} 
+    className="container"
+    onMouseDown={() => setIsPaused(true)}
+    onMouseUp={() => setIsPaused(false)}
+    onTouchStart={() => setIsPaused(true)} 
       onTouchEnd={() => setIsPaused(false)} 
     >
       <div className="status-bar-container">
         {status.map((_, index) => (
+          
           <div
             key={index}
             className={`status-bar ${currentStatusIndex === index ? 'active' : ''}`} 
             style={{
               width: `100%`,
-              backgroundColor: currentStatusIndex >= index ? 'green' : 'gray', 
-              transition: currentStatusIndex === index ? 'width 2s ease-in-out' : 'none',
+              backgroundColor: currentStatusIndex > index ? 'green' : 'gray', 
+              transition: currentStatusIndex === index ? 'width 3s ease' : 'none',
             }}
           />
         ))}
@@ -91,6 +92,7 @@ const UserStatus = ({
         alt="Status"
         className="status-user-image"
       />
+
     </div>
   );
 };
