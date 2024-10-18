@@ -18,12 +18,11 @@ const StatusSideBar = () => {
   const [viewed, setViewed] = useState(randomData);
   const [prevViewd, setPrevViwed] = useState([]);
 
-  console.log(userStatuses);
+  console.log();
 
   const handleChat = (item, index) => {
     setCurrentUserId(item.id);
     setCurrentStatusIndex(0);
-    // addFav(e,item);
 
     setUserStatuses((prev) => ({
       ...prev,
@@ -34,15 +33,11 @@ const StatusSideBar = () => {
     }));
   };
 
-  const addFav = (e,items) => {
-    e.stopPropagation();
-
+  const addFav = (items) => {
+    console.log(userStatuses);
     if (viewed.some((view) => view.id === items.id)) {
-      setPrevViwed(viewed.filter((view) => view.id !== items.id));
+      setPrevViwed([...prevViewd,items])
       setViewed(viewed.filter((view) => view.id !== items.id));
-    } else {
-      setViewed([...viewed, items]);
-      setPrevViwed([...viewed, items]);
     }
   };
 
@@ -96,7 +91,7 @@ const StatusSideBar = () => {
                   key={index}
                   onClick={() => handleChat(item, index)}
                 >
-                  <div className="chat-container" title={item.name}>
+                  <div className="chat-container" title={item.name} onClick={() => addFav(item)}>
                     <div className="status-div-1">
                       <div className="status-ring">
                         <div className="status-ring-container">
@@ -153,7 +148,7 @@ const StatusSideBar = () => {
               );
             })}
           </div>
-          {/* {prevViewd && <div>Recently viewed</div>}
+          {prevViewd && <div>Recently viewed</div>}
           {prevViewd && (
             <div className="status-chat">
               {prevViewd.map((item, index) => {
@@ -165,7 +160,7 @@ const StatusSideBar = () => {
                   <div
                     className="status-chat-render"
                     key={index}
-                    onClick={() => handleChat(item, index)}
+                    onClick={() => handleChat(item,index)}
                   >
                     <div className="chat-container" title={item.name}>
                       <div className="status-div-1">
@@ -210,12 +205,12 @@ const StatusSideBar = () => {
                         </div>
                         <div className="status-detail">
                           <h3 className="status-name">
-                            {item.name.length < 15
-                              ? item.name
-                              : `${item.name.slice(0, 15)}...`}
+                            {item?.name?.length < 15
+                              ? item?.name
+                              : `${item?.name?.slice(0, 15)}...`}
                           </h3>
                           <span className="status-message">
-                            {item.statusTime}
+                            {item?.statusTime}
                           </span>
                         </div>
                       </div>
@@ -224,7 +219,7 @@ const StatusSideBar = () => {
                 );
               })}
             </div>
-          )} */}
+          )}
         </div>
       </div>
       {currentUserId && (
