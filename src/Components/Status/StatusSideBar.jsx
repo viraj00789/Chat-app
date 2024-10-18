@@ -14,11 +14,11 @@ const StatusSideBar = () => {
 
   const [userStatuses, setUserStatuses] = useState({});
   const [currentUserId, setCurrentUserId] = useState(null);
-  const [currentStatusIndex, setCurrentStatusIndex] = useState(0);
+  const [currentStatusIndex, setCurrentStatusIndex] = useState(1);
   const [viewed, setViewed] = useState(randomData);
   const [prevViewd, setPrevViwed] = useState([]);
+  const [allStatusViewd,setAllStatusViewd] = useState();
 
-  console.log();
 
   const handleChat = (item, index) => {
     setCurrentUserId(item.id);
@@ -31,11 +31,12 @@ const StatusSideBar = () => {
         currentIndex: 0,
       },
     }));
+    setAllStatusViewd(userStatuses?.[item?.id]?.currentIndex ===5);
   };
 
-  const addFav = (items) => {
-    console.log(userStatuses);
-    if (viewed.some((view) => view.id === items.id)) {
+  const addFav = (items,index) => {
+    console.log(userStatuses,"userStatus",allStatusViewd,"allstatusviewed");
+    if (viewed.some((view) => view.id === items.id) && allStatusViewd?.[index]?.currentIndex === 5) {
       setPrevViwed([...prevViewd,items])
       setViewed(viewed.filter((view) => view.id !== items.id));
     }
@@ -91,7 +92,7 @@ const StatusSideBar = () => {
                   key={index}
                   onClick={() => handleChat(item, index)}
                 >
-                  <div className="chat-container" title={item.name} onClick={() => addFav(item)}>
+                  <div className="chat-container" title={item.name} onClick={() => addFav(item,index)}>
                     <div className="status-div-1">
                       <div className="status-ring">
                         <div className="status-ring-container">

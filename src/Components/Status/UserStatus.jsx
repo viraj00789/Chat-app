@@ -39,7 +39,7 @@ const UserStatus = ({
     if (status.length > 0 && !isClosed && !isPaused) {
       interval = setInterval(() => {
         setCurrentStatusIndex((prevIndex) => {
-          const nextIndex = prevIndex + 1;
+          const nextIndex = prevIndex+1;
 
           handleIndexes(userId, prevIndex + 1);
 
@@ -49,8 +49,8 @@ const UserStatus = ({
           }
           return nextIndex;
         });
-      }, 2000);
-      const totalTime = status.length * 2000;
+      }, 1500);
+      const totalTime = status.length * 1500;
       const progressIncrement = (100 / totalTime) * 100;
 
       progressInterval = setInterval(() => {
@@ -111,7 +111,7 @@ const UserStatus = ({
                   style={{
                     position: "absolute",
                     left: `${i * 20}%`,
-                    width: "1px",
+                    width: "2px",
                     height: "100%",
                     zIndex: 2,
                     backgroundColor: "#666666",
