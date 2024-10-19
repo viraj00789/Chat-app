@@ -9,51 +9,53 @@
     right: 33%
     z-index: 6
     width: 20%
+
 .status-user-image
     position: relative
     width: 100%
     max-width: 400px
-    height: 50
+    height: auto
     margin-bottom: 20px
+    border-radius: 10px
 
 .status-bar-container
     position: relative
     width: 100%
     height: 10px
-    background-color: rgba(206, 63, 63, 0.1)
-    border-radius: 5px
-    overflow: hidden
     margin-bottom: 10px
     display: flex
+    justify-content: center
+    align-items: center
+    border-radius: 5px
+    overflow: hidden
 
-// .status-bar
-//     width: 100%
-//     height: 100%
-//     border-radius: 5px
-//     margin-left: 2px
-//     background-color: #808080
-    // &-green
-    //     position: absolute
-    //     top: 0
-    //     left: 0
-    //     height: 100%
-    //     background-color: green
-    //     transition: width 10s linear
+    svg
+        width: 100%
+        height: 10px // Adjusted height to match the container
+        position: relative
 
-.status-user-image
-    width: 100%
-    height: auto
-    border-radius: 10px
+    line
+        width: 100%
+        stroke-linecap: round // Ensure rounded ends for the lines
 
-.status-bar-segments
-    width: 100%
-    height: 5px
 .overlay
     width: 100%
     height: 100vh
     background-color: #8b848491
     color: #fff
-    opacity: .5
+    opacity: 0.5
     position: fixed
     top: 0
     right: 0
+
+.base-segment
+    stroke: gray // Gray color for the base segment
+    stroke-width: 5 // Width of the gray line
+.start-animated
+    animation: grow 6.8s linear forwards
+@keyframes grow
+    0%
+        stroke-dasharray: 0 100%
+
+    100%
+        stroke-dasharray: 100% 0

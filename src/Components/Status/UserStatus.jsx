@@ -10,7 +10,10 @@ const UserStatus = ({
 }) => {
   const [isPaused, setIsPaused] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [displayedImage, setDisplayedImage] = useState(status[1]);
+  const numSegments = 5;
+  const segmentLength = 320 / numSegments;
+  const gap = 5;
 
   const onClose = () => {
     setIsClosed(true);
@@ -28,20 +31,19 @@ const UserStatus = ({
       setIsClosed(false);
       setIsPaused(false);
       setCurrentStatusIndex(0);
-      setProgress(0);
+      setDisplayedImage(status[1]); 
     }
   }, [status, setCurrentStatusIndex]);
 
   useEffect(() => {
     let interval;
-    let progressInterval;
 
     if (status.length > 0 && !isClosed && !isPaused) {
       interval = setInterval(() => {
         setCurrentStatusIndex((prevIndex) => {
-          const nextIndex = prevIndex+1;
+          const nextIndex = prevIndex + 1;
 
-          handleIndexes(userId, prevIndex + 1);
+          handleIndexes(userId, nextIndex);
 
           if (nextIndex >= status.length) {
             onClose();
@@ -49,18 +51,7 @@ const UserStatus = ({
           }
           return nextIndex;
         });
-      }, 1500);
-      const totalTime = status.length * 1500;
-      const progressIncrement = (100 / totalTime) * 100;
-
-      progressInterval = setInterval(() => {
-        setProgress((prevProgress) => {
-          const nextProgress = prevProgress + progressIncrement;
-
-          if (nextProgress >= 100) return 100;
-          return nextProgress;
-        });
-      }, 100);
+      }, 1500); 
 
       window.addEventListener("keydown", handleBackArrow);
     }
@@ -69,12 +60,15 @@ const UserStatus = ({
       if (interval) {
         clearInterval(interval);
       }
-      if (progressInterval) {
-        clearInterval(progressInterval);
-      }
       window.removeEventListener("keydown", handleBackArrow);
     };
   }, [status, isPaused, isClosed, setCurrentStatusIndex]);
+
+  useEffect(() => {
+    if (status.length > 0) {
+      setDisplayedImage(status[currentStatusIndex]); // Update image immediately
+    }
+  }, [currentStatusIndex, status]);
 
   if (!status.length || isClosed) {
     return null;
@@ -90,53 +84,53 @@ const UserStatus = ({
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
+        onClick={() => setIsPaused(true)}
       >
         <div className="status-bar-container">
-          <div className="status-bar-wrapper">
-            <div
-              className="status-bar"
-              style={{
-                width: "100%",
-                backgroundColor: "gray",
-                height: "100%",
-                position: "absolute", 
-              }}
-            />
+          <svg width="400" height="10px">
+            {[...Array(numSegments)].map((_, i) => {
+              const offset = (segmentLength + gap) * i;
 
-            <div className="status-bar-segments">
-              {[...Array(5)].map((_, i) => (
-                <div
+              return (
+                <line
                   key={i}
-                  className="segment"
-                  style={{
-                    position: "absolute",
-                    left: `${i * 20}%`,
-                    width: "2px",
-                    height: "100%",
-                    zIndex: 2,
-                    backgroundColor: "#666666",
-                  }}
+                  x1={offset}
+                  y1="5"
+                  x2={offset + segmentLength - gap}
+                  y2="5"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                  strokeDasharray={`${segmentLength} ${segmentLength}`}
+                  className="base-segment"
+                  stroke="gray"
                 />
-              ))}
-            </div>
+              );
+            })}
 
-            <div
-              className="status-bar-green"
-              style={{
-                width: `${progress}%`,
-                backgroundColor: "green",
-                height: "100%",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                transition: "width 0.1s linear",
-              }}
-            />
-          </div>
+            {[...Array(numSegments)].map((_, i) => {
+              const offset = (segmentLength + gap) * i;
+              const isFilled = currentStatusIndex >= i;
+              const strokeColor = i === 0 ? "white" : (isFilled ? "white" : "gray"); // First segment always white
+
+              return (
+                <line
+                  key={i}
+                  x1={offset}
+                  y1="5"
+                  x2={offset + segmentLength - gap}
+                  y2="5"
+                  stroke={strokeColor}
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                  className={`${(currentStatusIndex >=1 && i >= 1 && isFilled) ? "start-animated" : ""}`} // Apply animation class for segments from index 1 onward
+                />
+              );
+            })}
+          </svg>
         </div>
 
         <img
-          src={status[currentStatusIndex]}
+          src={displayedImage}
           alt="Status"
           className="status-user-image"
         />

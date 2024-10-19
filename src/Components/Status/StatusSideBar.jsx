@@ -14,15 +14,13 @@ const StatusSideBar = () => {
 
   const [userStatuses, setUserStatuses] = useState({});
   const [currentUserId, setCurrentUserId] = useState(null);
-  const [currentStatusIndex, setCurrentStatusIndex] = useState(1);
+  const [currentStatusIndex, setCurrentStatusIndex] = useState(0);
   const [viewed, setViewed] = useState(randomData);
-  const [prevViewd, setPrevViwed] = useState([]);
-  const [allStatusViewd,setAllStatusViewd] = useState();
+  const [prevViewed, setPrevViewed] = useState([]);
 
-
-  const handleChat = (item, index) => {
+  const handleChat = (item) => {
     setCurrentUserId(item.id);
-    setCurrentStatusIndex(0);
+    setCurrentStatusIndex(0); 
 
     setUserStatuses((prev) => ({
       ...prev,
@@ -31,25 +29,31 @@ const StatusSideBar = () => {
         currentIndex: 0,
       },
     }));
-    setAllStatusViewd(userStatuses?.[item?.id]?.currentIndex ===5);
-  };
-
-  const addFav = (items,index) => {
-    console.log(userStatuses,"userStatus",allStatusViewd,"allstatusviewed");
-    if (viewed.some((view) => view.id === items.id) && allStatusViewd?.[index]?.currentIndex === 5) {
-      setPrevViwed([...prevViewd,items])
-      setViewed(viewed.filter((view) => view.id !== items.id));
-    }
   };
 
   const handleIndexes = (userId, newIndex) => {
-    setUserStatuses((prev) => ({
-      ...prev,
-      [userId]: {
-        ...prev[userId],
-        currentIndex: newIndex,
-      },
-    }));
+    setUserStatuses((prev) => {
+      const updatedUserStatuses = {
+        ...prev,
+        [userId]: {
+          ...prev[userId],
+          currentIndex: newIndex,
+        },
+      };
+
+      if (
+        newIndex === updatedUserStatuses[userId].images.length &&
+        !prevViewed.some((view) => view.id === userId)
+      ) {
+        const userToMove = viewed.find((user) => user.id === userId);
+        if (userToMove) {
+          setPrevViewed([...prevViewed, userToMove]);
+          setViewed(viewed.filter((view) => view.id !== userId));
+        }
+      }
+
+      return updatedUserStatuses;
+    });
   };
 
   return (
@@ -67,7 +71,7 @@ const StatusSideBar = () => {
           <img
             className="status-header-img"
             src="https://randomuser.me/api/portraits/men/3.jpg"
-            alt=""
+            alt="User Avatar"
           />
           <div className="status-header-details">
             <h4 className="status-header-detail-name">Viraj</h4>
@@ -90,9 +94,9 @@ const StatusSideBar = () => {
                 <div
                   className="status-chat-render"
                   key={index}
-                  onClick={() => handleChat(item, index)}
+                  onClick={() => handleChat(item)}
                 >
-                  <div className="chat-container" title={item.name} onClick={() => addFav(item,index)}>
+                  <div className="chat-container" title={item.name}>
                     <div className="status-div-1">
                       <div className="status-ring">
                         <div className="status-ring-container">
@@ -113,9 +117,7 @@ const StatusSideBar = () => {
                                   stroke={strokeColor}
                                   strokeWidth={strokeWidth}
                                   fill="none"
-                                  strokeDasharray={`${segmentLength} ${
-                                    circumference - segmentLength
-                                  }`}
+                                  strokeDasharray={`${segmentLength} ${circumference - segmentLength}`}
                                   strokeDashoffset={circumference - offset}
                                   transform={`rotate(-90 30 30)`}
                                   className="segment"
@@ -129,7 +131,7 @@ const StatusSideBar = () => {
                             item.image ||
                             "https://randomuser.me/api/portraits/men/9.jpg"
                           }
-                          alt=""
+                          alt="User"
                           className="status-image"
                         />
                       </div>
@@ -149,19 +151,15 @@ const StatusSideBar = () => {
               );
             })}
           </div>
-          {prevViewd && <div>Recently viewed</div>}
-          {prevViewd && (
-            <div className="status-chat">
-              {prevViewd.map((item, index) => {
-                const userStatus = userStatuses[item.id] || {
-                  images: [],
-                  currentIndex: 0,
-                };
-                return (
+          {prevViewed.length > 0 && (
+            <>
+              <div>Recently Viewed</div>
+              <div className="status-chat">
+                {prevViewed.map((item, index) => (
                   <div
                     className="status-chat-render"
                     key={index}
-                    onClick={() => handleChat(item,index)}
+                    onClick={() => handleChat(item)}
                   >
                     <div className="chat-container" title={item.name}>
                       <div className="status-div-1">
@@ -171,7 +169,7 @@ const StatusSideBar = () => {
                               {[...Array(5)].map((_, i) => {
                                 const offset = (circumference / 5) * i + gap;
                                 const strokeColor =
-                                  userStatus.currentIndex > i
+                                  userStatuses[item.id]?.currentIndex > i
                                     ? "lightgray"
                                     : "green";
 
@@ -200,7 +198,7 @@ const StatusSideBar = () => {
                               item.image ||
                               "https://randomuser.me/api/portraits/men/9.jpg"
                             }
-                            alt=""
+                            alt="User"
                             className="status-image"
                           />
                         </div>
@@ -217,9 +215,9 @@ const StatusSideBar = () => {
                       </div>
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                ))}
+              </div>
+            </>
           )}
         </div>
       </div>
