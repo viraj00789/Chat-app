@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./UserStatus.sass";
+import { randomData } from "../data";
+import { MdOutlineStar } from "react-icons/md";
 
 const UserStatus = ({
   status,
@@ -12,8 +14,9 @@ const UserStatus = ({
   const [isClosed, setIsClosed] = useState(false);
   const [displayedImage, setDisplayedImage] = useState(status[1]);
   const numSegments = 5;
-  const segmentLength = 320 / numSegments;
-  const gap = 5;
+  const segmentLength = 300 / numSegments;
+  const gap = 3.5;
+  console.log(randomData[0])
 
   const onClose = () => {
     setIsClosed(true);
@@ -31,7 +34,7 @@ const UserStatus = ({
       setIsClosed(false);
       setIsPaused(false);
       setCurrentStatusIndex(0);
-      setDisplayedImage(status[1]); 
+      setDisplayedImage(status[1]);
     }
   }, [status, setCurrentStatusIndex]);
 
@@ -51,7 +54,7 @@ const UserStatus = ({
           }
           return nextIndex;
         });
-      }, 1500); 
+      }, 1600);
 
       window.addEventListener("keydown", handleBackArrow);
     }
@@ -66,7 +69,7 @@ const UserStatus = ({
 
   useEffect(() => {
     if (status.length > 0) {
-      setDisplayedImage(status[currentStatusIndex]); // Update image immediately
+      setDisplayedImage(status[currentStatusIndex]);
     }
   }, [currentStatusIndex, status]);
 
@@ -84,10 +87,10 @@ const UserStatus = ({
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
-        onClick={() => setIsPaused(true)}
+        onClick={() => setIsPaused(!isPaused)}
       >
         <div className="status-bar-container">
-          <svg width="400" height="10px">
+          <svg width="100%" height="10px">
             {[...Array(numSegments)].map((_, i) => {
               const offset = (segmentLength + gap) * i;
 
@@ -110,7 +113,7 @@ const UserStatus = ({
             {[...Array(numSegments)].map((_, i) => {
               const offset = (segmentLength + gap) * i;
               const isFilled = currentStatusIndex >= i;
-              const strokeColor = i === 0 ? "white" : (isFilled ? "white" : "gray"); // First segment always white
+              const strokeColor = i === 0 ? "white" : (isFilled ? "white" : "gray");
 
               return (
                 <line
@@ -122,11 +125,37 @@ const UserStatus = ({
                   stroke={strokeColor}
                   strokeWidth="5"
                   strokeLinecap="round"
-                  className={`${(currentStatusIndex >=1 && i >= 1 && isFilled) ? "start-animated" : ""}`} // Apply animation class for segments from index 1 onward
+                  className={`${(currentStatusIndex >= 1 && i >= 1 && isFilled) ? "start-animated" : ""}`}
                 />
               );
             })}
           </svg>
+        </div>
+
+        <div className="status-bar-user-details">
+          <div className="user-status-render">
+            <div
+              className="status-container-1"
+            >
+              <div className="status-div-1">
+                <img
+                  src={randomData[userId-1]?.image}
+                  alt=""
+                  className="user-image-details"
+                />
+                <div>
+                  <h3 className="user-status-name">
+                    {randomData[userId-1]?.name?.slice(0, 6) + ""}
+                  </h3>
+                </div>
+              </div>
+              <div>
+                <p className="user-status-date">
+                  {randomData[userId-1]?.date}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <img

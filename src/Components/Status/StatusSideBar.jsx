@@ -7,7 +7,7 @@ import UserStatus from "./UserStatus.jsx";
 
 const StatusSideBar = () => {
   const radius = 26;
-  const strokeWidth = 4;
+  const strokeWidth = 2.5;
   const circumference = 2 * Math.PI * radius;
   const gap = 2;
   const segmentLength = circumference / 5 - gap;
@@ -82,7 +82,7 @@ const StatusSideBar = () => {
         </div>
         <div>
           <div>
-            <p>Recent Updates</p>
+            <p style={{fontWeight:"500"}} >Recent Updates</p>
           </div>
           <div className="status-chat">
             {viewed.map((item, index) => {
@@ -117,6 +117,7 @@ const StatusSideBar = () => {
                                   stroke={strokeColor}
                                   strokeWidth={strokeWidth}
                                   fill="none"
+                                  strokeLinecap="rounded"
                                   strokeDasharray={`${segmentLength} ${circumference - segmentLength}`}
                                   strokeDashoffset={circumference - offset}
                                   transform={`rotate(-90 30 30)`}
@@ -153,7 +154,7 @@ const StatusSideBar = () => {
           </div>
           {prevViewed.length > 0 && (
             <>
-              <div>Recently Viewed</div>
+              <p style={{fontWeight:"500"}}>Recently Viewed</p>
               <div className="status-chat">
                 {prevViewed.map((item, index) => (
                   <div

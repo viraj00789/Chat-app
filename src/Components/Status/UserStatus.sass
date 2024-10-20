@@ -5,8 +5,8 @@
     align-items: flex-start
     justify-content: center
     padding: 20px
-    top: 12%
-    right: 33%
+    top: 0
+    right: 35%
     z-index: 6
     width: 20%
 
@@ -14,9 +14,10 @@
     position: relative
     width: 100%
     max-width: 400px
-    height: auto
+    height: 90vh
     margin-bottom: 20px
     border-radius: 10px
+    bottom: 10vh
 
 .status-bar-container
     position: relative
@@ -28,6 +29,8 @@
     align-items: center
     border-radius: 5px
     overflow: hidden
+    top: 40px
+    z-index: 4
 
     svg
         width: 100%
@@ -41,9 +44,9 @@
 .overlay
     width: 100%
     height: 100vh
-    background-color: #8b848491
-    color: #fff
-    opacity: 0.5
+    background-color: #000000
+    color: #4f4f4f
+    opacity: 0.95
     position: fixed
     top: 0
     right: 0
@@ -52,10 +55,40 @@
     stroke: gray // Gray color for the base segment
     stroke-width: 5 // Width of the gray line
 .start-animated
-    animation: grow 6.8s linear forwards
+    animation: grow 6.2s linear forwards
 @keyframes grow
     0%
         stroke-dasharray: 0 100%
 
     100%
         stroke-dasharray: 100% 0
+.status-bar-user-details
+    position: relative
+    margin-bottom: 10px
+    display: flex
+    justify-content: center
+    align-items: center
+    border-radius: 5px
+    overflow: hidden
+    top: 40px
+    z-index: 4
+.user-image-details
+    width: 40px
+    height: 40px
+    border-radius: 50%   
+.status-container-1
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 308px
+.status-div-1
+    display: flex
+    align-items: center
+    justify-content: center
+.user-status-name
+    margin-left: 10px 
+    color: #fff
+.user-status-date
+    color: #fff
+    font-size: 11px
+    padding: 2px
