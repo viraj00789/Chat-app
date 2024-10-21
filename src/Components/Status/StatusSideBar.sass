@@ -5,16 +5,30 @@
     margin-left: 10px
     font-size: 14px
     padding-top: 3px
+    &.active
+        background-color: #F5FAFC
+        color: #111B21
+    &.inactive
+        background-color: #111B21
+        color: #F5FAFC
 .status-header
     display: flex
     align-items: center
+    &.active
+        background-color: #F5FAFC
+        color: #111B21
+    &.inactive
+        background-color: #111B21
+        color: #F5FAFC
 .status-header-subcnt-1
     display: flex
     padding: 2px 0 0 0
     &.active
+        background-color: #F5FAFC
         color: rgb(27, 29, 30)
     &.inactive
-        color: #F7F7FC
+        background-color: #111B21
+        color: #F5FAFC
 .status-header-img
     width: 50px
     height: 50px
@@ -30,18 +44,33 @@
     cursor: pointer
 .status-back-arrow
     margin-top: 7px
+    &.active
+        color: #111B21
+    &.inactive
+        color: #F5FAFC
 /////////////////////////////////
 .status-chat
     overflow: auto
+    width: 100%
+    // height: calc(100vh - 175px)
+    &::-webkit-scrollbar
+        display: none
+    &.active
+        background-color: #F5FAFC
+        color: #111B21
+    &.inactive
+        background-color: #111B21
+        color: #F5FAFC
+.status-chat-1
+    overflow: auto
     width: 102%
-    height: calc(100vh - 175px)
+    height: auto
     &::-webkit-scrollbar
         display: none
 .status-image
     width: 40px
     height: 40px
     border-radius: 50%
-    // border: 2px solid #fff
     object-fit: cover
     position: absolute
     left: 18%
@@ -89,7 +118,7 @@
     position: relative
 
 .second-circle[wobble="1"]
-    animation: wobble 5s ease
+    animation: wobble 4s ease
 @keyframes wobble
     0%
         stroke-dashoffset: 0

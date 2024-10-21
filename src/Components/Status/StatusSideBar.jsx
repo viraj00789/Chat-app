@@ -4,6 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { randomData } from "../data.js";
 import UserStatus from "./UserStatus.jsx";
+import { useTheme } from "../../store/ThemeContext.jsx";
 
 const StatusSideBar = () => {
   const radius = 26;
@@ -17,11 +18,17 @@ const StatusSideBar = () => {
   const [currentStatusIndex, setCurrentStatusIndex] = useState(0);
   const [viewed, setViewed] = useState(randomData);
   const [prevViewed, setPrevViewed] = useState([]);
+  const {isDark} =  useTheme();
+  const [isClosed,setIsClosed]= useState(false);
+
+  const handleClosed = (cl) => 
+  {
+     setIsClosed(cl)
+  }
 
   const handleChat = (item) => {
     setCurrentUserId(item.id);
-    setCurrentStatusIndex(0); 
-
+    handleClosed(false);
     setUserStatuses((prev) => ({
       ...prev,
       [item.id]: {
@@ -29,7 +36,7 @@ const StatusSideBar = () => {
         currentIndex: 0,
       },
     }));
-  };
+    };
 
   const handleIndexes = (userId, newIndex) => {
     setUserStatuses((prev) => {
@@ -56,18 +63,20 @@ const StatusSideBar = () => {
     });
   };
 
+
+
   return (
     <>
-      <div>
-        <div className="status-header">
-          <div className="status-back-arrow">
+      <div className={`${isDark ? "active" : "inactive"}`}>
+        <div className={`status-header ${isDark ? "active" : "inactive"}`}>
+          <div className={`status-back-arrow ${isDark ? "active" : "inactive"}`}>
             <Link to="/">
-              <IoIosArrowBack color={"#fff"} size={20} />
+              <IoIosArrowBack color={"#808080"} size={25} />
             </Link>
           </div>
           <h3>Status</h3>
         </div>
-        <div className="status-header-subcnt-1">
+        <div className={`status-header-subcnt-1 ${isDark ? "active" : "inactive"}`}>
           <img
             className="status-header-img"
             src="https://randomuser.me/api/portraits/men/3.jpg"
@@ -82,12 +91,11 @@ const StatusSideBar = () => {
         </div>
         <div>
           <div>
-            <p style={{fontWeight:"500"}} >Recent Updates</p>
+            <p style={{fontWeight:"500",borderBottom:"1px solid #808080",paddingBottom:"20px"}} >Recent Updates</p>
           </div>
-          <div className="status-chat">
+          <div className={`status-chat  ${isDark ? "active" : "inactive"}` }>
             {viewed.map((item, index) => {
               const userStatus = userStatuses[item.id] || {
-                images: [],
                 currentIndex: 0,
               };
               return (
@@ -155,7 +163,7 @@ const StatusSideBar = () => {
           {prevViewed.length > 0 && (
             <>
               <p style={{fontWeight:"500"}}>Recently Viewed</p>
-              <div className="status-chat">
+              <div className="status-chat-1">
                 {prevViewed.map((item, index) => (
                   <div
                     className="status-chat-render"
@@ -222,15 +230,15 @@ const StatusSideBar = () => {
           )}
         </div>
       </div>
-      {currentUserId && (
         <UserStatus
           setCurrentStatusIndex={setCurrentStatusIndex}
           status={userStatuses[currentUserId]?.images || []}
           currentStatusIndex={currentStatusIndex}
           handleIndexes={handleIndexes}
           userId={currentUserId}
+          isClosed={isClosed}
+          handleClosed={handleClosed}
         />
-      )}
     </>
   );
 };

@@ -4,14 +4,25 @@
     padding: 0 18px 0 18px
     border-right: 1px solid #4a4646
     flex-direction: column
-    width: 30%
-    background-color:#111B21
+    width: 25%
     overflow: auto
     height: 100vh
     &::-webkit-scrollbar
         display: none
+    &.active
+        background-color: #F5FAFC
+        color: #111B21
+    &.inactive
+        color: #F5FAFC
+        background-color: #111B21
 .status-bar
     background-color: #111B21
     width: 100vw
     display: block
     height: 100vh
+    &.active
+        background-color: #F5FAFC
+        color: #111B21
+    &.inactive
+        color: #F5FAFC
+        background-color: #111B21

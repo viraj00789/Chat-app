@@ -6,7 +6,7 @@ export const randomData = [
     chat: "Hey, did you see the latest update on the project?",
     date: "10:00 PM",
     email: "abc@gmail.com",
-    chatData: ["aaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
     imageArray: [
@@ -15,6 +15,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -24,7 +25,7 @@ export const randomData = [
     chat: "I have some new ideas for the marketing campaign.",
     date: "10:00 PM",
     email: "def@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -33,6 +34,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -42,7 +44,7 @@ export const randomData = [
     chat: "Can you send me the report by end of day?",
     date: "10:00 PM",
     email: "front  @gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -51,6 +53,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -60,7 +63,7 @@ export const randomData = [
     chat: "Looking forward to our meeting tomorrow.",
     date: "10:00 PM",
     email: "ab3w4c@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -69,6 +72,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -78,7 +82,7 @@ export const randomData = [
     chat: "Let's catch up later this week!",
     date: "10:00 PM",
     email: "ab33gvc@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -87,6 +91,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -96,7 +101,7 @@ export const randomData = [
     chat: "Did you get a chance to review the draft?",
     date: "10:00 PM",
     email: "abc@rtergmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -105,6 +110,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -114,7 +120,7 @@ export const randomData = [
     chat: "Can you help with the presentation slides?",
     date: "10:00 PM",
     email: "abfdfcc@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00", "10:00"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -123,6 +129,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -132,7 +139,7 @@ export const randomData = [
     chat: "The server issue has been resolved.",
     date: "10:00 PM",
     email: "fffbc@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -141,6 +148,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -150,7 +158,7 @@ export const randomData = [
     chat: "Let's schedule a call to discuss the new features.",
     date: "10:00 PM",
     email: "absdwssc@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -159,6 +167,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -168,7 +177,7 @@ export const randomData = [
     chat: "Can we push the deadline to next week?",
     date: "10:00 PM",
     email: "abcssdf@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -177,6 +186,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -186,7 +196,7 @@ export const randomData = [
     chat: "I'll be out of the office for the next two days.",
     date: "10:00 PM",
     email: "abc@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -195,6 +205,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -204,7 +215,7 @@ export const randomData = [
     chat: "I need the budget report by tomorrow.",
     date: "10:00 PM",
     email: "afffbc@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -213,6 +224,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -222,7 +234,7 @@ export const randomData = [
     chat: "The team needs your feedback on the design.",
     date: "10:00 PM",
     email: "abcrrtg@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -231,6 +243,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -240,7 +253,7 @@ export const randomData = [
     chat: "Can we arrange a training session next week?",
     date: "10:00 PM",
     email: "abcyuiug@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -249,6 +262,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -258,7 +272,7 @@ export const randomData = [
     chat: "I have updated the project plan.",
     date: "10:00 PM",
     email: "abgv23c@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -267,6 +281,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -276,7 +291,7 @@ export const randomData = [
     chat: "Let's finalize the contract details soon.",
     date: "10:00 PM",
     email: "abcknb@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -285,6 +300,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -294,7 +310,7 @@ export const randomData = [
     chat: "Please review the attached document.",
     date: "10:00 PM",
     email: "abfdc@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -303,6 +319,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -312,7 +329,7 @@ export const randomData = [
     chat: "Can we discuss the new project scope?",
     date: "10:00 PM",
     email: "abcfdsd@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -321,6 +338,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -330,7 +348,7 @@ export const randomData = [
     chat: "The client meeting went well today.",
     date: "10:00 PM",
     email: "aaabc@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -339,6 +357,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -348,7 +367,7 @@ export const randomData = [
     chat: "I will send over the revised estimates shortly.",
     date: "10:00 PM",
     email: "ui@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -357,6 +376,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -366,7 +386,7 @@ export const randomData = [
     chat: "The new feature is ready for testing.",
     date: "10:00 PM",
     email: "dec@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -375,6 +395,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
   {
@@ -384,7 +405,7 @@ export const randomData = [
     chat: "Please confirm the meeting time.",
     date: "10:00 PM",
     email: "dev@gmail.com",
-    chatData: ["aaaa", "bbbb"],
+    chatData: ["Hi", "Hello"],
     chatTime: ["10:00 pm", "10:00 pm"],
     statusTime: "Yesterday 10:00pm",
        imageArray: [
@@ -393,6 +414,7 @@ export const randomData = [
       "https://i.pinimg.com/enabled_hi/236x/2c/92/4c/2c924cb215bd34c9c99d3ac2fdb38464.jpg",
       "https://i.pinimg.com/enabled_hi/236x/4b/09/ab/4b09ab1ecc630a5afdeb442091542eeb.jpg",
       "https://i.pinimg.com/enabled_hi/236x/34/25/26/34252679d639c7e3499508be99c99f5e.jpg",
+      // "https://i.pinimg.com/enabled/236x/7d/30/48/7d3048f2f1fb5bf75789e7a7b98c2171.jpg"
     ],
   },
 ];
