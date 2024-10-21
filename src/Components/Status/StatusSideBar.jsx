@@ -18,25 +18,27 @@ const StatusSideBar = () => {
   const [currentStatusIndex, setCurrentStatusIndex] = useState(0);
   const [viewed, setViewed] = useState(randomData);
   const [prevViewed, setPrevViewed] = useState([]);
-  const {isDark} =  useTheme();
-  const [isClosed,setIsClosed]= useState(false);
+  const { isDark } = useTheme();
+  const [isClosed, setIsClosed] = useState(false);
 
-  const handleClosed = (cl) => 
-  {
-     setIsClosed(cl)
+  const handleClosed = (cl) => {
+    setIsClosed(cl)
   }
 
   const handleChat = (item) => {
     setCurrentUserId(item.id);
+    const currentIndex = userStatuses[item.id]?.currentIndex || 0;
+
     handleClosed(false);
     setUserStatuses((prev) => ({
       ...prev,
       [item.id]: {
         images: item.imageArray || [],
-        currentIndex: 0,
+        currentIndex: currentIndex,
       },
     }));
-    };
+    setCurrentStatusIndex(currentIndex)
+  };
 
   const handleIndexes = (userId, newIndex) => {
     setUserStatuses((prev) => {
@@ -91,9 +93,9 @@ const StatusSideBar = () => {
         </div>
         <div>
           <div>
-            <p style={{fontWeight:"500",borderBottom:"1px solid #808080",paddingBottom:"20px"}} >Recent Updates</p>
+            <p style={{ fontWeight: "500", borderBottom: "1px solid #808080", paddingBottom: "20px" }} >Recent Updates</p>
           </div>
-          <div className={`status-chat  ${isDark ? "active" : "inactive"}` }>
+          <div className={`status-chat  ${isDark ? "active" : "inactive"}`}>
             {viewed.map((item, index) => {
               const userStatus = userStatuses[item.id] || {
                 currentIndex: 0,
@@ -162,7 +164,7 @@ const StatusSideBar = () => {
           </div>
           {prevViewed.length > 0 && (
             <>
-              <p style={{fontWeight:"500"}}>Recently Viewed</p>
+              <p style={{ fontWeight: "500" }}>Recently Viewed</p>
               <div className="status-chat-1">
                 {prevViewed.map((item, index) => (
                   <div
@@ -191,9 +193,8 @@ const StatusSideBar = () => {
                                     stroke={strokeColor}
                                     strokeWidth={strokeWidth}
                                     fill="none"
-                                    strokeDasharray={`${segmentLength} ${
-                                      circumference - segmentLength
-                                    }`}
+                                    strokeDasharray={`${segmentLength} ${circumference - segmentLength
+                                      }`}
                                     strokeDashoffset={circumference - offset}
                                     transform={`rotate(-90 30 30)`}
                                     className="segment"
@@ -230,15 +231,15 @@ const StatusSideBar = () => {
           )}
         </div>
       </div>
-        <UserStatus
-          setCurrentStatusIndex={setCurrentStatusIndex}
-          status={userStatuses[currentUserId]?.images || []}
-          currentStatusIndex={currentStatusIndex}
-          handleIndexes={handleIndexes}
-          userId={currentUserId}
-          isClosed={isClosed}
-          handleClosed={handleClosed}
-        />
+      <UserStatus
+        setCurrentStatusIndex={setCurrentStatusIndex}
+        status={userStatuses[currentUserId]?.images || []}
+        currentStatusIndex={currentStatusIndex}
+        handleIndexes={handleIndexes}
+        userId={currentUserId}
+        isClosed={isClosed}
+        handleClosed={handleClosed}
+      />
     </>
   );
 };
