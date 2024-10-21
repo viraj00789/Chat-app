@@ -44,7 +44,7 @@ const UserStatus = ({
           setCurrentStatusIndex(currentStatusIndex + 1);
         }
         handleIndexes(userId, currentStatusIndex+1);
-      }, 2000);
+    }, 1200);
 
       window.addEventListener("keydown", handleBackArrow);
     }
@@ -94,6 +94,7 @@ const UserStatus = ({
                 const offset = (segmentLength + gap) * i;
                 const isFilled = currentStatusIndex >= i;
                 console.log(currentStatusIndex,i);
+                const isViewed = i < currentStatusIndex;
                 const strokeColor = isFilled ? "white" : "";
 
                 return (
@@ -109,7 +110,7 @@ const UserStatus = ({
                     style={{
                       animationPlayState: isPaused ? "paused" : "running",
                     }}
-                    className={`${isFilled ? "start-animated" : ""} `}
+                    className={`${(isFilled && !isViewed) ? "start-animated" : ""} `}
                   />
                 );
               })}
