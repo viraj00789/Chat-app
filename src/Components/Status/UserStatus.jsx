@@ -12,8 +12,8 @@ const UserStatus = ({
   handleClosed,
 }) => {
   const [isPaused, setIsPaused] = useState(false);
-  const numSegments = 5;
-  const segmentLength = 385 / numSegments;
+  const numSegments = status.length;
+  const segmentLength = 385 / ( numSegments || 1);
   const gap = 3.5;
 
   useEffect(() => {

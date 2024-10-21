@@ -11,7 +11,7 @@ const StatusSideBar = () => {
   const strokeWidth = 2.5;
   const circumference = 2 * Math.PI * radius;
   const gap = 2;
-  const segmentLength = circumference / 5 - gap;
+  let segmentLength;
 
   const [userStatuses, setUserStatuses] = useState({});
   const [currentUserId, setCurrentUserId] = useState(null);
@@ -100,6 +100,10 @@ const StatusSideBar = () => {
               const userStatus = userStatuses[item.id] || {
                 currentIndex: 0,
               };
+              const numSegments =  item.imageArray ? item.imageArray.length : 0
+              segmentLength = circumference / numSegments - gap;
+
+
               return (
                 <div
                   className="status-chat-render"
@@ -111,8 +115,8 @@ const StatusSideBar = () => {
                       <div className="status-ring">
                         <div className="status-ring-container">
                           <svg width="60" height="60" viewBox="0 0 60 60">
-                            {[...Array(5)].map((_, i) => {
-                              const offset = (circumference / 5) * i + gap;
+                            {[...Array(numSegments)].map((_, i) => {
+                              const offset = (circumference / numSegments) * i + gap;
                               const strokeColor =
                                 userStatus.currentIndex > i
                                   ? "lightgray"
