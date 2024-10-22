@@ -11,7 +11,6 @@ const StatusSideBar = () => {
   const strokeWidth = 2.5;
   const circumference = 2 * Math.PI * radius;
   const gap = 2;
-  let segmentLength;
 
   const [userStatuses, setUserStatuses] = useState({});
   const [currentUserId, setCurrentUserId] = useState(null);
@@ -22,14 +21,13 @@ const StatusSideBar = () => {
   const [isClosed, setIsClosed] = useState(false);
 
   const handleClosed = (cl) => {
-    setIsClosed(cl)
-  }
+    setIsClosed(cl);
+  };
 
   const handleChat = (item) => {
     setCurrentUserId(item.id);
     const currentIndex = userStatuses[item.id]?.currentIndex || 0;
 
-    handleClosed(false);
     setUserStatuses((prev) => ({
       ...prev,
       [item.id]: {
@@ -37,7 +35,34 @@ const StatusSideBar = () => {
         currentIndex: currentIndex,
       },
     }));
-    setCurrentStatusIndex(currentIndex)
+
+    handleClosed(false);
+  };
+  const handleUserStatuses = (userId, newIndex) => {
+    setUserStatuses((prev) => {
+      const currentIndex = prev[userId]?.currentIndex + 1 || 0;
+      
+      const updatedUserStatuses = {
+        ...prev,
+        [userId]: {
+          ...prev[userId],
+          currentIndex: currentIndex,
+        },
+      };
+  
+      if (
+        currentIndex === updatedUserStatuses[userId].images.length &&
+        !prevViewed.some((view) => view.id === userId)
+      ) {
+        const userToMove = viewed.find((user) => user.id === userId);
+        if (userToMove) {
+          setPrevViewed((prevViewed) => [...prevViewed, userToMove]);
+          setViewed((prevViewed) => prevViewed.filter((view) => view.id !== userId));
+        }
+      }
+  
+      return updatedUserStatuses;
+    });
   };
 
   const handleIndexes = (userId, newIndex) => {
@@ -49,36 +74,37 @@ const StatusSideBar = () => {
           currentIndex: newIndex,
         },
       };
-
+  
       if (
-        newIndex === updatedUserStatuses[userId].images.length &&
+        newIndex >= updatedUserStatuses[userId].images.length &&
         !prevViewed.some((view) => view.id === userId)
       ) {
         const userToMove = viewed.find((user) => user.id === userId);
         if (userToMove) {
-          setPrevViewed([...prevViewed, userToMove]);
-          setViewed(viewed.filter((view) => view.id !== userId));
+          setPrevViewed((prevViewed) => [...prevViewed, userToMove]);
+          setViewed((viewed) => viewed.filter((view) => view.id !== userId));
         }
       }
-
+  
       return updatedUserStatuses;
     });
   };
-
-
-
   return (
     <>
       <div className={`${isDark ? "active" : "inactive"}`}>
         <div className={`status-header ${isDark ? "active" : "inactive"}`}>
-          <div className={`status-back-arrow ${isDark ? "active" : "inactive"}`}>
+          <div
+            className={`status-back-arrow ${isDark ? "active" : "inactive"}`}
+          >
             <Link to="/">
               <IoIosArrowBack color={"#808080"} size={25} />
             </Link>
           </div>
           <h3>Status</h3>
         </div>
-        <div className={`status-header-subcnt-1 ${isDark ? "active" : "inactive"}`}>
+        <div
+          className={`status-header-subcnt-1 ${isDark ? "active" : "inactive"}`}
+        >
           <img
             className="status-header-img"
             src="https://randomuser.me/api/portraits/men/3.jpg"
@@ -93,16 +119,23 @@ const StatusSideBar = () => {
         </div>
         <div>
           <div>
-            <p style={{ fontWeight: "500", borderBottom: "1px solid #808080", paddingBottom: "20px" }} >Recent Updates</p>
+            <p
+              style={{
+                fontWeight: "500",
+                borderBottom: "1px solid #808080",
+                paddingBottom: "20px",
+              }}
+            >
+              Recent Updates
+            </p>
           </div>
-          <div className={`status-chat  ${isDark ? "active" : "inactive"}`}>
+          <div className={`status-chat ${isDark ? "active" : "inactive"}`}>
             {viewed.map((item, index) => {
               const userStatus = userStatuses[item.id] || {
                 currentIndex: 0,
               };
-              const numSegments =  item.imageArray ? item.imageArray.length : 0
-              segmentLength = circumference / numSegments - gap;
-
+              const numSegments = item.imageArray ? item.imageArray.length : 1;
+              const segmentLength = circumference / numSegments - gap;
 
               return (
                 <div
@@ -116,7 +149,8 @@ const StatusSideBar = () => {
                         <div className="status-ring-container">
                           <svg width="60" height="60" viewBox="0 0 60 60">
                             {[...Array(numSegments)].map((_, i) => {
-                              const offset = (circumference / numSegments) * i + gap;
+                              const offset =
+                                (circumference / numSegments) * i + gap;
                               const strokeColor =
                                 userStatus.currentIndex > i
                                   ? "lightgray"
@@ -132,7 +166,9 @@ const StatusSideBar = () => {
                                   strokeWidth={strokeWidth}
                                   fill="none"
                                   strokeLinecap="rounded"
-                                  strokeDasharray={`${segmentLength} ${circumference - segmentLength}`}
+                                  strokeDasharray={`${segmentLength} ${
+                                    circumference - segmentLength
+                                  }`}
                                   strokeDashoffset={circumference - offset}
                                   transform={`rotate(-90 30 30)`}
                                   className="segment"
@@ -170,66 +206,81 @@ const StatusSideBar = () => {
             <>
               <p style={{ fontWeight: "500" }}>Recently Viewed</p>
               <div className="status-chat-1">
-                {prevViewed.map((item, index) => (
-                  <div
-                    className="status-chat-render"
-                    key={index}
-                    onClick={() => handleChat(item)}
-                  >
-                    <div className="chat-container" title={item.name}>
-                      <div className="status-div-1">
-                        <div className="status-ring">
-                          <div className="status-ring-container">
-                            <svg width="60" height="60" viewBox="0 0 60 60">
-                              {[...Array(5)].map((_, i) => {
-                                const offset = (circumference / 5) * i + gap;
-                                const strokeColor =
-                                  userStatuses[item.id]?.currentIndex > i
-                                    ? "lightgray"
-                                    : "green";
+                {prevViewed.map((item, index) => {
+                  const userStatus = userStatuses[item.id] || {
+                    currentIndex: 0,
+                  };
+                  const numSegments = item.imageArray
+                    ? item.imageArray.length
+                    : 1;
+                  const segmentLength =
+                    numSegments > 0
+                      ? circumference / numSegments - gap
+                      : circumference;
 
-                                return (
-                                  <circle
-                                    key={i}
-                                    cx="30"
-                                    cy="30"
-                                    r={radius}
-                                    stroke={strokeColor}
-                                    strokeWidth={strokeWidth}
-                                    fill="none"
-                                    strokeDasharray={`${segmentLength} ${circumference - segmentLength
+                  return (
+                    <div
+                      className="status-chat-render"
+                      key={index}
+                      onClick={() => handleChat(item)}
+                    >
+                      <div className="chat-container" title={item.name}>
+                        <div className="status-div-1">
+                          <div className="status-ring">
+                            <div className="status-ring-container">
+                              <svg width="60" height="60" viewBox="0 0 60 60">
+                                {[...Array(numSegments)].map((_, i) => {
+                                  const offset =
+                                    (circumference / numSegments) * i + gap;
+                                  const strokeColor =
+                                    userStatus.currentIndex > i
+                                      ? "lightgray"
+                                      : "green";
+
+                                  return (
+                                    <circle
+                                      key={i}
+                                      cx="30"
+                                      cy="30"
+                                      r={radius}
+                                      stroke={strokeColor}
+                                      strokeWidth={strokeWidth}
+                                      fill="none"
+                                      strokeDasharray={`${segmentLength} ${
+                                        circumference - segmentLength
                                       }`}
-                                    strokeDashoffset={circumference - offset}
-                                    transform={`rotate(-90 30 30)`}
-                                    className="segment"
-                                  />
-                                );
-                              })}
-                            </svg>
+                                      strokeDashoffset={circumference - offset}
+                                      transform={`rotate(-90 30 30)`}
+                                      className="segment"
+                                    />
+                                  );
+                                })}
+                              </svg>
+                            </div>
+                            <img
+                              src={
+                                item.image ||
+                                "https://randomuser.me/api/portraits/men/9.jpg"
+                              }
+                              alt="User"
+                              className="status-image"
+                            />
                           </div>
-                          <img
-                            src={
-                              item.image ||
-                              "https://randomuser.me/api/portraits/men/9.jpg"
-                            }
-                            alt="User"
-                            className="status-image"
-                          />
-                        </div>
-                        <div className="status-detail">
-                          <h3 className="status-name">
-                            {item?.name?.length < 15
-                              ? item?.name
-                              : `${item?.name?.slice(0, 15)}...`}
-                          </h3>
-                          <span className="status-message">
-                            {item?.statusTime}
-                          </span>
+                          <div className="status-detail">
+                            <h3 className="status-name">
+                              {item?.name?.length < 15
+                                ? item?.name
+                                : `${item?.name?.slice(0, 15)}...`}
+                            </h3>
+                            <span className="status-message">
+                              {item?.statusTime}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </>
           )}
@@ -238,11 +289,14 @@ const StatusSideBar = () => {
       <UserStatus
         setCurrentStatusIndex={setCurrentStatusIndex}
         status={userStatuses[currentUserId]?.images || []}
-        currentStatusIndex={currentStatusIndex}
-        handleIndexes={handleIndexes}
         userId={currentUserId}
         isClosed={isClosed}
+        currentStatusIndex={currentStatusIndex}
+        handleIndexes={handleIndexes}
         handleClosed={handleClosed}
+        userStatuses={userStatuses}
+        setUserStatuses={setUserStatuses}
+        handleUserStatuses={handleUserStatuses}
       />
     </>
   );

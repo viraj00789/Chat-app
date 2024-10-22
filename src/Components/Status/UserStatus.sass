@@ -1,47 +1,40 @@
 .container
-    display: flex
     position: fixed
     width: 100%
-    flex-direction: column
-    align-items: center
-    justify-content: center
     top: 0
-    // z-index: 6
 
 .status-user-image
     position: relative
-    // max-width: 600px
-    height: 90vh
-    width: 600px
+    height: 100vh
+    width: 300px
     border-radius: 10px
-    bottom: 10vh
-    left: 1%
-    object-fit: contain
+    bottom: 11vh
+    object-fit: cover
     z-index: 1
 
 .status-bar-container
-    position: relative
     width: 100%
-    height: 10px
+    height: 20px
     margin-bottom: 10px
+    border-radius: 5px
+    overflow: hidden
+    display: flex
+    align-items: center
+    justify-content: center
+    top: 40px
+    left: 20%
+    z-index: 8
+    svg
+        height: 10px
+    line
+        stroke-linecap: round
+
+.status-upper
     display: flex
     justify-content: center
     align-items: center
-    border-radius: 5px
-    overflow: hidden
-    top: 40px
-    z-index: 8
-    left: 38%
-    
-    svg
-        width: 100%
-        height: 10px
-        position: relative
-    
-    line
-        width: 100%
-        stroke-linecap: round
-    
+    width: 100%
+    height: 20px
 .overlay
     width: 100%
     height: 100vh
@@ -56,7 +49,7 @@
     stroke-width: 4
 
 .start-animated
-    animation: grow 15s linear
+    animation: grow 5s linear
     &.active
         animation-play-state: paused
     &.inactive
@@ -76,7 +69,6 @@
     align-items: center
     border-radius: 5px
     overflow: hidden
-    top: 40px
     z-index: 6
 
 .user-image-details
@@ -88,7 +80,7 @@
     display: flex
     justify-content: space-between
     align-items: center
-    width: 308px
+    width: 285px
 
 .status-div-1
     display: flex
