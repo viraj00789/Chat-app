@@ -17,7 +17,7 @@ const UserStatus = ({
 }) => {
   const [isPaused, setIsPaused] = useState(false);
   const numSegments = status.length;
-  const segmentLength = 300 / (numSegments || 1);
+  const segmentLength = 275 / (numSegments || 1);
   const gap = 3.5;
 
   // console.log(userStatuses);

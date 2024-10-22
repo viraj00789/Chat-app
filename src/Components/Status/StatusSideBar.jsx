@@ -36,32 +36,36 @@ const StatusSideBar = () => {
       },
     }));
 
+    setCurrentStatusIndex(0); // Reset to 0 when opening a new chat
     handleClosed(false);
   };
-  const handleUserStatuses = (userId, newIndex) => {
+
+  const handleUserStatuses = (userId) => {
     setUserStatuses((prev) => {
-      const currentIndex = prev[userId]?.currentIndex + 1 || 0;
-      
-      const updatedUserStatuses = {
+      const currentStatus = prev[userId] || { currentIndex: 0 };
+      const currentIndex = currentStatus.currentIndex + 1;
+
+      // If the currentIndex exceeds the length of images, don't increment further
+      if (currentIndex >= (currentStatus.images.length || 0)) {
+        if (!prevViewed.some((view) => view.id === userId)) {
+          // Move to viewed if they haven't been moved yet
+          const userToMove = viewed.find((user) => user.id === userId);
+          if (userToMove) {
+            setPrevViewed((prev) => [...prev, userToMove]);
+            setViewed((prev) => prev.filter((view) => view.id !== userId));
+          }
+        }
+        return prev; // Return the previous state without updating
+      }
+
+      // Update the user status if not at the last status
+      return {
         ...prev,
         [userId]: {
-          ...prev[userId],
+          ...currentStatus,
           currentIndex: currentIndex,
         },
       };
-  
-      if (
-        currentIndex === updatedUserStatuses[userId].images.length &&
-        !prevViewed.some((view) => view.id === userId)
-      ) {
-        const userToMove = viewed.find((user) => user.id === userId);
-        if (userToMove) {
-          setPrevViewed((prevViewed) => [...prevViewed, userToMove]);
-          setViewed((prevViewed) => prevViewed.filter((view) => view.id !== userId));
-        }
-      }
-  
-      return updatedUserStatuses;
     });
   };
 
@@ -74,42 +78,33 @@ const StatusSideBar = () => {
           currentIndex: newIndex,
         },
       };
-  
-      if (
-        newIndex >= updatedUserStatuses[userId].images.length &&
-        !prevViewed.some((view) => view.id === userId)
-      ) {
+
+      // Move user to viewed if all statuses have been seen
+      if (newIndex >= updatedUserStatuses[userId].images.length && !prevViewed.some((view) => view.id === userId)) {
         const userToMove = viewed.find((user) => user.id === userId);
         if (userToMove) {
-          setPrevViewed((prevViewed) => [...prevViewed, userToMove]);
-          setViewed((viewed) => viewed.filter((view) => view.id !== userId));
+          setPrevViewed((prev) => [...prev, userToMove]);
+          setViewed((view) => view.filter((v) => v.id !== userId));
         }
       }
-  
+
       return updatedUserStatuses;
     });
   };
+
   return (
     <>
       <div className={`${isDark ? "active" : "inactive"}`}>
         <div className={`status-header ${isDark ? "active" : "inactive"}`}>
-          <div
-            className={`status-back-arrow ${isDark ? "active" : "inactive"}`}
-          >
+          <div className={`status-back-arrow ${isDark ? "active" : "inactive"}`}>
             <Link to="/">
               <IoIosArrowBack color={"#808080"} size={25} />
             </Link>
           </div>
           <h3>Status</h3>
         </div>
-        <div
-          className={`status-header-subcnt-1 ${isDark ? "active" : "inactive"}`}
-        >
-          <img
-            className="status-header-img"
-            src="https://randomuser.me/api/portraits/men/3.jpg"
-            alt="User Avatar"
-          />
+        <div className={`status-header-subcnt-1 ${isDark ? "active" : "inactive"}`}>
+          <img className="status-header-img" src="https://randomuser.me/api/portraits/men/3.jpg" alt="User Avatar" />
           <div className="status-header-details">
             <h4 className="status-header-detail-name">Viraj</h4>
             <div className="status">
@@ -118,43 +113,25 @@ const StatusSideBar = () => {
           </div>
         </div>
         <div>
-          <div>
-            <p
-              style={{
-                fontWeight: "500",
-                borderBottom: "1px solid #808080",
-                paddingBottom: "20px",
-              }}
-            >
-              Recent Updates
-            </p>
-          </div>
+          <p style={{ fontWeight: "500", borderBottom: "1px solid #808080", paddingBottom: "20px" }}>
+            Recent Updates
+          </p>
           <div className={`status-chat ${isDark ? "active" : "inactive"}`}>
             {viewed.map((item, index) => {
-              const userStatus = userStatuses[item.id] || {
-                currentIndex: 0,
-              };
+              const userStatus = userStatuses[item.id] || { currentIndex: 0 };
               const numSegments = item.imageArray ? item.imageArray.length : 1;
               const segmentLength = circumference / numSegments - gap;
 
               return (
-                <div
-                  className="status-chat-render"
-                  key={index}
-                  onClick={() => handleChat(item)}
-                >
+                <div className="status-chat-render" key={index} onClick={() => handleChat(item)}>
                   <div className="chat-container" title={item.name}>
                     <div className="status-div-1">
                       <div className="status-ring">
                         <div className="status-ring-container">
                           <svg width="60" height="60" viewBox="0 0 60 60">
                             {[...Array(numSegments)].map((_, i) => {
-                              const offset =
-                                (circumference / numSegments) * i + gap;
-                              const strokeColor =
-                                userStatus.currentIndex > i
-                                  ? "lightgray"
-                                  : "green";
+                              const offset = (circumference / numSegments) * i + gap;
+                              const strokeColor = userStatus.currentIndex > i ? "lightgray" : "green";
 
                               return (
                                 <circle
@@ -166,9 +143,7 @@ const StatusSideBar = () => {
                                   strokeWidth={strokeWidth}
                                   fill="none"
                                   strokeLinecap="rounded"
-                                  strokeDasharray={`${segmentLength} ${
-                                    circumference - segmentLength
-                                  }`}
+                                  strokeDasharray={`${segmentLength} ${circumference - segmentLength}`}
                                   strokeDashoffset={circumference - offset}
                                   transform={`rotate(-90 30 30)`}
                                   className="segment"
@@ -178,23 +153,14 @@ const StatusSideBar = () => {
                           </svg>
                         </div>
                         <img
-                          src={
-                            item.image ||
-                            "https://randomuser.me/api/portraits/men/9.jpg"
-                          }
+                          src={item.image || "https://randomuser.me/api/portraits/men/9.jpg"}
                           alt="User"
                           className="status-image"
                         />
                       </div>
                       <div className="status-detail">
-                        <h3 className="status-name">
-                          {item.name.length < 15
-                            ? item.name
-                            : `${item.name.slice(0, 15)}...`}
-                        </h3>
-                        <span className="status-message">
-                          {item.statusTime}
-                        </span>
+                        <h3 className="status-name">{item.name.length < 15 ? item.name : `${item.name.slice(0, 15)}...`}</h3>
+                        <span className="status-message">{item.statusTime}</span>
                       </div>
                     </div>
                   </div>
@@ -207,35 +173,20 @@ const StatusSideBar = () => {
               <p style={{ fontWeight: "500" }}>Recently Viewed</p>
               <div className="status-chat-1">
                 {prevViewed.map((item, index) => {
-                  const userStatus = userStatuses[item.id] || {
-                    currentIndex: 0,
-                  };
-                  const numSegments = item.imageArray
-                    ? item.imageArray.length
-                    : 1;
-                  const segmentLength =
-                    numSegments > 0
-                      ? circumference / numSegments - gap
-                      : circumference;
+                  const userStatus = userStatuses[item.id] || { currentIndex: 0 };
+                  const numSegments = item.imageArray ? item.imageArray.length : 1;
+                  const segmentLength = numSegments > 0 ? circumference / numSegments - gap : circumference;
 
                   return (
-                    <div
-                      className="status-chat-render"
-                      key={index}
-                      onClick={() => handleChat(item)}
-                    >
+                    <div className="status-chat-render" key={index} onClick={() => handleChat(item)}>
                       <div className="chat-container" title={item.name}>
                         <div className="status-div-1">
                           <div className="status-ring">
                             <div className="status-ring-container">
                               <svg width="60" height="60" viewBox="0 0 60 60">
                                 {[...Array(numSegments)].map((_, i) => {
-                                  const offset =
-                                    (circumference / numSegments) * i + gap;
-                                  const strokeColor =
-                                    userStatus.currentIndex > i
-                                      ? "lightgray"
-                                      : "green";
+                                  const offset = (circumference / numSegments) * i + gap;
+                                  const strokeColor = userStatus.currentIndex > i ? "lightgray" : "green";
 
                                   return (
                                     <circle
@@ -246,9 +197,7 @@ const StatusSideBar = () => {
                                       stroke={strokeColor}
                                       strokeWidth={strokeWidth}
                                       fill="none"
-                                      strokeDasharray={`${segmentLength} ${
-                                        circumference - segmentLength
-                                      }`}
+                                      strokeDasharray={`${segmentLength} ${circumference - segmentLength}`}
                                       strokeDashoffset={circumference - offset}
                                       transform={`rotate(-90 30 30)`}
                                       className="segment"
@@ -258,23 +207,14 @@ const StatusSideBar = () => {
                               </svg>
                             </div>
                             <img
-                              src={
-                                item.image ||
-                                "https://randomuser.me/api/portraits/men/9.jpg"
-                              }
+                              src={item.image || "https://randomuser.me/api/portraits/men/9.jpg"}
                               alt="User"
                               className="status-image"
                             />
                           </div>
                           <div className="status-detail">
-                            <h3 className="status-name">
-                              {item?.name?.length < 15
-                                ? item?.name
-                                : `${item?.name?.slice(0, 15)}...`}
-                            </h3>
-                            <span className="status-message">
-                              {item?.statusTime}
-                            </span>
+                            <h3 className="status-name">{item?.name?.length < 15 ? item?.name : `${item?.name?.slice(0, 15)}...`}</h3>
+                            <span className="status-message">{item?.statusTime}</span>
                           </div>
                         </div>
                       </div>
