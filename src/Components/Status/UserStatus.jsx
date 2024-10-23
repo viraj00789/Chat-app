@@ -62,7 +62,7 @@ const UserStatus = ({
           handleIndexes(userId, newIndex); 
           return newIndex;
         });
-      }, 1200);
+      }, 1380);
   
       window.addEventListener("keydown", handleBackArrow);
     }

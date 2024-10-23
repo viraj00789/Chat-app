@@ -79,8 +79,7 @@
           },
         };
 
-        // Move user to viewed if all statuses have been seen
-        if (newIndex >= updatedUserStatuses[userId].images.length && !prevViewed.some((view) => view.id === userId)) {
+        if (!prevViewed.some((view) => view.id === userId)) {
           const userToMove = viewed.find((user) => user.id === userId);
           if (userToMove) {
             setPrevViewed((prev) => [...prev, userToMove]);
