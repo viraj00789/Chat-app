@@ -20,8 +20,7 @@ const UserStatus = ({
   const segmentLength = 275 / (numSegments || 1);
   const gap = 3.5;
 
-  // console.log(userStatuses);
-
+cd 
   useEffect(() => {
     if (status.length > 0) {
       handleClosed(false);
