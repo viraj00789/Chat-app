@@ -79,13 +79,14 @@
           },
         };
 
-        if (!prevViewed.some((view) => view.id === userId)) {
+        if (newIndex >= updatedUserStatuses[userId].images.length - 1 && !prevViewed.some((view) => view.id === userId)) {
           const userToMove = viewed.find((user) => user.id === userId);
           if (userToMove) {
             setPrevViewed((prev) => [...prev, userToMove]);
             setViewed((view) => view.filter((v) => v.id !== userId));
           }
         }
+        
 
         return updatedUserStatuses;
       });
