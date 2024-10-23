@@ -13,7 +13,9 @@ const UserStatus = ({
   handleClosed,
   handleUserStatuses,
   userStatuses,
-  setUserStatuses,
+  handleUserId,
+  handleChat,
+  users
 }) => {
   const [isPaused, setIsPaused] = useState(false);
   const numSegments = status.length;
@@ -34,6 +36,9 @@ const UserStatus = ({
       handleUserStatuses(userId, newIndex);
       return newIndex;
     });
+    if (currentStatusIndex === status.length - 1) {
+      handleNextUser();
+    }
   };
 
   const handleBackArrow = (event) => {
@@ -48,10 +53,14 @@ const UserStatus = ({
     if (status.length > 1 && !isClosed && !isPaused) {
       interval = setInterval(() => {
         setCurrentStatusIndex((prevIndex) => {
-          const newIndex = prevIndex >= status.length - 1 ? 0 : prevIndex + 1;
+          const newIndex = prevIndex > status.length - 1 ? 0 : prevIndex + 1;
           handleIndexes(userId, newIndex);
           return newIndex;
         });
+
+        if (currentStatusIndex === status.length - 1) {
+          handleNextUser();
+        }
       }, 5000);
 
       window.addEventListener("keydown", handleBackArrow);
@@ -65,15 +74,27 @@ const UserStatus = ({
     };
   }, [status, isPaused, isClosed, currentStatusIndex]);
 
-  if (!status.length || isClosed) {
-    return null;
-  }
+  const handleNextUser = () => {
+    const currentUserIndex = users.findIndex((user) => user.id === userId);
+    const nextUser = users[currentUserIndex + 1] || users[0]; 
+    handleChat(nextUser); 
+    setCurrentStatusIndex(0);
+  };
+
+  const handlePrevUser = () => {
+    const currentUserIndex = users.findIndex((user) => user.id === userId);
+    const prevUser = users[currentUserIndex - 1] || users[users.length - 1];
+    handleChat(prevUser);
+    setCurrentStatusIndex(userStatuses[prevUser.id]?.images.length-1 || 0);
+  };
 
   const handlePrev = (e) => {
     e.stopPropagation();
     if (currentStatusIndex > 0) {
       setCurrentStatusIndex(currentStatusIndex - 1);
       handleIndexes(userId, currentStatusIndex - 1);
+    } else {
+      handlePrevUser();
     }
   };
 
@@ -82,14 +103,18 @@ const UserStatus = ({
     if (currentStatusIndex < status.length - 1) {
       setCurrentStatusIndex(currentStatusIndex + 1);
       handleIndexes(userId, currentStatusIndex + 1);
+    } else {
+      handleNextUser(); 
     }
   };
+
+  if (!status.length || isClosed) {
+    return null;
+  }
 
   return (
     <>
       <div className="overlay" onClick={() => handleClosed(true)}>
-        {/* <h1>{userStatuses[userId]?.currentIndex}</h1> */}
-
         <div className="container">
           <div className="status-upper">
             <div className="status-bar-container">
@@ -169,8 +194,8 @@ const UserStatus = ({
               <FaArrowLeft />
             </button>
             <img
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
+              // onMouseEnter={() => setIsPaused(true)}
+              // onMouseLeave={() => setIsPaused(false)}
               onTouchStart={() => setIsPaused(true)}
               onTouchEnd={() => setIsPaused(false)}
               onClick={() => setIsPaused(!isPaused)}

@@ -1,6 +1,6 @@
 export const randomData = [
   {
-    id: "1",
+    id: 1,
     name: "Alice Johnson",
     image: "https://randomuser.me/api/portraits/women/2.jpg",
     chat: "Hey, did you see the latest update on the project?",
@@ -19,7 +19,7 @@ export const randomData = [
     ],
   },
   {
-    id: "2",
+    id: 2,
     name: "Bob Smith",
     image: "https://randomuser.me/api/portraits/men/3.jpg",
     chat: "I have some new ideas for the marketing campaign.",
@@ -38,7 +38,7 @@ export const randomData = [
     ],
   },
   {
-    id: "3",
+    id: 3,
     name: "Carol Lee",
     image: "https://randomuser.me/api/portraits/women/4.jpg",
     chat: "Can you send me the report by end of day?",
@@ -57,7 +57,7 @@ export const randomData = [
     ],
   },
   {
-    id: "4",
+    id: 4,
     name: "David Brown",
     image: "https://randomuser.me/api/portraits/men/5.jpg",
     chat: "Looking forward to our meeting tomorrow.",
@@ -76,7 +76,7 @@ export const randomData = [
     ],
   },
   {
-    id: "5",
+    id: 5,
     name: "Emily Davis",
     image: "https://randomuser.me/api/portraits/women/6.jpg",
     chat: "Let's catch up later this week!",
@@ -95,7 +95,7 @@ export const randomData = [
     ],
   },
   {
-    id: "6",
+    id: 6,
     name: "Franklin Wilson",
     image: "https://randomuser.me/api/portraits/men/6.jpg",
     chat: "Did you get a chance to review the draft?",
@@ -114,7 +114,7 @@ export const randomData = [
     ],
   },
   {
-    id: "7",
+    id: 7,
     name: "Grace Adams",
     image: "https://randomuser.me/api/portraits/women/7.jpg",
     chat: "Can you help with the presentation slides?",
@@ -133,7 +133,7 @@ export const randomData = [
     ],
   },
   {
-    id: "8",
+    id: 8,
     name: "Henry Carter",
     image: "https://randomuser.me/api/portraits/men/7.jpg",
     chat: "The server issue has been resolved.",
@@ -152,7 +152,7 @@ export const randomData = [
     ],
   },
   {
-    id: "9",
+    id: 9,
     name: "Isabella Clark",
     image: "https://randomuser.me/api/portraits/women/8.jpg",
     chat: "Let's schedule a call to discuss the new features.",
@@ -171,7 +171,7 @@ export const randomData = [
     ],
   },
   {
-    id: "10",
+    id: 10,
     name: "Jack Martinez",
     image: "https://randomuser.me/api/portraits/men/8.jpg",
     chat: "Can we push the deadline to next week?",
@@ -190,7 +190,7 @@ export const randomData = [
     ],
   },
   {
-    id: "11",
+    id: 11,
     name: "Katherine Turner",
     image: "https://randomuser.me/api/portraits/women/9.jpg",
     chat: "I'll be out of the office for the next two days.",
@@ -209,7 +209,7 @@ export const randomData = [
     ],
   },
   {
-    id: "12",
+    id: 12,
     name: "Liam Harris",
     image: "https://randomuser.me/api/portraits/men/9.jpg",
     chat: "I need the budget report by tomorrow.",
@@ -228,7 +228,7 @@ export const randomData = [
     ],
   },
   {
-    id: "13",
+    id: 13,
     name: "Mia Young",
     image: "https://randomuser.me/api/portraits/women/10.jpg",
     chat: "The team needs your feedback on the design.",
@@ -247,7 +247,7 @@ export const randomData = [
     ],
   },
   {
-    id: "14",
+    id: 14,
     name: "Noah Walker",
     image: "https://randomuser.me/api/portraits/men/10.jpg",
     chat: "Can we arrange a training session next week?",
@@ -266,7 +266,7 @@ export const randomData = [
     ],
   },
   {
-    id: "15",
+    id: 15,
     name: "Olivia Scott",
     image: "https://randomuser.me/api/portraits/women/11.jpg",
     chat: "I have updated the project plan.",
@@ -285,7 +285,7 @@ export const randomData = [
     ],
   },
   {
-    id: "16",
+    id: 16,
     name: "Paul Allen",
     image: "https://randomuser.me/api/portraits/men/11.jpg",
     chat: "Let's finalize the contract details soon.",
@@ -308,7 +308,7 @@ export const randomData = [
     ],
   },
   {
-    id: "17",
+    id: 17,
     name: "Quinn Green",
     image: "https://randomuser.me/api/portraits/women/12.jpg",
     chat: "Please review the attached document.",
@@ -327,7 +327,7 @@ export const randomData = [
     ],
   },
   {
-    id: "18",
+    id: 18,
     name: "Ryan King",
     image: "https://randomuser.me/api/portraits/men/12.jpg",
     chat: "Can we discuss the new project scope?",
@@ -346,7 +346,7 @@ export const randomData = [
     ],
   },
   {
-    id: "19",
+    id: 19,
     name: "Sophia Baker",
     image: "https://randomuser.me/api/portraits/women/13.jpg",
     chat: "The client meeting went well today.",
@@ -365,7 +365,7 @@ export const randomData = [
     ],
   },
   {
-    id: "20",
+    id: 20,
     name: "Thomas Lewis",
     image: "https://randomuser.me/api/portraits/men/13.jpg",
     chat: "I will send over the revised estimates shortly.",
@@ -384,7 +384,7 @@ export const randomData = [
     ],
   },
   {
-    id: "21",
+    id: 21,
     name: "Uma Patel",
     image: "https://randomuser.me/api/portraits/women/14.jpg",
     chat: "The new feature is ready for testing.",
@@ -403,7 +403,7 @@ export const randomData = [
     ],
   },
   {
-    id: "22",
+    id: 22,
     name: "Victor Nelson",
     image: "https://randomuser.me/api/portraits/men/14.jpg",
     chat: "Please confirm the meeting time.",
