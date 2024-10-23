@@ -18,7 +18,7 @@ const UserStatus = ({
   const [isPaused, setIsPaused] = useState(false);
   const numSegments = status.length;
   const segmentLength = 275 / (numSegments || 1);
-  const gap = 3.5;
+  const gap = 3;
 
   useEffect(() => {
     if (status.length > 0) {
@@ -26,11 +26,6 @@ const UserStatus = ({
       setIsPaused(false);
     }
   }, [status, setCurrentStatusIndex]);
-
-
-
-
-
 
   const onClose = () => {
     handleClosed(true);
@@ -41,30 +36,27 @@ const UserStatus = ({
     });
   };
 
-
-
   const handleBackArrow = (event) => {
     if (event.key === "Escape") {
       onClose();
     }
   };
 
-
   useEffect(() => {
     let interval;
-  
+
     if (status.length > 1 && !isClosed && !isPaused) {
       interval = setInterval(() => {
         setCurrentStatusIndex((prevIndex) => {
           const newIndex = prevIndex >= status.length - 1 ? 0 : prevIndex + 1;
-          handleIndexes(userId, newIndex); 
+          handleIndexes(userId, newIndex);
           return newIndex;
         });
-      }, 1380);
-  
+      }, 5000);
+
       window.addEventListener("keydown", handleBackArrow);
     }
-  
+
     return () => {
       if (interval) {
         clearInterval(interval);
@@ -101,21 +93,20 @@ const UserStatus = ({
         <div className="container">
           <div className="status-upper">
             <div className="status-bar-container">
-              <svg>
+              <svg className="status-strokes">
                 {[...Array(numSegments)].map((_, i) => {
                   const offset = (segmentLength + gap) * i;
 
                   return (
                     <line
                       key={i}
-                      x1={offset}
+                      x1={offset === 0 ? 4 : offset}
                       y1="5"
                       x2={offset + segmentLength - gap}
                       y2="5"
                       strokeWidth="5"
                       strokeLinecap="round"
                       strokeDasharray={`${segmentLength} ${segmentLength}`}
-                      className="base-segment"
                       stroke="gray"
                     />
                   );
@@ -129,9 +120,9 @@ const UserStatus = ({
                   return (
                     <line
                       key={i}
-                      x1={offset}
+                      x1={offset === 0 ? 4 : offset}
                       y1="5"
-                      x2={offset + segmentLength - gap}
+                      x2={offset + Math.ceil(segmentLength) - gap}
                       y2="5"
                       stroke={strokeColor}
                       strokeWidth="5"

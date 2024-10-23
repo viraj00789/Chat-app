@@ -8,7 +8,7 @@
 
   const StatusSideBar = () => {
     const radius = 26;
-    const strokeWidth = 2.5;
+    const strokeWidth = 2;
     const circumference = 2 * Math.PI * radius;
     const gap = 2;
 
@@ -32,7 +32,7 @@
         ...prev,
         [item.id]: {
           images: item.imageArray || [],
-          currentIndex: currentIndex, // Keep the current index from the user statuses
+          currentIndex: currentIndex, 
         },
       }));
     
@@ -45,7 +45,6 @@
         const currentStatus = prev[userId] || { currentIndex: 0, images: [] };
         const currentIndex = currentStatus.currentIndex + 1;
     
-        // Only update if the new index is within bounds
         if (currentIndex < currentStatus.images.length) {
           return {
             ...prev,
@@ -56,7 +55,6 @@
           };
         }
     
-        // Move user to viewed if they have seen all statuses
         if (!prevViewed.some((view) => view.id === userId)) {
           const userToMove = viewed.find((user) => user.id === userId);
           if (userToMove) {
@@ -65,13 +63,13 @@
           }
         }
     
-        return prev; // Return unchanged state if at the end
+        return prev; 
       });
     };
     
     const handleIndexes = (userId, newIndex) => {
       setUserStatuses((prev) => {
-        const updatedUserStatuses = {
+        let updatedUserStatuses = {
           ...prev,
           [userId]: {
             ...prev[userId],
@@ -79,7 +77,7 @@
           },
         };
 
-        if (newIndex >= updatedUserStatuses[userId].images.length - 1 && !prevViewed.some((view) => view.id === userId)) {
+        if (newIndex > updatedUserStatuses[userId].images.length - 1 && !prevViewed.some((view) => view.id === userId)) {
           const userToMove = viewed.find((user) => user.id === userId);
           if (userToMove) {
             setPrevViewed((prev) => [...prev, userToMove]);
@@ -128,7 +126,7 @@
                       <div className="status-div-1">
                         <div className="status-ring">
                           <div className="status-ring-container">
-                            <svg width="60" height="60" viewBox="0 0 60 60">
+                            <svg height="60" viewBox="0 0 60 60">
                               {[...Array(numSegments)].map((_, i) => {
                                 const offset = (circumference / numSegments) * i + gap;
                                 const strokeColor = userStatus.currentIndex > i ? "lightgray" : "green";
@@ -182,11 +180,11 @@
                         <div className="chat-container" title={item.name}>
                           <div className="status-div-1">
                             <div className="status-ring">
-                              <div className="status-ring-container">
+                              {/* <div className="status-ring-container"> */}
                                 <svg width="60" height="60" viewBox="0 0 60 60">
                                   {[...Array(numSegments)].map((_, i) => {
                                     const offset = (circumference / numSegments) * i + gap;
-                                    const strokeColor = userStatus.currentIndex > i ? "lightgray" : "green";
+                                    const strokeColor = "lightgray";
 
                                     return (
                                       <circle
@@ -205,7 +203,7 @@
                                     );
                                   })}
                                 </svg>
-                              </div>
+                              {/* </div> */}
                               <img
                                 src={item.image || "https://randomuser.me/api/portraits/men/9.jpg"}
                                 alt="User"
