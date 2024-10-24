@@ -47,7 +47,8 @@ $dark-color: #202C33
 .cov-header-img
     width: 50px
     height: 50px
-    border-radius: 10px
+    border-radius: 50%
+    padding-bottom: 2px
 .cov-header-detail-name
     margin: 0 8px 0 8px
     font-weight: 500
@@ -147,6 +148,12 @@ $dark-color: #202C33
     height: 32px
     margin: 8px 0 0 0
     color: rgb(18, 140, 126)
+.form-mic
+    width: 32px
+    height: 32px
+    margin: 8px 0 0 0
+    color: rgb(18, 140, 126)
+    background-color: #202C33
 .cov-icon-1
     margin-left: 10px
 .input-cov
@@ -165,8 +172,11 @@ $dark-color: #202C33
     &.inactive
         background-color: #2A3942
         color: #e4e2e2
-    @extend %input-base
-
+        @extend %input-base
+.audio-rec
+    filter: brightness(0) saturate(100%) invert(9%) sepia(5%) saturate(5777%) hue-rotate(159deg) brightness(91%) contrast(80%)
+.audio-controls
+    filter: brightness(0) saturate(100%) invert(42%) sepia(38%) saturate(823%) hue-rotate(124deg) brightness(98%) contrast(96%)    
 @keyframes bounceIn
     0%
         transform: scaleY(0.89)

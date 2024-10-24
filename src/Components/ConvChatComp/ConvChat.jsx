@@ -12,7 +12,60 @@ const ConvChat = ({ conv, dat }) => {
     messageRef.current?.lastElementChild?.scrollIntoView();
   }, [conv]);
 
-  console.log(readmore);
+
+  const AudioOrText = (items,index) =>
+  {
+    if(!items.startsWith('blob')) 
+    {    
+      return(
+        <div
+        className="message__bubble"
+        style={{
+          backgroundColor: isDark
+            ? index % 2 === 0
+            ? "#D7F8F4"
+            : "#fff"
+            : index % 2 === 0
+            ? "#005C4B"
+            : "#202C33",
+          color: isDark ? "#000" : "#fff",
+          flexDirection: items.length > 300 ? "column" : "row",
+        }}
+      >
+        <div className="message__actions">
+          {readmore[index] ? items : items.slice(0, 300)}
+          {items.length > 300 && (
+            <p
+              onClick={() => toggleReadMore(index)}
+              className="read-or-hide"  
+            >
+              {readmore[index] ? "show less" : " read more"}
+            </p>
+          )}
+        </div>
+        <span
+          className="message_time"
+          style={{
+            color: isDark ? "#000" : "#fff",
+          }}
+        >
+          {dat[index]}
+        </span>
+        </div>
+      )
+    }
+    else{
+      return (
+        
+        <div className="message__actions">
+         <audio controls={true} loop={true}>
+          <source  src={items} />
+         </audio>
+        </div>
+       
+      )
+    }
+  }
 
   const toggleReadMore = (index) => {
     setReadMore((prevStates) => ({
@@ -36,40 +89,7 @@ const ConvChat = ({ conv, dat }) => {
                   flexDirection: index % 2 === 0 ? "row-reverse" : "row",
                 }}
               >
-                <div
-                  className="message__bubble"
-                  style={{
-                    backgroundColor: isDark
-                      ? index % 2 === 0
-                      ? "#D7F8F4"
-                      : "#fff"
-                      : index % 2 === 0
-                      ? "#005C4B"
-                      : "#202C33",
-                    color: isDark ? "#000" : "#fff",
-                    flexDirection: items.length > 300 ? "column" : "row",
-                  }}
-                >
-                  <div className="message__actions">
-                    {readmore[index] ? items : items.slice(0, 300)}
-                    {items.length > 300 && (
-                      <p
-                        onClick={() => toggleReadMore(index)}
-                        className="read-or-hide"  
-                      >
-                        {readmore[index] ? "show less" : " read more"}
-                      </p>
-                    )}
-                  </div>
-                  <span
-                    className="message_time"
-                    style={{
-                      color: isDark ? "#000" : "#fff",
-                    }}
-                  >
-                    {dat[index]}
-                  </span>
-                </div>
+               {AudioOrText(items,index)}
               </div>
             </div>
           </div>

@@ -10,6 +10,7 @@ import { FiMoon } from "react-icons/fi";
 import { MdOutlineWbSunny } from "react-icons/md";
 import EmojiPicker from "emoji-picker-react";
 import { BsEmojiSmile } from "react-icons/bs";
+import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder";
 
 const ConvHeader = () => {
   const {
@@ -28,8 +29,32 @@ const ConvHeader = () => {
   const pickerRef = useRef();
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
+  //Audio Sts
+  const { recorderControls } = useAudioRecorder();
+
+  const addAudioElement = (blob) => {
+    const url = URL.createObjectURL(blob);
+    console.log(url);
+
+    const upadatedAudioData = [...message, url, url];
+
+    const updatedChatAudioData = data.map((user) => {
+      if (user.id === chat.id) {
+        return { ...user, chatData: upadatedAudioData };
+      }
+      return user;
+    });
+    console.log(updatedChatAudioData);
+    handleData(updatedChatAudioData);
+    handleConvData(upadatedAudioData);
+    setMessage(upadatedAudioData);
+    // const audio = document.createElement("audio");
+    // audio.src = url;
+    // audio.controls = true;
+    // document.body.appendChild(audio);
+  };
+
   const handleMouseOver = () => {
-    console.log("hell");
     setShowEmojiPicker(!showEmojiPicker);
   };
 
@@ -85,8 +110,6 @@ const ConvHeader = () => {
     }
   };
 
-
-
   useEffect(() => {
     handleSelectedChat(chat || data[0]);
     handleConvData(chat?.chatData || data[0]?.chatData);
@@ -104,9 +127,7 @@ const ConvHeader = () => {
 
   return (
     <>
-      <div
-        className={`cov-header-cont ${isDark ? "active" : "inactive"}`}
-      >
+      <div className={`cov-header-cont ${isDark ? "active" : "inactive"}`}>
         <div
           className={`cov-header-subcnt-1 ${isDark ? "active" : "inactive"}`}
         >
@@ -145,9 +166,7 @@ const ConvHeader = () => {
       <ConvChat conv={message} dat={dat} />
 
       <div className="model-overlay-emoji"></div>
-      <div
-        className={`cov-div ${isDark ? "active" : "inactive"}`}
-      >
+      <div className={`cov-div ${isDark ? "active" : "inactive"}`}>
         {showEmojiPicker && (
           <button className="cov-icons-img" ref={pickerRef}>
             <div className="cov-emoji-picker">
@@ -188,13 +207,32 @@ const ConvHeader = () => {
               onChange={handleText}
             />
           </div>
+          <button
+            type="button"
+            title="Hold to record"
+            className={`cov-icon ${isDark ? "active" : "inactive"}`}
+          >
+            <AudioRecorder
+              onRecordingComplete={(blob) => addAudioElement(blob)}
+              recorderControls={recorderControls}
+              showVisualizer={true}
+              downloadOnSavePress={false}
+              downloadFileExtension={true}
+              classes={{
+                AudioRecorderStatusClass:"audio-rec",
+                AudioRecorderStartSaveClass:"audio-controls",
+                AudioRecorderPauseResumeClass:"audio-controls",
+                AudioRecorderDiscardClass:"audio-controls"
+              }}
+            />
+          </button>
 
           <button
             type="submit"
             onClick={submitedText}
             className={`cov-icon ${isDark ? "active" : "inactive"}`}
           >
-            <LuSend className="form-send"/>
+            <LuSend className="form-send" />
           </button>
         </form>
       </div>

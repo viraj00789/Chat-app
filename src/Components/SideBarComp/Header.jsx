@@ -266,7 +266,7 @@ const Header = () => {
                         style={{
                           color: favourites.some((fav) => fav.id === items.id)
                             ? "gold"
-                            : "rgb(225 223 223)",
+                            : "#808080",
                         }}
                       />
                     </div>
