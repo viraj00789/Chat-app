@@ -174,9 +174,13 @@ $dark-color: #202C33
         color: #e4e2e2
         @extend %input-base
 .audio-rec
-    filter: brightness(0) saturate(100%) invert(9%) sepia(5%) saturate(5777%) hue-rotate(159deg) brightness(91%) contrast(80%)
+    &.active
+        filter: brightness(0) saturate(100%) invert(9%) sepia(5%) saturate(5777%) hue-rotate(159deg) brightness(91%) contrast(80%)
+    &.inactive
+        filter: brightness(0) saturate(100%) invert(19%) sepia(16%) saturate(882%) hue-rotate(159deg) brightness(93%) contrast(89%)
 .audio-controls
     filter: brightness(0) saturate(100%) invert(42%) sepia(38%) saturate(823%) hue-rotate(124deg) brightness(98%) contrast(96%)    
+
 @keyframes bounceIn
     0%
         transform: scaleY(0.89)

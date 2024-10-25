@@ -11,9 +11,7 @@
         background-image: url("/assests/bg-image-1.jpg")
     &.inactive
         background-color: #233d32
-        background-image: url("/assests/bg-image.jpg")
-       
-
+        background-image: url("/assests/bg-image.jpg")  
 .message
     width: 100%
     overflow: auto
@@ -46,6 +44,20 @@
     font-size: 10px
     margin-left: 10px
     align-items: flex-end
+.audio-controls-css
+    &::-webkit-media-controls-panel
+        background-color:#d1cece
+    &::-webkit-media-controls-play-button
+        color: #fff000
+    &::-webkit-media-controls-seek-back-button    
+        background-color: #fff
+    &::webkit-media-controls-time-remaining-display
+        color: #fff    
+    &::-webkit-media-controls-fullscreen-button       
+        background-color:#fff
+    &::-webkit-media-controls-seek-back-button
+        color: #fff
+        
 @media (max-width: 860px)
     .mess-div
         height: calc(100% - 180px)
