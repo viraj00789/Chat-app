@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import "./ConvHeader.sass";
 import "./ConvChat.sass";
 import { useTheme } from "../../store/ThemeContext";
-import WaveFormSurfer from "../CommonComp/WaveForm";
+import WaveFromSurfer from "../CommonComp/WaveFromSurfer";
+
 
 const ConvChat = ({ conv, dat }) => {
   const [readmore, setReadMore] = useState({});
@@ -14,6 +15,7 @@ const ConvChat = ({ conv, dat }) => {
   }, [conv]);
 
   const AudioOrText = (items, index) => {
+    console.log(items)
     if (!items.startsWith("blob")) {
       return (
         <div
@@ -51,7 +53,7 @@ const ConvChat = ({ conv, dat }) => {
     } else {
       return (
         <div className="message__actions">
-          <WaveFormSurfer audio={items}/>
+          <WaveFromSurfer audio={items}/>
         </div>
       );
     }
