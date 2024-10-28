@@ -27,12 +27,12 @@ const AddModel = ({ handleModel, handleNewData }) => {
   const validateForm = (data) => {
     const errors = {};
     if (!data.name.trim()) {
-      errors.name = "Name field is required";
+      errors.name = "Name field is required.";
     }
     if (!data.image.trim()) {
-      errors.image = "Image field is required";
+      errors.image = "Image field is required.";
     } else if (!isValid(data.image)) {
-      errors.image = "Invalid image link";
+      errors.image = "Invalid image link.";
     }
     return errors;
   };
@@ -63,7 +63,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
       email: "abc@gmail.com",
     };
 
-    const updatedChatData = [...data, newUser];
+    const updatedChatData = [newUser,...data];
     handleData(updatedChatData);
     handleNewData(updatedChatData);
 
@@ -109,7 +109,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
           <form onSubmit={handleSubmitForm}>
             <div className="add-user-header-1">
               <p className="add-user-header">
-                Enter name. <span className="req">*</span>
+                Enter name <span className="req">*</span>
               </p>
 
               <Input
@@ -127,7 +127,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
             </div>
             <div className="add-image-header">
               <p className="add-user-header">
-                Add image link. <span className="req">*</span>
+                Add image link <span className="req">*</span>
               </p>
               <Input
                 type="text"

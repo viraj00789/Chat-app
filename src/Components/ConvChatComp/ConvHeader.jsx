@@ -29,29 +29,30 @@ const ConvHeader = () => {
   const pickerRef = useRef();
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
-  //Audio Sts
   const { recorderControls } = useAudioRecorder();
-
   const addAudioElement = (blob) => {
     const url = URL.createObjectURL(blob);
     console.log(url);
 
+    let dates = new Date();
+    const time = dates.toLocaleTimeString([], {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
     const upadatedAudioData = [...message, url, url];
-
+    const upadtedDate = [...dat, time, time];
     const updatedChatAudioData = data.map((user) => {
       if (user.id === chat.id) {
-        return { ...user, chatData: upadatedAudioData };
+        return { ...user, chatData: upadatedAudioData,chatTime: upadtedDate};
       }
       return user;
     });
-    console.log(updatedChatAudioData);
     handleData(updatedChatAudioData);
     handleConvData(upadatedAudioData);
     setMessage(upadatedAudioData);
-    // const audio = document.createElement("audio");
-    // audio.src = url;
-    // audio.controls = true;
-    // document.body.appendChild(audio);
+    setDat(upadtedDate);
+
   };
 
   const handleMouseOver = () => {
@@ -82,9 +83,9 @@ const ConvHeader = () => {
       });
 
       const updatedMessage = [...message, text, text];
-      const upadtedDate = [...dat, time, time];
-
+      const upadtedDate = [...dat, time,time];
       const updatedChatData = data.map((user) => {
+
         if (user.id === chat.id) {
           return { ...user, chatData: updatedMessage, chatTime: upadtedDate };
         }
@@ -219,10 +220,10 @@ const ConvHeader = () => {
               downloadOnSavePress={false}
               downloadFileExtension={true}
               classes={{
-                AudioRecorderStatusClass:"audio-rec",
-                AudioRecorderStartSaveClass:"audio-controls",
-                AudioRecorderPauseResumeClass:"audio-controls",
-                AudioRecorderDiscardClass:"audio-controls"
+                AudioRecorderStatusClass: `audio-rec ${isDark ? "active" : "inactive"}`,
+                AudioRecorderStartSaveClass: "audio-controls",
+                AudioRecorderPauseResumeClass: "audio-controls",
+                AudioRecorderDiscardClass: "audio-controls",
               }}
             />
           </button>

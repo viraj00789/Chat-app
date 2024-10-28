@@ -110,7 +110,7 @@ const Header = () => {
               alt=""
             />
             <Link to="/status">
-            <BiBullseye className="mess-status"/>
+            <BiBullseye title="Status" className="mess-status"/>
             </Link>
           </div>
         </div>
