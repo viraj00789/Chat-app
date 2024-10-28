@@ -29,7 +29,6 @@ const ConvHeader = () => {
   const pickerRef = useRef();
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
-  //Audio Sts
   const { recorderControls } = useAudioRecorder();
   const addAudioElement = (blob) => {
     const url = URL.createObjectURL(blob);
@@ -43,8 +42,6 @@ const ConvHeader = () => {
     });
     const upadatedAudioData = [...message, url, url];
     const upadtedDate = [...dat, time, time];
-
-
     const updatedChatAudioData = data.map((user) => {
       if (user.id === chat.id) {
         return { ...user, chatData: upadatedAudioData,chatTime: upadtedDate};
@@ -54,6 +51,8 @@ const ConvHeader = () => {
     handleData(updatedChatAudioData);
     handleConvData(upadatedAudioData);
     setMessage(upadatedAudioData);
+    setDat(upadtedDate);
+
   };
 
   const handleMouseOver = () => {
@@ -84,9 +83,9 @@ const ConvHeader = () => {
       });
 
       const updatedMessage = [...message, text, text];
-      const upadtedDate = [...dat, time, time];
-
+      const upadtedDate = [...dat, time,time];
       const updatedChatData = data.map((user) => {
+
         if (user.id === chat.id) {
           return { ...user, chatData: updatedMessage, chatTime: upadtedDate };
         }
