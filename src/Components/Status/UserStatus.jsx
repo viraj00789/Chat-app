@@ -13,7 +13,6 @@ const UserStatus = ({
   handleClosed,
   handleUserStatuses,
   userStatuses,
-  handleUserId,
   handleChat,
   users
 }) => {
@@ -27,7 +26,14 @@ const UserStatus = ({
       handleClosed(false);
       setIsPaused(false);
     }
-  }, []);
+  }, [handleClosed, status.length]);
+
+  const handleNextUser = useCallback(() => {
+    const currentUserIndex = users.findIndex((user) => user.id === userId);
+    const nextUser = users[currentUserIndex + 1] || users[0]; 
+    handleChat(nextUser); 
+    setCurrentStatusIndex(0);
+  },[handleChat, setCurrentStatusIndex, userId, users]);
 
   const onClose = useCallback(() => {
     handleClosed(true);
@@ -39,19 +45,13 @@ const UserStatus = ({
     if (currentStatusIndex === status.length - 1) {
       handleNextUser();
     }
-  },[]);
-
+  },[currentStatusIndex, handleClosed, handleNextUser, handleUserStatuses, setCurrentStatusIndex, status.length, userId]);
   const handleBackArrow = useCallback((event) => {
     if (event.key === "Escape") {
       onClose();
     }
   },[onClose]);
-  const handleNextUser = useCallback(() => {
-    const currentUserIndex = users.findIndex((user) => user.id === userId);
-    const nextUser = users[currentUserIndex + 1] || users[0]; 
-    handleChat(nextUser); 
-    setCurrentStatusIndex(0);
-  },[handleChat, setCurrentStatusIndex, userId, users]);
+
 
   useEffect(() => {
     let interval;

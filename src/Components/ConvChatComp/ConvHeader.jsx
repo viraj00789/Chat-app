@@ -124,7 +124,7 @@ const ConvHeader = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [chat, data, handleConvData, handleSelectedChat, showEmojiPicker]);
 
   return (
     <>

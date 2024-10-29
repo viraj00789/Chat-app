@@ -90,7 +90,7 @@ const AddModel = ({ handleModel, handleNewData }) => {
     return () => {
       window.removeEventListener("keydown", closeOnEscapePressed);
     };
-  }, []);
+  }, [handleModel]);
 
   return (
     <>
