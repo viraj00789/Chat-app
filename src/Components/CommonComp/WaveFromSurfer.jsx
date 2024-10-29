@@ -21,7 +21,7 @@ const WaveFormSurfer = ({ audio, times, autoPlay, onAudioEnd, index }) => {
       container: waveformRef.current,
       barWidth: 4.5,
       barRadius: 10,
-      height: 70,
+      height: 35,
       barGap: 2,
       backend: "MediaElement",
       normalize: false,
