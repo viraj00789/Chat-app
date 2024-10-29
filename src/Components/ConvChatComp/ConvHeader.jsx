@@ -125,7 +125,7 @@ const ConvHeader = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chat]);
+  }, [chat,showEmojiPicker]);
 
   return (
     <>
