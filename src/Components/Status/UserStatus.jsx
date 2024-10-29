@@ -27,7 +27,7 @@ const UserStatus = ({
       handleClosed(false);
       setIsPaused(false);
     }
-  }, [status, setCurrentStatusIndex]);
+  }, []);
 
   const onClose = () => {
     handleClosed(true);

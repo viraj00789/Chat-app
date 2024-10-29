@@ -231,9 +231,6 @@ const StatusSideBar = () => {
               <p style={{ fontWeight: "500" }}>Recently Viewed</p>
               <div className="status-chat-1">
                 {prevViewed.map((item, index) => {
-                  const userStatus = userStatuses[item.id] || {
-                    currentIndex: 0,
-                  };
                   const numSegments = item.imageArray
                     ? item.imageArray.length
                     : 1;

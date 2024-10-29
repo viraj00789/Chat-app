@@ -1,17 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 import WaveSurfer from "wavesurfer.js";
-import { useTheme } from "../../store/ThemeContext";
 import { useChat } from "../../store/ChatContext";
 
 const WaveFormSurfer = ({ audio, times, autoPlay, onAudioEnd, index }) => {
   const waveformRef = useRef(null);
   const waveSurferRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const isDark = useTheme();
   const { chat } = useChat();
 
   useEffect(() => {
