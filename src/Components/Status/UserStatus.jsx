@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./UserStatus.sass";
 import { randomData } from "../data";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -29,7 +29,7 @@ const UserStatus = ({
     }
   }, []);
 
-  const onClose = () => {
+  const onClose = useCallback(() => {
     handleClosed(true);
     setCurrentStatusIndex((prevIndex) => {
       const newIndex = prevIndex >= status.length - 1 ? 0 : prevIndex + 1;
@@ -39,13 +39,19 @@ const UserStatus = ({
     if (currentStatusIndex === status.length - 1) {
       handleNextUser();
     }
-  };
+  },[]);
 
-  const handleBackArrow = (event) => {
+  const handleBackArrow = useCallback((event) => {
     if (event.key === "Escape") {
       onClose();
     }
-  };
+  },[onClose]);
+  const handleNextUser = useCallback(() => {
+    const currentUserIndex = users.findIndex((user) => user.id === userId);
+    const nextUser = users[currentUserIndex + 1] || users[0]; 
+    handleChat(nextUser); 
+    setCurrentStatusIndex(0);
+  },[handleChat, setCurrentStatusIndex, userId, users]);
 
   useEffect(() => {
     let interval;
@@ -72,14 +78,9 @@ const UserStatus = ({
       }
       window.removeEventListener("keydown", handleBackArrow);
     };
-  }, [status, isPaused, isClosed, currentStatusIndex]);
+  }, [status, isPaused, isClosed, currentStatusIndex, handleBackArrow, setCurrentStatusIndex, handleIndexes, userId, handleNextUser]);
 
-  const handleNextUser = () => {
-    const currentUserIndex = users.findIndex((user) => user.id === userId);
-    const nextUser = users[currentUserIndex + 1] || users[0]; 
-    handleChat(nextUser); 
-    setCurrentStatusIndex(0);
-  };
+
 
   const handlePrevUser = () => {
     const currentUserIndex = users.findIndex((user) => user.id === userId);
